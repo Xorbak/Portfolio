@@ -62,7 +62,7 @@ export const darkMode: ThemeOptions = {
     },
   },
   shape: {
-    borderRadius: 4,
+    borderRadius: "5px",
   },
 };
 

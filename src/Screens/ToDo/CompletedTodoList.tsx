@@ -79,6 +79,10 @@ const styles = {
     },
   },
   ToDoControl: {
-    "&:hover": { cursor: "pointer", backgroundColor: "secondary.dark" },
+    "&:hover": {
+      cursor: "pointer",
+      backgroundColor: "secondary.dark",
+      borderRadius: "5px",
+    },
   },
 };
