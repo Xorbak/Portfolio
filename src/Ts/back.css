@@ -1,0 +1,78 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.ToDoContainer {
+  background-color: #97dbae;
+  height: 40vh;
+  width: 80vh;
+  border-radius: 5px;
+  padding: 1%;
+}
+.InputContainer {
+  display: flex;
+  flex-direction: row;
+}
+.Input {
+  width: 85%;
+  background-color: antiquewhite;
+  outline: none;
+}
+
+.ListContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 75%;
+  margin: 1%;
+
+  padding: 1%;
+}
+.ToDoBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #f4bbbb;
+  background-color: #f1e1a6;
+  width: 45%;
+  padding-left: 2%;
+  border-radius: 5px;
+}
+.Completed {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #f4bbbb;
+  background-color: #c3e5ae;
+  width: 45%;
+  padding-left: 2%;
+  border-radius: 5px;
+}
+
+.ToDoItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding-right: 2%;
+  font-size: 15px;
+}
+.ToDoInput {
+  list-style-type: none;
+}
+.ToDoInput {
+  cursor: pointer;
+}
+
+.ToDoControl:hover {
+  cursor: pointer;
+  background-color: #e2d29b;
+}
