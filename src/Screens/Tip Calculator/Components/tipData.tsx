@@ -21,7 +21,7 @@ export const TipData = ({ setTipData, tipData, val, setVal }: Props) => {
       <Formik<Tip>
         initialValues={{ bill: null, tip: null, total: null }}
         onSubmit={(values) => {
-          //all three need to check if its null, if it is, then it needs to change to the correct value
+          //all three need to check if its null, otherwise it freaks out, then it needs to change to the correct value
           let tip = values.tip !== null ? values.tip : Number(val);
           let bill = values.bill !== null ? values.bill : 0;
           let total = bill + bill * (tip / 100);
@@ -32,7 +32,9 @@ export const TipData = ({ setTipData, tipData, val, setVal }: Props) => {
           <Box sx={styles.inputBox}>
             <Field fullWidth name="bill" component={billInput} />
             <Field
-              onChange={(e: any) => setVal(e.target.value)}
+              onChange={(e: any) => {
+                setVal(e.target.value);
+              }}
               value={val}
               name="tip"
               component={tipInput}

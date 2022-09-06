@@ -3,7 +3,7 @@ import React from "react";
 import ReplayIcon from "@mui/icons-material/Replay";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
-import ToDoListType from "../../Ts/Model";
+import ToDoListType from "../../../Ts/Model";
 
 interface Props {
   completedToDo: ToDoListType[];

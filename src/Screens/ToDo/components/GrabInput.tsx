@@ -1,10 +1,10 @@
 import Typography from "@mui/material/Typography";
 import { Formik, Form, Field } from "formik";
 import React from "react";
-import toDoSchema from "../Screens/ToDo/Validation";
+import toDoSchema from "../Validation";
 
-import ToDoListType from "../Ts/Model";
-import { MyInput } from "./TodoLists/MyInput";
+import ToDoListType from "../../../Ts/Model";
+import { MyInput } from "./MyInput";
 
 interface Props {
   toDo: ToDoListType[];
@@ -14,7 +14,7 @@ interface FormikFieldTypes {
   inputField: string;
 }
 
-const GrabInput = ({ setTodo, toDo }: Props) => {
+export const GrabInput = ({ setTodo, toDo }: Props) => {
   return (
     <Formik<FormikFieldTypes>
       initialValues={{ inputField: "" }}
@@ -50,5 +50,3 @@ const GrabInput = ({ setTodo, toDo }: Props) => {
     </Formik>
   );
 };
-
-export default GrabInput;

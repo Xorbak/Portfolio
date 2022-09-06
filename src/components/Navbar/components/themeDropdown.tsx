@@ -1,3 +1,4 @@
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -42,9 +43,9 @@ export const ThemeDropDown = ({ setCurrentTheme }: Props) => {
         aria-expanded={openTheme ? "true" : undefined}
         onClick={handleClickTheme}
         size="large"
-        sx={{ color: "text.primary" }}
+        sx={styles.NavbarItem}
       >
-        Themes
+        <Box>Themes</Box>
       </Button>
 
       <Menu
@@ -117,8 +118,12 @@ export const ThemeDropDown = ({ setCurrentTheme }: Props) => {
 
 const styles = {
   NavbarItem: {
-    padding: "1%",
-    textDecoration: "none",
     color: "text.primary",
+
+    "&:hover": {
+      backgroundColor: "transparent",
+      color: "primary.main",
+      top: "+2px",
+    },
   },
 };

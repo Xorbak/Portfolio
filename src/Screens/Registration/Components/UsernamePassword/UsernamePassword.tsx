@@ -71,6 +71,7 @@ export const UsernamePassword = ({
                   setFocus((i) => ({ ...i, username: true })),
                     console.log(focus);
                 }}
+                //sets the Error/success state
                 sx={
                   focus.username && touched
                     ? errors.userName
@@ -92,6 +93,7 @@ export const UsernamePassword = ({
                 onFocus={() => {
                   setFocus((i) => ({ ...i, password: true }));
                 }}
+                //sets the Error/success state
                 sx={
                   focus.password && touched
                     ? errors.password
@@ -114,6 +116,7 @@ export const UsernamePassword = ({
                   setFocus((i) => ({ ...i, confirmpassword: true })),
                     console.log(focus);
                 }}
+                //sets the Error/success state
                 sx={
                   focus.confirmpassword && touched
                     ? errors.confirmPassword
@@ -131,6 +134,7 @@ export const UsernamePassword = ({
               </Box>
               <Button
                 type="submit"
+                // setFocus to true on everything in focus to show all errors
                 onClick={() =>
                   setFocus({
                     username: true,
@@ -139,7 +143,6 @@ export const UsernamePassword = ({
                   })
                 }
               >
-                {" "}
                 Submit
               </Button>
             </Box>

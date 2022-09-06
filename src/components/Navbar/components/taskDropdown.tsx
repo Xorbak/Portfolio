@@ -4,6 +4,7 @@ import Menu from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Taskitem } from "./taskItem";
 
 //@ts-ignore
 export const TaskDropdown = () => {
@@ -26,7 +27,7 @@ export const TaskDropdown = () => {
         aria-expanded={openTasks ? "true" : undefined}
         onClick={handleClickTasks}
         size="large"
-        sx={{ color: "text.primary" }}
+        sx={styles.NavbarItem}
       >
         Tasks
       </Button>
@@ -41,41 +42,26 @@ export const TaskDropdown = () => {
         }}
         sx={{ color: "text.primary" }}
       >
-        <NavLink
-          to="/To-do"
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          <MenuItem sx={{ color: "text.primary" }} onClick={handleCloseTasks}>
-            To-Do
-          </MenuItem>
-        </NavLink>
-        <NavLink to="/Registration" style={{ textDecoration: "none" }}>
-          <MenuItem sx={{ color: "text.primary" }} onClick={handleCloseTasks}>
-            Registration form
-          </MenuItem>
-        </NavLink>
-        <NavLink
-          to="/ThemeTest"
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          <MenuItem sx={{ color: "text.primary" }} onClick={handleCloseTasks}>
-            Theme test
-          </MenuItem>
-        </NavLink>
-        <NavLink
-          to="/TipCalc"
-          style={{
-            textDecoration: "none",
-          }}
-        >
-          <MenuItem sx={{ color: "text.primary" }} onClick={handleCloseTasks}>
-            Tip Calculator
-          </MenuItem>
-        </NavLink>
+        <Taskitem
+          handleCloseTasks={handleCloseTasks}
+          location="/ThemeTest"
+          label="Theme test"
+        />
+        <Taskitem
+          handleCloseTasks={handleCloseTasks}
+          location="/TipCalc"
+          label="Tip Calculator"
+        />
+        <Taskitem
+          handleCloseTasks={handleCloseTasks}
+          location="/To-do"
+          label="To-Do"
+        />{" "}
+        <Taskitem
+          handleCloseTasks={handleCloseTasks}
+          location="/Registration"
+          label="Registration form"
+        />
       </Menu>
     </Typography>
   );
@@ -83,8 +69,12 @@ export const TaskDropdown = () => {
 
 const styles = {
   NavbarItem: {
-    padding: "1%",
-    textDecoration: "none",
     color: "text.primary",
+
+    "&:hover": {
+      backgroundColor: "transparent",
+      color: "primary.main",
+      top: "+2px",
+    },
   },
 };

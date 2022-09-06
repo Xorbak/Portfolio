@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import GrabInput from "../../components/GrabInput";
-import { CompletedTodoList } from "./CompletedTodoList";
+import ReplayIcon from "@mui/icons-material/Replay";
+import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
 import ToDoListType from "../../Ts/Model";
 import { Box } from "@mui/material";
-import { PendingTodoList } from "./PendingTodoList";
+
+import { GrabInput } from "./components/GrabInput";
+import { TodoList } from "./components/todoList";
 
 export const ToDo = () => {
   const [toDo, setTodo] = useState<ToDoListType[]>([]);
@@ -33,24 +35,29 @@ export const ToDo = () => {
           <GrabInput setTodo={setTodo} toDo={toDo} />
         </Box>
 
-        <Box sx={styles.ToDoBox}>
-          <Box style={{ marginBottom: "5%", textDecorationLine: "underline" }}>
-            Pending Tasks
-          </Box>
-          <PendingTodoList
-            setCompletedToDO={setCompletedToDO}
-            setTodo={setTodo}
-            toDo={toDo}
+        <Box
+          sx={styles.ToDoBox} // The container style for to-do
+        >
+          <TodoList
+            toDoItemStyle={styles.toDoItem} //to-do item styling
+            buttonStyle={styles.ToDoControl} //hover effect and colors for the check buttom and delete
+            completedButton={<CheckIcon fontSize="small" />} // In to be used as a "check" or return
+            moveTo={setCompletedToDO} //move to this state
+            removeFrom={setTodo} //remove from this one
+            toDoArray={toDo} //the array where the to-do currently is
+            label={"Pending Task"}
           />
         </Box>
+
         <Box sx={styles.Completed}>
-          <Box style={{ marginBottom: "5%", textDecorationLine: "underline" }}>
-            Completed Tasks
-          </Box>
-          <CompletedTodoList
-            completedToDo={completedToDo}
-            setTodo={setTodo}
-            setCompletedToDo={setCompletedToDO}
+          <TodoList
+            toDoItemStyle={styles.toDoItemCompleted}
+            buttonStyle={styles.ToDoControlCompleted}
+            completedButton={<ReplayIcon fontSize="small" />}
+            moveTo={setTodo}
+            removeFrom={setCompletedToDO}
+            toDoArray={completedToDo}
+            label={"Completed Tasks"}
           />
         </Box>
       </Box>
@@ -92,6 +99,7 @@ const styles = {
     gridColumnStart: "1",
     gridColumnEnd: "-1",
     display: "flex",
+    width: "100%",
     justifyContent: "center",
     alignContent: "center",
   },
@@ -102,6 +110,7 @@ const styles = {
     flexDirection: "column",
     alignItems: "flex-start",
     color: "#212121",
+
     backgroundColor: "secondary.main",
     borderRadius: "5px",
     padding: "2%",
@@ -109,6 +118,50 @@ const styles = {
     "&::-webkit-scrollbar": {
       display: "none",
       overflow: "scroll",
+    },
+  },
+  ToDoControl: {
+    "&:hover": {
+      cursor: "pointer",
+      backgroundColor: "primary.main",
+      borderRadius: "5px",
+    },
+  },
+  toDoItem: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    alignContent: "center",
+    paddingRight: "2%",
+    fontSize: "15px",
+    border: "1px solid #d7d7d7",
+    boxShadow: "#0d7377",
+    backgroundColor: "primary.dark",
+    borderRadius: "5px",
+    paddingLeft: "5px",
+    marginBottom: "2%",
+  },
+  toDoItemCompleted: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    alignContent: "center",
+    paddingRight: "2%",
+    fontSize: "15px",
+    border: "1px solid #d7d7d7",
+    boxShadow: "#0d7377",
+    backgroundColor: "secondary.main",
+    borderRadius: "5px",
+    paddingLeft: "5px",
+    marginBottom: "2%",
+  },
+  ToDoControlCompleted: {
+    "&:hover": {
+      cursor: "pointer",
+      backgroundColor: "secondary.dark",
+      borderRadius: "5px",
     },
   },
   Completed: {

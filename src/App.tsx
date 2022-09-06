@@ -9,6 +9,7 @@ import { ThemeTester } from "./Screens/ThemeTest/Themetester";
 import { SeaSideEve } from "./Themes/themes";
 import { ThemeProvider } from "@mui/material/styles";
 import { TipCalc } from "./Screens/Tip Calculator/TipCalc";
+import ResponsiveAppBar from "./components/Navbar/responsiveNavBar";
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState(SeaSideEve);

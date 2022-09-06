@@ -33,7 +33,11 @@ export function Navbar({ setCurrentTheme }: Props) {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <MenuIcon
+              onClick={() => {
+                alert("Not yet implemented, Coming soon");
+              }}
+            />
           </IconButton>
           <HomeButton />
           <TaskDropdown />

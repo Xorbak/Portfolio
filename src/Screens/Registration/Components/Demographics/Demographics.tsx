@@ -31,10 +31,6 @@ interface Focus {
   married: boolean;
   highestEducation: boolean;
 }
-//@ts-ignore
-
-//@ts-ignore
-//@ts-ignored
 
 export const Demographics = (
   { setFormModal, userinfo, setUserinfo }: Props,

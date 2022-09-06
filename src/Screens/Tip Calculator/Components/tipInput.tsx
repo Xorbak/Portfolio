@@ -8,10 +8,14 @@ export const tipInput = ({ form, field, ...props }) => {
     <TextField
       autoComplete="off"
       sx={styles.scroll}
+      label="Tip"
       type="number"
       size="small"
       {...field}
       {...props}
+      InputLabelProps={{
+        shrink: true,
+      }}
       InputProps={{
         endAdornment: (
           <InputAdornment style={{ margin: "0", padding: "0" }} position="end">
