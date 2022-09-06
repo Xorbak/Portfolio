@@ -90,8 +90,7 @@ export const UsernamePassword = ({
               <Box
                 // password input validation
                 onFocus={() => {
-                  setFocus((i) => ({ ...i, password: true })),
-                    console.log(focus);
+                  setFocus((i) => ({ ...i, password: true }));
                 }}
                 sx={
                   focus.password && touched
@@ -130,7 +129,19 @@ export const UsernamePassword = ({
                   helperText={focus.confirmpassword && errors.confirmPassword}
                 />
               </Box>
-              <Button type="submit"> Submit</Button>
+              <Button
+                type="submit"
+                onClick={() =>
+                  setFocus({
+                    username: true,
+                    password: true,
+                    confirmpassword: true,
+                  })
+                }
+              >
+                {" "}
+                Submit
+              </Button>
             </Box>
           </Form>
         );
@@ -144,11 +155,11 @@ const styles = {
       borderColor: "success.main",
       borderWidth: "2px",
     },
-    label: { color: "success.main", fontWeight: "100px" },
+    label: { color: "success.main", fontWeight: "50px" },
   },
   errorState: {
     P: { color: "error.main", fontSize: "small" },
-    label: { color: "error.main", fontWeight: "bolder" },
+    label: { color: "error.main", fontWeight: "50px" },
     fieldset: { borderColor: "error.main", borderWidth: "2px" },
   },
   formContainer: {

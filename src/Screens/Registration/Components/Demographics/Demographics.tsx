@@ -167,7 +167,7 @@ const styles = {
   },
   errorState: {
     P: { color: "error.main", fontSize: "small" },
-    label: { color: "error.main", fontWeight: "bolder" },
+    label: { color: "error.main" },
     fieldset: { borderColor: "error.main", borderWidth: "2px" },
   },
   formContainer: {

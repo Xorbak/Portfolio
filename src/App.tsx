@@ -1,4 +1,3 @@
-import "./App.css";
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { ToDo } from "./Screens/ToDo/ToDo";
@@ -7,14 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./Screens/Home";
 import { Navbar } from "./components/Navbar/Navbar";
 import { ThemeTester } from "./Screens/ThemeTest/Themetester";
-import {
-  defaultTheme,
-  cottonCandy,
-  darkMode,
-  morningCoffee,
-  SeaSideEve,
-  spring,
-} from "./Themes/themes";
+import { SeaSideEve } from "./Themes/themes";
 import { ThemeProvider } from "@mui/material/styles";
 import { TipCalc } from "./Screens/Tip Calculator/TipCalc";
 

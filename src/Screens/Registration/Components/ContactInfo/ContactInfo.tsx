@@ -137,13 +137,13 @@ const styles = {
     gridTemplateColumns: "1fr",
     justifyContent: "space-around",
     gridAutoRows: "minmax(2vh, auto)",
-
+    gap: "1%",
     backgroundColor: "background.paper",
     minHeight: "260px",
     width: "30vw",
     borderRadius: "5px",
 
-    paddingTop: "2%",
+    padding: "2%",
     "@media (max-width:768px)": {
       height: "300px",
       width: "50vw",

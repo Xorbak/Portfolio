@@ -23,7 +23,6 @@ export const Password = ({ field, form, ...props }) => {
     <TextField
       type={showPassword}
       autoComplete="off"
-      autoCapitalize="on"
       label="Password"
       {...field}
       {...props}
