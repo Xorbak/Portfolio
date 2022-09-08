@@ -85,14 +85,9 @@ const styles = {
     backgroundColor: "background.paper",
     minHeight: { xs: "60vh", sm: "50vh" },
     maxHeight: { xs: "800px", sm: "100vh" },
-    width: "50vw",
+    width: { xs: "90vw", md: "50vw", lg: "600px" },
     borderRadius: "5px",
     padding: "1%",
-    "@media (max-width:800px)": {
-      width: "90vw",
-      padding: "1%",
-      paddingTop: "5%",
-    },
   },
   InputContainer: {
     gridColumnStart: "1",

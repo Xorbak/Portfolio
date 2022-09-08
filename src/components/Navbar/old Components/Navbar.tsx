@@ -31,9 +31,6 @@ export function Navbar({ setCurrentTheme }: Props) {
               }}
             />
           </IconButton>
-          <HomeButton />
-          <TaskDropdown />
-          <ThemeDropDown setCurrentTheme={setCurrentTheme} />
         </Toolbar>
       </AppBar>
     </Box>

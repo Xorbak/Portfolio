@@ -4,20 +4,19 @@ import { ToDo } from "./Screens/ToDo/ToDo";
 import { RegistrationForm } from "./Screens/Registration/RegistrationForm";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./Screens/Home";
-import { Navbar } from "./components/Navbar/Navbar";
+
 import { ThemeTester } from "./Screens/ThemeTest/Themetester";
 import { SeaSideEve } from "./Themes/themes";
 import { ThemeProvider } from "@mui/material/styles";
 import { TipCalc } from "./Screens/Tip Calculator/TipCalc";
-import ResponsiveAppBar from "./components/Navbar/responsiveNavBar";
+import { ResponsiveAppBar } from "./components/Navbar/responsiveNavBar";
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState(SeaSideEve);
   return (
     <Box>
       <ThemeProvider theme={currentTheme}>
-        <Navbar setCurrentTheme={setCurrentTheme} />
-
+        <ResponsiveAppBar setCurrentTheme={setCurrentTheme} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/To-do" element={<ToDo />} />

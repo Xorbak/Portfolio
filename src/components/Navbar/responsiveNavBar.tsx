@@ -12,11 +12,18 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-//come back to this at some point. Normal Menu is fine for now
-const pages = ["Products", "Pricing", "Blog"];
+import { TaskDropdown } from "./components/taskDropdown";
+import { HomeButton } from "./components/homeButton";
+import { ThemeDropDown } from "./components/themeDropdown";
+import { ThemeOptions } from "@mui/material/styles";
+//Refactor, works but its messy
+const pages = ["Home", "Tasks", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+interface Props {
+  setCurrentTheme: React.Dispatch<React.SetStateAction<ThemeOptions>>;
+}
 
-export const ResponsiveAppBar = () => {
+export const ResponsiveAppBar = ({ setCurrentTheme }: Props) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -37,6 +44,26 @@ export const ResponsiveAppBar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const menuItem = (i: any) => {
+    let component;
+    switch (i) {
+      case "Home":
+        component = <HomeButton handleCloseNavMenu={handleCloseNavMenu} />;
+        break;
+      case "Tasks":
+        component = <TaskDropdown handleCloseNavMenu={handleCloseNavMenu} />;
+        break;
+      default:
+        component = (
+          <ThemeDropDown
+            handleCloseNavMenu={handleCloseNavMenu}
+            setCurrentTheme={setCurrentTheme}
+          />
+        );
+    }
+    return component;
   };
 
   return (
@@ -73,58 +100,27 @@ export const ResponsiveAppBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page}>
+                  <Typography textAlign="center">{menuItem(page)}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
 
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+            }}
+          >
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
+              <Box key={page} sx={{ my: 2, color: "white", display: "block" }}>
+                {menuItem(page)}
+              </Box>
             ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 };
-export default ResponsiveAppBar;

@@ -20,9 +20,13 @@ import { ThemeItem } from "./themeItem";
 
 interface Props {
   setCurrentTheme: React.Dispatch<React.SetStateAction<ThemeOptions>>;
+  handleCloseNavMenu: () => void;
 }
 
-export const ThemeDropDown = ({ setCurrentTheme }: Props) => {
+export const ThemeDropDown = ({
+  setCurrentTheme,
+  handleCloseNavMenu,
+}: Props) => {
   const [anchorElTheme, setAnchorElTheme] = React.useState<null | HTMLElement>(
     null
   );
@@ -52,62 +56,82 @@ export const ThemeDropDown = ({ setCurrentTheme }: Props) => {
         id="basic-menu"
         anchorEl={anchorElTheme}
         open={openTheme}
-        onClose={handleCloseTheme}
+        onClose={() => {
+          handleCloseTheme(), handleCloseNavMenu();
+        }}
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
       >
         <ThemeItem
           setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={handleCloseTheme}
+          handleCloseTheme={() => {
+            handleCloseTheme(), handleCloseNavMenu();
+          }}
           label="Default"
           theme={defaultTheme}
         />
         <ThemeItem
           setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={handleCloseTheme}
+          handleCloseTheme={() => {
+            handleCloseTheme(), handleCloseNavMenu();
+          }}
           label="Sea Side Evening"
           theme={SeaSideEve}
         />
         <ThemeItem
           setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={handleCloseTheme}
+          handleCloseTheme={() => {
+            handleCloseTheme(), handleCloseNavMenu();
+          }}
           label="Cotton Candy"
           theme={cottonCandy}
         />
         <ThemeItem
           setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={handleCloseTheme}
+          handleCloseTheme={() => {
+            handleCloseTheme(), handleCloseNavMenu();
+          }}
           label="Morning Coffee"
           theme={morningCoffee}
         />{" "}
         <ThemeItem
           setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={handleCloseTheme}
+          handleCloseTheme={() => {
+            handleCloseTheme(), handleCloseNavMenu();
+          }}
           label="Dark mode"
           theme={darkMode}
         />
         <ThemeItem
           setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={handleCloseTheme}
+          handleCloseTheme={() => {
+            handleCloseTheme(), handleCloseNavMenu();
+          }}
           label="Summer"
           theme={summer}
         />{" "}
         <ThemeItem
           setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={handleCloseTheme}
+          handleCloseTheme={() => {
+            handleCloseTheme(), handleCloseNavMenu();
+          }}
           label="Fall"
           theme={fall}
         />
         <ThemeItem
           setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={handleCloseTheme}
+          handleCloseTheme={() => {
+            handleCloseTheme(), handleCloseNavMenu();
+          }}
           label="Winter"
           theme={winter}
         />{" "}
         <ThemeItem
           setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={handleCloseTheme}
+          handleCloseTheme={() => {
+            handleCloseTheme(), handleCloseNavMenu();
+          }}
           label="Spring"
           theme={spring}
         />

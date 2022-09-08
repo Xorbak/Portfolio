@@ -8,6 +8,7 @@ interface Props {
   label: string;
 }
 export const Taskitem = ({ handleCloseTasks, location, label }: Props) => {
+  window.onresize = handleCloseTasks;
   return (
     <NavLink
       to={location}

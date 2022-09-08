@@ -3,12 +3,19 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { NavLink } from "react-router-dom";
 import React from "react";
-
-export const HomeButton = () => {
+interface Props {
+  handleCloseNavMenu: () => void;
+}
+export const HomeButton = ({ handleCloseNavMenu }: Props) => {
   return (
     <Typography variant="h6" sx={styles.NavbarItem}>
       <NavLink style={{ textDecoration: "none" }} to="/">
-        <Button id="basic-button" size="large" sx={styles.NavbarItem}>
+        <Button
+          onClick={handleCloseNavMenu}
+          id="basic-button"
+          size="large"
+          sx={styles.NavbarItem}
+        >
           Home
         </Button>
       </NavLink>

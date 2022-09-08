@@ -20,6 +20,7 @@ export const ThemeItem = ({
   label,
   theme,
 }: Props) => {
+  window.onresize = handleCloseTheme;
   return (
     <MenuItem
       onClick={() => {

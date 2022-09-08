@@ -1,13 +1,13 @@
-import { MenuItem } from "@mui/material";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import { Taskitem } from "./taskItem";
-
+interface Props {
+  handleCloseNavMenu: () => void;
+}
 //@ts-ignore
-export const TaskDropdown = () => {
+export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
   //handels the opening and closing of the dropdown
   const [anchorElTasks, setAnchorElTasks] = useState<null | HTMLElement>(null);
   const openTasks = Boolean(anchorElTasks);
@@ -36,29 +36,39 @@ export const TaskDropdown = () => {
         id="basic-menu"
         anchorEl={anchorElTasks}
         open={openTasks}
-        onClose={handleCloseTasks}
+        onClose={() => {
+          handleCloseTasks(), handleCloseNavMenu();
+        }}
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
         sx={{ color: "text.primary" }}
       >
         <Taskitem
-          handleCloseTasks={handleCloseTasks}
+          handleCloseTasks={() => {
+            handleCloseTasks(), handleCloseNavMenu();
+          }}
           location="/ThemeTest"
           label="Theme test"
         />
         <Taskitem
-          handleCloseTasks={handleCloseTasks}
+          handleCloseTasks={() => {
+            handleCloseTasks(), handleCloseNavMenu();
+          }}
           location="/TipCalc"
           label="Tip Calculator"
         />
         <Taskitem
-          handleCloseTasks={handleCloseTasks}
+          handleCloseTasks={() => {
+            handleCloseTasks(), handleCloseNavMenu();
+          }}
           location="/To-do"
           label="To-Do"
         />{" "}
         <Taskitem
-          handleCloseTasks={handleCloseTasks}
+          handleCloseTasks={() => {
+            handleCloseTasks(), handleCloseNavMenu();
+          }}
           location="/Registration"
           label="Registration form"
         />
