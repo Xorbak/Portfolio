@@ -1,9 +1,8 @@
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import { billInput } from "./billInput";
-
 import { Tip } from "../TipCalc";
 import { tipInput } from "./tipInput";
 import { TipPercentageButton } from "./tipPercentageButton";

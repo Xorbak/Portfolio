@@ -5,12 +5,12 @@ const demographicSchema = yup.object().shape({
     .string()
     .min(3, "Must be atleast 3 characters")
     .max(20, "Cannot be longer than 20 characters")
-    .required(),
+    .required("Firstname cannot be empty"),
   lastname: yup
     .string()
     .min(3, "Must be atleast 3 characters")
     .max(20, "Cannot be longer than 20 characters")
-    .required(),
+    .required("Lastname cannot be empty"),
   age: yup
     .number()
     .positive()

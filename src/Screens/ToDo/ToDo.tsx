@@ -4,7 +4,6 @@ import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
 import ToDoListType from "../../Ts/Model";
 import { Box } from "@mui/material";
-
 import { GrabInput } from "./components/GrabInput";
 import { TodoList } from "./components/todoList";
 
@@ -27,7 +26,7 @@ export const ToDo = () => {
       setCompletedToDO(JSON.parse(completed));
     }
   }, []);
-
+  // provide better keys for to-do elem->errors when making multiple to-dos with the same content
   return (
     <Box sx={styles.App}>
       <Box sx={styles.ToDoContainer}>
@@ -41,11 +40,11 @@ export const ToDo = () => {
           <TodoList
             toDoItemStyle={styles.toDoItem} //to-do item styling
             buttonStyle={styles.ToDoControl} //hover effect and colors for the check buttom and delete
-            completedButton={<CheckIcon fontSize="small" />} // In to be used as a "check" or return
+            completedButton={<CheckIcon fontSize="small" />}
+            toDoArray={toDo} // In to be used as a "check" or return
             moveTo={setCompletedToDO} //move to this state
             removeFrom={setTodo} //remove from this one
-            toDoArray={toDo} //the array where the to-do currently is
-            label={"Pending Task"}
+            label={"Pending Task"} //the array where the to-do currently is
           />
         </Box>
 
@@ -79,13 +78,13 @@ const styles = {
   },
   ToDoContainer: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr 1fr",
+    gridTemplateColumns: { xs: "1fr 1fr", sm: "1fr 1fr 1fr 1fr" },
     gridTemplateRows: "80px",
     gridAutoRows: "minmax(10px, auto)",
     gap: "5%",
     backgroundColor: "background.paper",
-    minHeight: "50vh",
-    maxHeight: "80vh",
+    minHeight: { xs: "60vh", sm: "50vh" },
+    maxHeight: { xs: "800px", sm: "100vh" },
     width: "50vw",
     borderRadius: "5px",
     padding: "1%",
@@ -110,7 +109,8 @@ const styles = {
     flexDirection: "column",
     alignItems: "flex-start",
     color: "#212121",
-
+    minHeight: { xs: "30vh", sm: "20vh" },
+    maxHeight: { xs: "400px", sm: "50vh" },
     backgroundColor: "secondary.main",
     borderRadius: "5px",
     padding: "2%",
@@ -174,6 +174,8 @@ const styles = {
     backgroundColor: "primary.dark",
     borderRadius: "5px",
     padding: "2%",
+    minHeight: { xs: "30vh", sm: "20vh" },
+    maxHeight: { xs: "400px", sm: "50vh" },
     overflow: "scroll",
     "&::-webkit-scrollbar": {
       display: "none",

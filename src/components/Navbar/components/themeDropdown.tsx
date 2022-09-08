@@ -119,11 +119,12 @@ export const ThemeDropDown = ({ setCurrentTheme }: Props) => {
 const styles = {
   NavbarItem: {
     color: "text.primary",
-
+    transision: "10000000ms",
     "&:hover": {
       backgroundColor: "transparent",
       color: "primary.main",
       top: "+2px",
+      transision: "10000000ms",
     },
   },
 };

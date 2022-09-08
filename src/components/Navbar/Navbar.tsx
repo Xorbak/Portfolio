@@ -2,17 +2,9 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import { Link, NavLink } from "react-router-dom";
-
-import Button from "@mui/material/Button";
-
-import { ThemeOptions, ThemeProvider } from "@mui/material/styles";
-import { TextField } from "@mui/material";
+import { ThemeOptions } from "@mui/material/styles";
 import { ThemeDropDown } from "./components/themeDropdown";
 import { TaskDropdown } from "./components/taskDropdown";
 import { HomeButton } from "./components/homeButton";

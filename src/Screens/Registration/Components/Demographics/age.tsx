@@ -5,6 +5,7 @@ import React from "react";
 export const age = ({ field, form, ...props }) => {
   return (
     <TextField
+      fullWidth
       type={"number"}
       autoComplete="off"
       label="age"

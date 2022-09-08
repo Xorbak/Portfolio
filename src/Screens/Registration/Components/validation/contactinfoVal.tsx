@@ -10,7 +10,8 @@ const contactinfoVal = yup.object().shape({
     .required()
     .matches(/^[0-9]+$/, "Must be only digits")
     .min(9, "Must be exactly 10 digits")
-    .max(9, "Must be exactly 10 digits"),
+    .max(9, "Must be exactly 10 digits")
+    .nullable(),
 
   postalAddress: yup.string(),
 });

@@ -1,8 +1,6 @@
-import CheckIcon from "@mui/icons-material/Check";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
-import { shape } from "@mui/system";
 import React from "react";
 import ToDoListType from "../../../Ts/Model";
 

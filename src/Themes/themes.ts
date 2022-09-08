@@ -1,7 +1,5 @@
 import { ThemeOptions } from "@mui/material/styles/createTheme";
 import createTheme from "@mui/material/styles/createTheme";
-import { makeStyles } from "@mui/material/styles";
-import { useState } from "react";
 
 export const defaultTheme = createTheme();
 

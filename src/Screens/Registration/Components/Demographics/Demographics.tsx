@@ -3,6 +3,7 @@ import { Button, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
+import { errorSuccess } from "../../../../HelperFunctions/stylingFunctions";
 import { formModal, userInfoTypes } from "../../RegistrationForm";
 import demographicSchema from "../validation/demographicsSchema";
 import { age } from "./age";
@@ -83,16 +84,11 @@ export const Demographics = (
             <Box sx={styles.formContainer}>
               <Box sx={styles.demographicContainer}>
                 <Box
+                  //first and last name container
                   onFocus={() => {
                     setFocus((i) => ({ ...i, firstname: true }));
                   }}
-                  sx={
-                    focus.firstname
-                      ? errors.firstname
-                        ? styles.errorState
-                        : styles.successState
-                      : null
-                  }
+                  sx={errorSuccess(focus.firstname, errors.firstname, touched)}
                 >
                   <Field
                     name="firstname"
@@ -104,33 +100,23 @@ export const Demographics = (
                   onFocus={() => {
                     setFocus((i) => ({ ...i, lastname: true }));
                   }}
-                  sx={
-                    focus.lastname
-                      ? errors.lastname
-                        ? styles.errorState
-                        : styles.successState
-                      : null
-                  }
+                  sx={errorSuccess(focus.lastname, errors.lastname, touched)}
                 >
                   <Field
                     name="lastname"
                     component={lastname}
-                    helperText={errors.lastname}
+                    helperText={focus.lastname && errors.lastname}
                   />
                 </Box>
               </Box>
+
               <Box sx={styles.demographicContainer}>
                 <Box
+                  //age and education container
                   onFocus={() => {
                     setFocus((i) => ({ ...i, age: true }));
                   }}
-                  sx={
-                    focus.age
-                      ? errors.age
-                        ? styles.errorState
-                        : styles.successState
-                      : null
-                  }
+                  sx={errorSuccess(focus.age, errors.age, touched)}
                 >
                   <Field
                     name="age"
@@ -159,67 +145,43 @@ const styles = {
       borderColor: "success.main",
       borderWidth: "2px",
     },
-    label: { color: "success.main", fontWeight: "100px" },
+    label: { color: "success.main" },
   },
   errorState: {
-    P: { color: "error.main", fontSize: "small" },
-    label: { color: "error.main" },
-    fieldset: { borderColor: "error.main", borderWidth: "2px" },
+    P: { color: "error.main" },
+    label: { color: "error.main", fontSize: "5px", fontWeight: "normal" },
+    fieldset: { borderColor: "error.main" },
   },
   formContainer: {
     display: "grid",
+    fontSize: "12px",
     gridTemplateColumns: "1fr",
-    fontSize: "medium",
     justifyContent: "space-around",
-    gridAutoRows: "minmax(50px, auto)",
+    gridAutoRows: "minmax(1vh, auto)",
     gap: "1%",
     backgroundColor: "background.paper",
-    minHeight: "300px",
-    width: "32vw",
+    minHeight: {
+      xs: "480px",
+      sm: "300px",
+      md: "320px",
+      lg: "300px",
+    },
+    width: {
+      xs: "70vw",
+      sm: "70vw",
+      md: "50vw",
+      lg: "500px",
+      xl: "450px",
+    },
     borderRadius: "5px",
-    padding: "2%",
-    paddingTop: "4%",
+    padding: { xs: "5%", sm: "2%" },
+  },
 
-    "@media (max-width:950px)": {
-      height: "400px",
-      width: "50vw",
-      padding: "1%",
-      paddingTop: "5%",
-    },
-    "@media (max-width:650px)": {
-      height: "350px",
-      width: "90vw",
-      padding: "1%",
-      paddingTop: "5%",
-    },
-    "@media (max-width:487px)": {
-      height: "400px",
-      width: "90vw",
-      padding: "1%",
-      paddingTop: "5%",
-    },
-    "@media (max-width:250px)": {
-      height: "500px",
-      width: "90vw",
-      padding: "1%",
-      paddingTop: "5%",
-    },
-  },
-  errorMessage: {
-    color: "error.main",
-    display: "flex",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    alignSelf: "flex-start",
-    fontSize: "small",
-    paddingBottom: "2%",
-    marginBottom: "2%",
-  },
   demographicContainer: {
     display: "grid",
     width: "100%",
     gap: "2%",
-    gridTemplateColumns: "1fr 1fr",
+    gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
 
     "@media (max-width:250px)": { gridTemplateColumns: "1fr" },
   },

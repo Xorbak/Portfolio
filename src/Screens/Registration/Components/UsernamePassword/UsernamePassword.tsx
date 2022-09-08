@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
+import { errorSuccess } from "../../../../HelperFunctions/stylingFunctions";
 import { formModal, userInfoTypes } from "../../RegistrationForm";
 import idschema from "../validation/idschema";
 import { ConfirmPassword } from "./confirmPassword";
@@ -71,14 +72,8 @@ export const UsernamePassword = ({
                   setFocus((i) => ({ ...i, username: true })),
                     console.log(focus);
                 }}
+                sx={errorSuccess(focus.username, errors.userName, touched)}
                 //sets the Error/success state
-                sx={
-                  focus.username && touched
-                    ? errors.userName
-                      ? styles.errorState
-                      : styles.successState
-                    : null
-                }
               >
                 <Field
                   sx={{ width: "100%" }}
@@ -94,13 +89,7 @@ export const UsernamePassword = ({
                   setFocus((i) => ({ ...i, password: true }));
                 }}
                 //sets the Error/success state
-                sx={
-                  focus.password && touched
-                    ? errors.password
-                      ? styles.errorState
-                      : styles.successState
-                    : null
-                }
+                sx={errorSuccess(focus.password, errors.password, touched)}
               >
                 <Field
                   sx={{ width: "100%" }}
@@ -117,13 +106,11 @@ export const UsernamePassword = ({
                     console.log(focus);
                 }}
                 //sets the Error/success state
-                sx={
-                  focus.confirmpassword && touched
-                    ? errors.confirmPassword
-                      ? styles.errorState
-                      : styles.successState
-                    : null
-                }
+                sx={errorSuccess(
+                  focus.confirmpassword,
+                  errors.confirmPassword,
+                  touched
+                )}
               >
                 <Field
                   sx={{ width: "100%" }}
@@ -158,10 +145,19 @@ const styles = {
       borderColor: "success.main",
       borderWidth: "2px",
     },
-    label: { color: "success.main", fontWeight: "50px" },
+    label: { color: "success.main" },
   },
   errorState: {
-    P: { color: "error.main", fontSize: "small" },
+    P: {
+      color: "error.main",
+      fontSize: {
+        xs: "1rem",
+        sm: "1rem",
+        md: "1rem",
+        lg: "1rem",
+        xl: "1rem",
+      },
+    },
     label: { color: "error.main", fontWeight: "50px" },
     fieldset: { borderColor: "error.main", borderWidth: "2px" },
   },
@@ -170,24 +166,24 @@ const styles = {
     fontSize: "medium",
     gridTemplateColumns: "1fr",
     justifyContent: "space-around",
-    gridAutoRows: "minmax(2vh, auto)",
+    gridAutoRows: "minmax(1vh, auto)",
     gap: "1%",
     backgroundColor: "background.paper",
-    minHeight: "300px",
-    width: "25vw",
+    minHeight: {
+      xs: "400px",
+      sm: "350px",
+      md: "350px",
+      lg: "300px",
+      xl: "300px",
+    },
+    width: {
+      xs: "80vw",
+      sm: "500px",
+      md: "500px",
+      lg: "500px",
+      xl: "450px",
+    },
     borderRadius: "5px",
     padding: "2%",
-
-    "@media (max-width:768px)": {
-      minHeight: "300px",
-      width: "50vw",
-      padding: "1%",
-      paddingTop: "5%",
-    },
-    "@media (max-width:320px)": {
-      width: "90vw",
-      padding: "1%",
-      paddingTop: "5%",
-    },
   },
 };

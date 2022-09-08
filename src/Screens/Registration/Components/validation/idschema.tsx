@@ -9,10 +9,10 @@ const idschema = yup.object().shape({
     .required("You cant have an empty username"),
   password: yup
     .string()
-    .min(8, "Your password must be atleast 8 characters long")
+    .min(8, "Your password must be atleast 8 characters long ")
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/gm,
-      "Password must have at least 8 characters,contain at least 1 uppercase letter, 1 lowercase letter, and 1 number."
+      "Password must have at least 8 characters,contain at least 1 uppercase letter, 1 lowercase letter,1 special character, and 1 number."
     )
     .required("Required"),
   confirmPassword: yup
