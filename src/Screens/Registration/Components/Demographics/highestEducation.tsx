@@ -24,13 +24,13 @@ export const highestEducation = ({ field, form, ...props }) => {
           {...props}
         >
           <MenuItem value={"none"}>None</MenuItem>
-          <MenuItem value={"Highschool Diploma"}>Highschool Diploma</MenuItem>
-          <MenuItem value={"Bachelor's Degree"}>Batcholers Degree</MenuItem>
-          <MenuItem value={"Master's Degree"}>Master's Degree</MenuItem>
+          <MenuItem value={"Highschool_Diploma"}>Highschool Diploma</MenuItem>
+          <MenuItem value={"Bachelor's_Degree"}>Batcholers Degree</MenuItem>
+          <MenuItem value={"Master's_Degree"}>Master's Degree</MenuItem>
           <MenuItem value={"Doctoral "}>Doctoral </MenuItem>
           <MenuItem value={"PHD"}>PHD </MenuItem>
           <MenuItem value={"Diploma "}>Diploma </MenuItem>{" "}
-          <MenuItem value={"Dumb AF"}>My mom says I'm smart </MenuItem>
+          <MenuItem value={"Dumb_AF"}>My mom says I'm smart </MenuItem>
         </Select>
       </FormControl>
     </Box>

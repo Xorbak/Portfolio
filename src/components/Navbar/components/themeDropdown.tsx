@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import { ThemeOptions } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import React from "react";
@@ -27,6 +26,7 @@ export const ThemeDropDown = ({
   setCurrentTheme,
   handleCloseNavMenu,
 }: Props) => {
+  //handels the closing of the dropdowns
   const [anchorElTheme, setAnchorElTheme] = React.useState<null | HTMLElement>(
     null
   );
@@ -57,6 +57,7 @@ export const ThemeDropDown = ({
         anchorEl={anchorElTheme}
         open={openTheme}
         onClose={() => {
+          //closes the dropdown and menu when the screen is on mobile sizes
           handleCloseTheme(), handleCloseNavMenu();
         }}
         MenuListProps={{

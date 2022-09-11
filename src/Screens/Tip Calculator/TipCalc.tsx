@@ -56,6 +56,7 @@ const styles = {
     backgroundColor: "background.paper",
     width: "300px",
     borderRadius: "5px",
+    paddingTop: "0.5%",
   },
   tipOutput: {
     fontSize: "small",

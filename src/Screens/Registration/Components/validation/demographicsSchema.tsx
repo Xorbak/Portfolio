@@ -14,7 +14,7 @@ const demographicSchema = yup.object().shape({
   age: yup
     .number()
     .positive()
-    .max(100, "You are not older that 99, stop lying")
+    .max(99, "You are not older that 99, stop lying")
     .required(),
 });
 

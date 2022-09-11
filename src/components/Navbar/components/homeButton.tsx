@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { NavLink } from "react-router-dom";
@@ -26,10 +25,8 @@ export const HomeButton = ({ handleCloseNavMenu }: Props) => {
 const styles = {
   NavbarItem: {
     color: "text.primary",
-
     "&:hover": {
       backgroundColor: "transparent",
-
       color: "primary.main",
       top: "+2px",
     },

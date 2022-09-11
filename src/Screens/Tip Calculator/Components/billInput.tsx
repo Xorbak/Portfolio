@@ -16,6 +16,7 @@ export const billInput = ({ form, field, label, ...props }) => {
       {...field}
       {...props}
       InputProps={{
+        //add dropdown for currency
         startAdornment: <InputAdornment position="start">R</InputAdornment>,
       }}
     />

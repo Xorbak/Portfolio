@@ -7,7 +7,7 @@ import { phoneNumberInput } from "./phoneNumberInput";
 import { postalAdress } from "./postalAdress";
 import contactinfoVal from "../validation/contactinfoVal";
 import { formModal, userInfoTypes } from "../../RegistrationForm";
-import { errorSuccess } from "../../../../HelperFunctions/stylingFunctions";
+import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 
 interface ContactinfoInterface {
   email: string;
@@ -16,8 +16,8 @@ interface ContactinfoInterface {
 }
 
 interface Props {
-  setUserinfo: React.Dispatch<React.SetStateAction<userInfoTypes | null>>;
-  userinfo: userInfoTypes | null;
+  setUserinfo: React.Dispatch<React.SetStateAction<userInfoTypes | undefined>>;
+  userinfo: userInfoTypes | null | undefined;
   setFormModal: React.Dispatch<React.SetStateAction<formModal>>;
 }
 //  ensures the correct element has focus so that it doesnt default
@@ -34,6 +34,7 @@ export const ContactInfo = (
   touched: any
 ) => {
   //got a big error saying boolean cant be undefined.
+  //got to set all the focus states as false before I start
   const [focus, setFocus] = useState<Focus>({
     email: false,
     phoneNumber: false,

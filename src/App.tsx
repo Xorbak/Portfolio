@@ -16,7 +16,9 @@ function App() {
   return (
     <Box>
       <ThemeProvider theme={currentTheme}>
-        <ResponsiveAppBar setCurrentTheme={setCurrentTheme} />
+        <ResponsiveAppBar
+          setCurrentTheme={setCurrentTheme} // this is to change the theme with a click of a button
+        />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/To-do" element={<ToDo />} />

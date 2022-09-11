@@ -8,6 +8,7 @@ interface Props {
   label: string;
 }
 export const Taskitem = ({ handleCloseTasks, location, label }: Props) => {
+  //closes dropdown on window resize > without it dropdowns act abnormally with resize
   window.onresize = handleCloseTasks;
   return (
     <NavLink

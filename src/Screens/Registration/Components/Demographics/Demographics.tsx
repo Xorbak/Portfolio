@@ -3,7 +3,7 @@ import { Button, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
-import { errorSuccess } from "../../../../HelperFunctions/stylingFunctions";
+import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { formModal, userInfoTypes } from "../../RegistrationForm";
 import demographicSchema from "../validation/demographicsSchema";
 import { age } from "./age";
@@ -20,11 +20,12 @@ interface demographic {
   highestEducation: string;
 }
 interface Props {
-  setUserinfo: React.Dispatch<React.SetStateAction<userInfoTypes | null>>;
-  userinfo: userInfoTypes | null;
+  setUserinfo: React.Dispatch<React.SetStateAction<userInfoTypes | undefined>>;
+  userinfo: userInfoTypes | null | undefined;
   setFormModal: React.Dispatch<React.SetStateAction<formModal>>;
 }
-
+//  ensures the correct element has focus so that it doesnt default
+//  to the success state as soon as the page renders
 interface Focus {
   firstname: boolean;
   lastname: boolean;
@@ -37,6 +38,8 @@ export const Demographics = (
   { setFormModal, userinfo, setUserinfo }: Props,
   touched: any
 ) => {
+  //got a big error saying boolean cant be undefined.
+  //got to set all the focus states as false before I start
   const [focus, setFocus] = useState<Focus>({
     firstname: false,
     lastname: false,

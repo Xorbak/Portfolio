@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
-import { errorSuccess } from "../../../../HelperFunctions/stylingFunctions";
+import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { formModal, userInfoTypes } from "../../RegistrationForm";
 import idschema from "../validation/idschema";
 import { ConfirmPassword } from "./confirmPassword";
@@ -11,8 +11,9 @@ import { Password } from "./password";
 import { UserName } from "./username";
 
 interface Props {
-  setUserinfo: React.Dispatch<React.SetStateAction<userInfoTypes | null>>;
-  userinfo: userInfoTypes | null;
+  setUserinfo: React.Dispatch<React.SetStateAction<userInfoTypes | undefined>>;
+
+  userinfo: userInfoTypes | null | undefined;
   setFormModal: React.Dispatch<React.SetStateAction<formModal>>;
 }
 interface Focus {

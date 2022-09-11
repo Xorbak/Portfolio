@@ -3,6 +3,7 @@ import Menu from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
 import { Taskitem } from "./taskItem";
+
 interface Props {
   handleCloseNavMenu: () => void;
 }
@@ -37,6 +38,7 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
         anchorEl={anchorElTasks}
         open={openTasks}
         onClose={() => {
+          //Closes the dropdown and menu when on mobile screens when an Item is chosen
           handleCloseTasks(), handleCloseNavMenu();
         }}
         MenuListProps={{
@@ -80,7 +82,6 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
 const styles = {
   NavbarItem: {
     color: "text.primary",
-
     "&:hover": {
       backgroundColor: "transparent",
       color: "primary.main",

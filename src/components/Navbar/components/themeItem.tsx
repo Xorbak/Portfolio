@@ -13,13 +13,14 @@ interface Props {
   label: string;
   theme: Theme | ThemeOptions;
 }
-
+//used to set the theme
 export const ThemeItem = ({
   setCurrentTheme,
   handleCloseTheme,
   label,
   theme,
 }: Props) => {
+  //closes dropdown on window resize > without it dropdowns act abnormally with resize
   window.onresize = handleCloseTheme;
   return (
     <MenuItem

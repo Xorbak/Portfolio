@@ -11,9 +11,11 @@ interface Props {
 }
 
 export const TipButton = ({ val, setVal, percentage }: Props) => {
-  const poop = (poo: number) => {
+  const tipval = (tipval: number) => {
+    //setting val allows the value of the tipinput to change without causing the state to change
+    //also allows me to dynamically change it with buttons
     //@ts-ignore
-    setVal(poo);
+    setVal(tipval);
 
     console.log("this is on the button checking the Val state", val);
   };
@@ -23,7 +25,7 @@ export const TipButton = ({ val, setVal, percentage }: Props) => {
         onClick={() => {
           //@ts-ignore
           setVal(percentage);
-          poop(percentage);
+          tipval(percentage);
         }}
       >
         {percentage}%

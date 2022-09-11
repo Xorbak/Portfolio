@@ -9,6 +9,7 @@ export const ThemeTester = () => {
 
   return (
     <Box sx={styles.App}>
+      This is JUst a Playground to test Theme colors
       <Box sx={styles.box1}>Secondary Main</Box>
       <Box sx={styles.box2}>secondary light</Box>
       <Box sx={styles.box3}>secondary Dark</Box>

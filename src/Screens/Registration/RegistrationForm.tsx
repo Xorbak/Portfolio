@@ -1,21 +1,21 @@
 import Box from "@mui/material/Box";
-
 import React, { useState } from "react";
 import { UsernamePassword } from "./Components/UsernamePassword/UsernamePassword";
 import { Demographics } from "./Components/Demographics/Demographics";
 import { ContactInfo } from "./Components/ContactInfo/ContactInfo";
+import { Review } from "./Components/review";
 
 export interface userInfoTypes {
-  username?: string;
-  password?: string;
-  firstname?: string;
-  lastname?: string;
-  email?: string;
-  phoneNumber?: number;
-  postalAddress?: string;
-  age?: number;
-  married?: string;
-  highestEducation?: string;
+  username?: string | null;
+  password?: string | null;
+  firstname?: string | null;
+  lastname?: string | null;
+  email?: string | null;
+  phoneNumber?: number | null;
+  postalAddress?: string | null;
+  age?: number | null;
+  married?: string | null;
+  highestEducation?: string | null;
 }
 
 export interface formModal {
@@ -25,19 +25,20 @@ export interface formModal {
   review: boolean;
 }
 export const RegistrationForm = () => {
-  const [userinfo, setUserinfo] = useState<userInfoTypes | null>(null);
+  const [userinfo, setUserinfo] = useState<userInfoTypes>();
 
   //Sets Demographics
 
   //show/hide certain windows
 
   const [formModal, setFormModal] = useState<formModal>({
+    // Each step opens the next window by making the current state false and the next true, numbers might work better
     identification: true,
     contactDetails: false,
     demographics: false,
     review: false,
   });
-  console.log(userinfo);
+
   return (
     <Box sx={styles.App}>
       {formModal.identification && (
@@ -60,6 +61,11 @@ export const RegistrationForm = () => {
           setUserinfo={setUserinfo}
           setFormModal={setFormModal}
         ></Demographics>
+      )}
+      {formModal.review && (
+        <Box>
+          <Review userinfo={userinfo} />
+        </Box>
       )}
     </Box>
   );

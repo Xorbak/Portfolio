@@ -1,13 +1,10 @@
-import * as React from "react";
+/**/ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ThemeOptions } from "@mui/material/styles";
-import { ThemeDropDown } from "./components/themeDropdown";
-import { TaskDropdown } from "./components/taskDropdown";
-import { HomeButton } from "./components/homeButton";
 
 interface Props {
   setCurrentTheme: React.Dispatch<React.SetStateAction<ThemeOptions>>;
