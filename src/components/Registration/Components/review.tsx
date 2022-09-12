@@ -9,7 +9,8 @@ interface Props {
 export const Review = ({ userinfo }: Props) => {
   return (
     <Box>
-      <Box>
+      <Box //First check is to see if the state is not undefined then if the property is undefined if not render it
+      >
         {userinfo !== undefined
           ? "Username : " +
             (userinfo.username != undefined ? userinfo.username : null)

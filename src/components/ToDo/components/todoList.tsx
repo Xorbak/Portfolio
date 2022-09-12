@@ -56,6 +56,7 @@ export const TodoList = ({
                 sx={buttonStyle}
                 onClick={() => {
                   moveTo((currentItem) => [
+                    //moves from the current state to the next
                     ...currentItem,
                     {
                       input: i.input,
@@ -64,6 +65,7 @@ export const TodoList = ({
                     },
                   ]);
                   removeFrom(
+                    // remove from currentstate after moving to completed/back to to-do
                     toDoArray.filter((toDoArray) => toDoArray.key !== i.key)
                   );
                 }}
@@ -74,6 +76,7 @@ export const TodoList = ({
                 sx={buttonStyle}
                 onClick={() =>
                   removeFrom(
+                    // removes from current state
                     toDoArray.filter((toDoArray) => toDoArray.key !== i.key)
                   )
                 }

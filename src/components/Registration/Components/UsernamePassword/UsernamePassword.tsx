@@ -16,6 +16,8 @@ interface Props {
   userinfo: userInfoTypes | null | undefined;
   setFormModal: React.Dispatch<React.SetStateAction<formModal>>;
 }
+//  ensures the correct element has focus so that it doesnt default
+//  to the success state as soon as the page renders
 interface Focus {
   username: boolean;
   password: boolean;

@@ -116,7 +116,14 @@ export const ResponsiveAppBar = ({ setCurrentTheme }: Props) => {
               display: { xs: "none", md: "flex" },
             }}
           >
-            <IconButton sx={{ borderRadius: "5px" }}>
+            <IconButton
+              sx={{ borderRadius: "5px" }}
+              onClick={() => {
+                alert(
+                  "Not yet implemented, need to implement local storage first"
+                );
+              }}
+            >
               <MenuIcon
               //remove the hover effect
               />

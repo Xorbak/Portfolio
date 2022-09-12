@@ -15,7 +15,7 @@ import { married } from "./maritalStatus";
 interface demographic {
   firstname: string;
   lastname: string;
-  age: number;
+  age: number | null;
   married: string;
   highestEducation: string;
 }
@@ -52,11 +52,12 @@ export const Demographics = (
       initialValues={{
         firstname: "",
         lastname: "",
-        age: 0,
+        age: null,
         married: "",
         highestEducation: "",
       }}
       onSubmit={(values) => {
+        //chained values didnt want to be uset in the setState
         let firstname = values.firstname;
         let lastname = values.lastname;
         let age = values.age;
@@ -71,6 +72,7 @@ export const Demographics = (
           married,
           highestEducation,
         }));
+        //once submitted it moves to the next screen
         setFormModal({
           identification: false,
           contactDetails: false,
@@ -142,6 +144,7 @@ export const Demographics = (
     </Formik>
   );
 };
+
 const styles = {
   successState: {
     fieldset: {

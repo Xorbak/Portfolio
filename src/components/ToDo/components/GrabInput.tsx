@@ -23,7 +23,7 @@ export const GrabInput = ({ setTodo, toDo }: Props) => {
           ...currentItem,
           {
             input: values.inputField,
-            key: toDo.length + values.inputField,
+            key: toDo.length + values.inputField, // might have to change to random number
             completed: false,
           },
         ]);

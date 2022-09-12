@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
-import { ToDo } from "./Screens/ToDo/ToDo";
-import { RegistrationForm } from "./Screens/Registration/RegistrationForm";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./Screens/Home";
-
-import { ThemeTester } from "./Screens/ThemeTest/Themetester";
+import { ThemeTester } from "./components/ThemeTest/Themetester";
 import { SeaSideEve } from "./Themes/themes";
 import { ThemeProvider } from "@mui/material/styles";
-import { TipCalc } from "./Screens/Tip Calculator/TipCalc";
 import { ResponsiveAppBar } from "./components/Navbar/responsiveNavBar";
+import { ToDo } from "./components/ToDo/ToDo";
+import { TipCalc } from "./components/Tip Calculator/TipCalc";
+import { RegistrationForm } from "./components/Registration/RegistrationForm";
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState(SeaSideEve);
