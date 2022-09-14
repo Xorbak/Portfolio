@@ -1,8 +1,7 @@
 import Box from "@mui/material/Box";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { darkMode } from "../../Themes/themes";
+import { createTheme } from "@mui/material/styles";
+
 import React from "react";
-import { TextField } from "@mui/material";
 
 export const ThemeTester = () => {
   const defaultTheme = createTheme();

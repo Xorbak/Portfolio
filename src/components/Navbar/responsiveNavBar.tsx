@@ -117,7 +117,7 @@ export const ResponsiveAppBar = ({ setCurrentTheme }: Props) => {
             }}
           >
             <IconButton
-              sx={{ borderRadius: "5px" }}
+              sx={{ borderRadius: "5px", color: "text.primary" }}
               onClick={() => {
                 alert(
                   "Not yet implemented, need to implement local storage first"

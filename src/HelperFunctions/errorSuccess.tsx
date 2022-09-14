@@ -1,6 +1,8 @@
 export const errorSuccess = (focusItem: any, validation: any, touched: any) => {
+  //focus item is focus.{name of what is being focused} touched it the touched prop
   return focusItem && touched
-    ? validation
+    ? //validation is the yup error code .... errors.{your error name}
+      validation
       ? //make sure the error and success stylesheets are in the component you want to use it
         styles.errorState
       : styles.successState
