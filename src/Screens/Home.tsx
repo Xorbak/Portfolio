@@ -17,56 +17,53 @@ export const Home = () => {
           width: "80vw",
           color: "text.primary",
           minheight: "200px",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-around",
         }}
       >
         <Box
+          component="img"
+          src={bun} //image placeholder
           sx={{
+            boxShadow: 3,
+            backgroundColor: "red",
+            height: "200px",
+            width: "200px",
+            borderRadius: "300px",
+          }}
+        ></Box>
+        <Box // biography paragraph starts here
+          sx={{
+            width: "70%",
             display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-around",
+            justifyContent: "center",
+            flexDirection: "column",
           }}
         >
-          <Box
-            component="img"
-            src={bun} //image placeholder
+          <Typography sx={styles.borderLine}></Typography>
+          <Typography
+            // change the sizes in the themes this is still too big
+            variant="body2"
             sx={{
-              boxShadow: 3,
-              backgroundColor: "red",
-              height: "200px",
-              width: "200px",
-              borderRadius: "300px",
-            }}
-          ></Box>
-          <Box // biography paragraph starts here
-            sx={{
-              width: "70%",
               display: "flex",
+              textAlign: "start",
+              alignItems: "center",
               justifyContent: "center",
-              flexDirection: "column",
+              marginTop: "20px",
+              marginBottom: "20px",
             }}
           >
-            <Box sx={styles.borderLine}></Box>
-            <Typography
-              sx={{
-                display: "flex",
-                textAlign: "start",
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: "20px",
-                marginBottom: "20px",
-              }}
-            >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-              voluptates eum aspernatur aliquam! Deserunt autem excepturi modi
-              perferendis iusto reiciendis, minus, ab cupiditate enim doloremque
-              unde aspernatur dolore eius aliquid.
-            </Typography>{" "}
-            <Box
-              // biography ends here
-              sx={styles.borderLine}
-            ></Box>
-          </Box>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam
+            voluptates eum aspernatur aliquam! Deserunt autem excepturi modi
+            perferendis iusto reiciendis, minus, ab cupiditate enim doloremque
+            unde aspernatur dolore eius aliquid.
+          </Typography>
+          <Typography
+            // biography ends here
+            sx={styles.borderLine}
+          ></Typography>
         </Box>
       </Box>
     </Box>

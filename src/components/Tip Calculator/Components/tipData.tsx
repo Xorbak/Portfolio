@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, InputAdornment } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Field, Form, Formik } from "formik";
 import React from "react";
@@ -21,22 +21,44 @@ export const TipData = ({ setTipData, tipData, val, setVal }: Props) => {
         initialValues={{ bill: null, tip: null, total: null }}
         onSubmit={(values) => {
           //all three need to check if its null, otherwise it freaks out, then it needs to change to the correct value
-          let tip = values.tip !== null ? values.tip : Number(val);
-          let bill = values.bill !== null ? values.bill : 0;
+          let tip = values.tip ? values.tip : Number(val);
+          let bill = values.bill ? values.bill : 0;
           let total = bill + bill * (tip / 100);
           setTipData({ bill, tip, total });
         }}
       >
         <Form>
           <Box sx={styles.inputBox}>
-            <Field fullWidth name="bill" component={billInput} />
+            <Field
+              fullWidth
+              label="Bill"
+              name="bill"
+              component={tipInput}
+              InputProps={{
+                //add dropdown for currency
+                startAdornment: (
+                  <InputAdornment position="start">R</InputAdornment>
+                ),
+              }}
+            />
             <Field
               onChange={(e: any) => {
                 setVal(e.target.value);
               }}
               value={val}
+              label="Tip"
               name="tip"
               component={tipInput}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment
+                    style={{ margin: "0", padding: "0" }}
+                    position="end"
+                  >
+                    %
+                  </InputAdornment>
+                ),
+              }}
             />
           </Box>
 

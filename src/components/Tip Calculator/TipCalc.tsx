@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import React, { useState } from "react";
 import { TipData } from "./Components/tipData";
@@ -23,19 +24,19 @@ export const TipCalc = () => {
           setTipData={setTipData}
           tipData={tipData}
         />
-        {tipData != null ? <Box sx={styles.borderLine}></Box> : null}
+        {tipData ? <Typography sx={styles.borderLine}></Typography> : null}
         <Box sx={styles.tipOutput}>
-          <Box>
-            {tipData !== undefined
-              ? "Bill : R" + (tipData.bill != null ? tipData.bill : 0)
-              : null}
-          </Box>
-          <Box>
-            {tipData !== undefined ? "Tip : " + tipData.tip + "%" : null}
-          </Box>
-          <Box>
-            {tipData !== undefined ? "Total Due : R" + tipData.total : null}
-          </Box>
+          <Typography>
+            {tipData ? "Bill : R" + (tipData.bill ? tipData.bill : 0) : null}
+          </Typography>
+          <Typography>
+            {tipData ? "Tip : " + tipData.tip + "%" : null}
+          </Typography>
+
+          <Typography // add tip amount
+          >
+            {tipData ? "Total Due : R" + tipData.total : null}
+          </Typography>
         </Box>
       </Box>
     </Box>

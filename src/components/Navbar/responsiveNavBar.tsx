@@ -131,9 +131,12 @@ export const ResponsiveAppBar = ({ setCurrentTheme }: Props) => {
 
             {//instead of rendering components one by one here. It maps through the array and the switch-case decides what to render
             pages.map((page) => (
-              <Box key={page} sx={{ my: 2, color: "white", display: "block" }}>
+              <Typography
+                key={page}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
                 {menuItem(page)}
-              </Box>
+              </Typography>
             ))}
           </Box>
         </Toolbar>

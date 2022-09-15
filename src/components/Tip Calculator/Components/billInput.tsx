@@ -3,22 +3,16 @@ import TextField from "@mui/material/TextField";
 import React from "react";
 
 //@ts-ignore
-export const billInput = ({ form, field, label, ...props }) => {
+export const billInput = ({ form, field, ...props }) => {
   return (
     <TextField
       autoComplete="off"
       sx={styles.scroll}
       fullWidth
       type="number"
-      label="Bill"
       size="small"
-      {...label}
       {...field}
       {...props}
-      InputProps={{
-        //add dropdown for currency
-        startAdornment: <InputAdornment position="start">R</InputAdornment>,
-      }}
     />
   );
 };

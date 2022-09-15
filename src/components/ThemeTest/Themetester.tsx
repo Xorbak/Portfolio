@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import { createTheme } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 
 import React from "react";
 
@@ -8,14 +9,14 @@ export const ThemeTester = () => {
 
   return (
     <Box sx={styles.App}>
-      This is Just a Playground to test Theme colors
-      <Box sx={styles.box1}>Secondary Main</Box>
-      <Box sx={styles.box2}>secondary light</Box>
-      <Box sx={styles.box3}>secondary Dark</Box>
-      <Box sx={styles.box4}>Primary Main</Box>
-      <Box sx={styles.box7}>background paper</Box>
-      <Box sx={styles.box5}>Primary light</Box>
-      <Box sx={styles.box6}>Primary Dark</Box>
+      <Typography> This is Just a Playground to test Theme colors</Typography>
+      <Typography sx={styles.box1}>Secondary Main</Typography>
+      <Typography sx={styles.box2}>secondary light</Typography>
+      <Typography sx={styles.box3}>secondary Dark</Typography>
+      <Typography sx={styles.box4}>Primary Main</Typography>
+      <Typography sx={styles.box7}>background paper</Typography>
+      <Typography sx={styles.box5}>Primary light</Typography>
+      <Typography sx={styles.box6}>Primary Dark</Typography>
     </Box>
   );
 };

@@ -16,8 +16,6 @@ export const TipButton = ({ val, setVal, percentage }: Props) => {
     //also allows me to dynamically change it with buttons
     //@ts-ignore
     setVal(tipval);
-
-    console.log("this is on the button checking the Val state", val);
   };
   return (
     <Box>
