@@ -7,7 +7,8 @@ export const phoneNumberInput = ({ field, form, ...props }) => {
     <TextField
       sx={styles.scroll}
       autoCorrect="off"
-      type={"number"}
+      inputProps={{ maxLength: 10 }}
+      type="tel"
       autoComplete="off"
       label="Phone number"
       placeholder="Phone number"

@@ -82,7 +82,7 @@ export const ContactInfo = (
                   sx={{ width: "100%" }}
                   name="email"
                   component={emailInput}
-                  helperText={errors.email}
+                  helperText={focus.email && errors.email}
                 />
               </Box>
               <Box

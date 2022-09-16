@@ -6,6 +6,7 @@ export const age = ({ field, form, ...props }) => {
   return (
     <TextField
       fullWidth
+      placeholder="0"
       type={"number"}
       autoComplete="off"
       label="age"

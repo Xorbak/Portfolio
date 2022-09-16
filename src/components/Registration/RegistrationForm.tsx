@@ -33,9 +33,9 @@ export const RegistrationForm = () => {
 
   const [formModal, setFormModal] = useState<formModal>({
     // Each step opens the next window by making the current state false and the next true, numbers might work better
-    identification: true,
+    identification: false,
     contactDetails: false,
-    demographics: false,
+    demographics: true,
     review: false,
   });
 

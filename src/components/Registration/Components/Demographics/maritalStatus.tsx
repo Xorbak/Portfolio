@@ -16,7 +16,7 @@ export const married = ({ field, form, ...props }) => {
         {...field}
         {...props}
       >
-        <FormControlLabel
+        <FormControlLabel //map through an array instead
           value="Unmarried"
           control={<Radio size="small" />}
           label="Unmarried"
