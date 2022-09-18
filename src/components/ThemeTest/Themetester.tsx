@@ -9,7 +9,10 @@ export const ThemeTester = () => {
 
   return (
     <Box sx={styles.App}>
-      <Typography> This is Just a Playground to test Theme colors</Typography>
+      <Typography sx={{ color: "text.primary" }}>
+        {" "}
+        This is Just a Playground to test Theme colors
+      </Typography>
       <Typography sx={styles.box1}>Secondary Main</Typography>
       <Typography sx={styles.box2}>secondary light</Typography>
       <Typography sx={styles.box3}>secondary Dark</Typography>
