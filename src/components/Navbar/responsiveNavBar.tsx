@@ -66,7 +66,7 @@ export const ResponsiveAppBar = ({ setCurrentTheme }: Props) => {
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box
