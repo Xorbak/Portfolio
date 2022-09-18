@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { formModal, userInfoTypes } from "../../RegistrationForm";
 import idschema from "../validation/idschema";
-import { ConfirmPassword } from "./confirmPassword";
 import { Password } from "./password";
 import { UserName } from "./username";
 
@@ -97,6 +96,7 @@ export const UsernamePassword = ({
                 <Field
                   sx={{ width: "100%" }}
                   name="password"
+                  label="Password"
                   component={Password}
                   helperText={focus.password && errors.password}
                 />
@@ -118,7 +118,8 @@ export const UsernamePassword = ({
                 <Field
                   sx={{ width: "100%" }}
                   name="confirmPassword"
-                  component={ConfirmPassword}
+                  label="Confirm Password"
+                  component={Password}
                   helperText={focus.confirmpassword && errors.confirmPassword}
                 />
               </Box>

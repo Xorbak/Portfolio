@@ -8,29 +8,22 @@ import React from "react";
 //@ts-ignore
 export const Password = ({ field, form, ...props }) => {
   //set states to toggle visibility of password field
-  const [showPassword, setShowPassword] = useState("password");
-  const [passwordIcon, setPasswordIcon] = useState(<Visibility />);
+  const [showPassword, setShowPassword] = useState(true);
+
   const togglePassword = () => {
-    if (showPassword == "password") {
-      setShowPassword("text");
-      setPasswordIcon(<VisibilityOff />);
-    } else {
-      setShowPassword("password");
-      setPasswordIcon(<Visibility />);
-    }
+    setShowPassword(!showPassword);
   };
   return (
     <TextField
-      type={showPassword}
+      type={showPassword ? "password" : "text"}
       autoComplete="off"
-      label="Password"
       {...field}
       {...props}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
             <IconButton sx={{ color: "text.primary" }} onClick={togglePassword}>
-              {passwordIcon}
+              {showPassword ? <Visibility /> : <VisibilityOff />}
             </IconButton>
           </InputAdornment>
         ),
