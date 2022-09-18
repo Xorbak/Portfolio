@@ -67,7 +67,7 @@ export const ResponsiveAppBar = ({ setCurrentTheme }: Props) => {
 
   return (
     <AppBar position="sticky">
-      <Container maxWidth="xl">
+      <Container sx={styles.navbar} maxWidth="xl">
         <Toolbar disableGutters>
           <Box
             //mobile size menu
@@ -114,21 +114,9 @@ export const ResponsiveAppBar = ({ setCurrentTheme }: Props) => {
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
+              justifyContent: "center",
             }}
           >
-            <IconButton
-              sx={{ borderRadius: "5px", color: "text.primary" }}
-              onClick={() => {
-                alert(
-                  "Not yet implemented, need to implement local storage first"
-                );
-              }}
-            >
-              <MenuIcon
-              //remove the hover effect
-              />
-            </IconButton>
-
             {//instead of rendering components one by one here. It maps through the array and the switch-case decides what to render
             pages.map((page) => (
               <Typography
@@ -143,4 +131,8 @@ export const ResponsiveAppBar = ({ setCurrentTheme }: Props) => {
       </Container>
     </AppBar>
   );
+};
+
+const styles = {
+  navbar: { backgroundColor: "background.default" },
 };
