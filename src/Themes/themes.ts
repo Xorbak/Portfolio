@@ -3,7 +3,6 @@ import createTheme from "@mui/material/styles/createTheme";
 
 const fontSize = 14;
 const htmlFontSize = 16;
-const coef = fontSize / 14;
 
 const darkModeValues: ThemeOptions = {
   palette: {
@@ -50,7 +49,7 @@ const darkModeValues: ThemeOptions = {
     },
     success: { main: "#4CAF50" },
   },
-
+  typography: { htmlFontSize: 20 },
   shape: {
     borderRadius: "5px",
   },
@@ -102,7 +101,7 @@ const cottonCandyValues: ThemeOptions = {
     },
     success: { main: "#4CAF50" },
   },
-
+  typography: { htmlFontSize: 20 },
   shape: {
     borderRadius: 4,
   },
@@ -154,7 +153,7 @@ const morningCoffeeValues: ThemeOptions = {
     },
     success: { main: "#4caf50" },
   },
-
+  typography: { htmlFontSize: 20 },
   shape: {
     borderRadius: 4,
   },
@@ -205,7 +204,7 @@ const SeaSideEveValues: ThemeOptions = {
     },
     success: { main: "#4caf50" },
   },
-
+  typography: { htmlFontSize: 20 },
   shape: {
     borderRadius: 4,
   },
@@ -257,7 +256,7 @@ const summerValues: ThemeOptions = {
     },
     success: { main: "#4CAF50" },
   },
-
+  typography: { htmlFontSize: 20 },
   shape: {
     borderRadius: 4,
   },
@@ -308,7 +307,7 @@ const fallValues: ThemeOptions = {
     },
     success: { main: "#4CAF50" },
   },
-
+  typography: { htmlFontSize: 20 },
   shape: {
     borderRadius: 4,
   },
@@ -358,9 +357,10 @@ const winterValues: ThemeOptions = {
     error: {
       main: "#f44336",
     },
+
     success: { main: "#4CAF50" },
   },
-
+  typography: { htmlFontSize: 20 },
   shape: {
     borderRadius: 4,
   },
@@ -412,7 +412,7 @@ const springValues: ThemeOptions = {
     },
     success: { main: "#4CAF50" },
   },
-
+  typography: { htmlFontSize: 20 },
   shape: {
     borderRadius: 4,
   },
