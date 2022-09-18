@@ -18,7 +18,16 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
   const handleCloseTasks = () => {
     setAnchorElTasks(null);
   };
-
+  interface taskArray {
+    location: string;
+    label: string;
+  }
+  const tasks: taskArray[] = [
+    { location: "/ThemeTest", label: "Theme test" },
+    { location: "/TipCalc", label: "Tip Calculator" },
+    { location: "/To-do", label: "To do list" },
+    { location: "/Registration", label: "Registration form" },
+  ];
   return (
     <Typography variant="h6" sx={styles.NavbarItem}>
       <Button
@@ -46,34 +55,15 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
         }}
         sx={{ color: "text.primary" }}
       >
-        <Taskitem
-          handleCloseTasks={() => {
-            handleCloseTasks(), handleCloseNavMenu();
-          }}
-          location="/ThemeTest"
-          label="Theme test"
-        />
-        <Taskitem
-          handleCloseTasks={() => {
-            handleCloseTasks(), handleCloseNavMenu();
-          }}
-          location="/TipCalc"
-          label="Tip Calculator"
-        />
-        <Taskitem
-          handleCloseTasks={() => {
-            handleCloseTasks(), handleCloseNavMenu();
-          }}
-          location="/To-do"
-          label="To-Do"
-        />{" "}
-        <Taskitem
-          handleCloseTasks={() => {
-            handleCloseTasks(), handleCloseNavMenu();
-          }}
-          location="/Registration"
-          label="Registration form"
-        />
+        {tasks.map(({ location, label }) => (
+          <Taskitem
+            handleCloseTasks={() => {
+              handleCloseTasks(), handleCloseNavMenu();
+            }}
+            location={location}
+            label={label}
+          />
+        ))}
       </Menu>
     </Typography>
   );
