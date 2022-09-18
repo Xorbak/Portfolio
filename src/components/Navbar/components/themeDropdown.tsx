@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
-import { ThemeOptions } from "@mui/material/styles";
+import { Theme, ThemeOptions } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import {
@@ -21,6 +21,10 @@ interface Props {
   setCurrentTheme: React.Dispatch<React.SetStateAction<ThemeOptions>>;
   handleCloseNavMenu: () => void;
 }
+interface themesArray {
+  label: string;
+  theme: Theme | ThemeOptions;
+}
 
 export const ThemeDropDown = ({
   setCurrentTheme,
@@ -37,7 +41,17 @@ export const ThemeDropDown = ({
   const handleCloseTheme = () => {
     setAnchorElTheme(null);
   };
-
+  const themes: themesArray[] = [
+    { label: "Default", theme: defaultTheme },
+    { label: "Sea Side Evening", theme: SeaSideEve },
+    { label: "Cotton Candy", theme: cottonCandy },
+    { label: "Morning Coffee", theme: morningCoffee },
+    { label: "Dark mode", theme: darkMode },
+    { label: "Summer", theme: summer },
+    { label: "Fall", theme: fall },
+    { label: "Winter", theme: winter },
+    { label: "Spring", theme: spring },
+  ];
   return (
     <Typography variant="h6" sx={styles.NavbarItem}>
       <Button
@@ -64,78 +78,16 @@ export const ThemeDropDown = ({
           "aria-labelledby": "basic-button",
         }}
       >
-        <ThemeItem
-          setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={() => {
-            handleCloseTheme(), handleCloseNavMenu();
-          }}
-          label="Default"
-          theme={defaultTheme}
-        />
-        <ThemeItem
-          setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={() => {
-            handleCloseTheme(), handleCloseNavMenu();
-          }}
-          label="Sea Side Evening"
-          theme={SeaSideEve}
-        />
-        <ThemeItem
-          setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={() => {
-            handleCloseTheme(), handleCloseNavMenu();
-          }}
-          label="Cotton Candy"
-          theme={cottonCandy}
-        />
-        <ThemeItem
-          setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={() => {
-            handleCloseTheme(), handleCloseNavMenu();
-          }}
-          label="Morning Coffee"
-          theme={morningCoffee}
-        />{" "}
-        <ThemeItem
-          setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={() => {
-            handleCloseTheme(), handleCloseNavMenu();
-          }}
-          label="Dark mode"
-          theme={darkMode}
-        />
-        <ThemeItem
-          setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={() => {
-            handleCloseTheme(), handleCloseNavMenu();
-          }}
-          label="Summer"
-          theme={summer}
-        />{" "}
-        <ThemeItem
-          setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={() => {
-            handleCloseTheme(), handleCloseNavMenu();
-          }}
-          label="Fall"
-          theme={fall}
-        />
-        <ThemeItem
-          setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={() => {
-            handleCloseTheme(), handleCloseNavMenu();
-          }}
-          label="Winter"
-          theme={winter}
-        />{" "}
-        <ThemeItem
-          setCurrentTheme={setCurrentTheme}
-          handleCloseTheme={() => {
-            handleCloseTheme(), handleCloseNavMenu();
-          }}
-          label="Spring"
-          theme={spring}
-        />
+        {themes.map(({ label, theme }) => (
+          <ThemeItem
+            setCurrentTheme={setCurrentTheme}
+            handleCloseTheme={() => {
+              handleCloseTheme(), handleCloseNavMenu();
+            }}
+            label={label}
+            theme={theme}
+          />
+        ))}
       </Menu>
     </Typography>
   );
