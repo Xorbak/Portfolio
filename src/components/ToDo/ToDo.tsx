@@ -85,7 +85,7 @@ const styles = {
     backgroundColor: "background.paper",
     minHeight: { xs: "60vh", sm: "50vh" },
     maxHeight: { xs: "800px", sm: "100vh" },
-    width: { xs: "90vw", md: "50vw", lg: "600px" },
+    width: { xs: "90vw", md: "50vw", lg: "600px", xl: "50vw" },
     borderRadius: "5px",
     padding: "1%",
   },

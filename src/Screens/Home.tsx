@@ -18,7 +18,8 @@ export const Home = () => {
           color: "text.primary",
           minheight: "200px",
           display: "flex",
-          flexDirection: "row",
+          paddingTop: { xs: "50px", md: "0px" },
+          flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
           justifyContent: "space-around",
         }}
@@ -77,7 +78,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: { sm: "start", md: "center" },
     fontSize: "calc(10px + 2vmin)",
   },
   borderLine: {
