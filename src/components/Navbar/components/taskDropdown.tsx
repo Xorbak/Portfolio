@@ -57,6 +57,7 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
       >
         {tasks.map(({ location, label }) => (
           <Taskitem
+            key={label}
             handleCloseTasks={() => {
               handleCloseTasks(), handleCloseNavMenu();
             }}

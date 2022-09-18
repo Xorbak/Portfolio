@@ -18,12 +18,12 @@ import {
 import { ThemeItem } from "./themeItem";
 
 interface Props {
-  setCurrentTheme: React.Dispatch<React.SetStateAction<ThemeOptions>>;
+  setCurrentTheme: React.Dispatch<React.SetStateAction<Theme>>;
   handleCloseNavMenu: () => void;
 }
 interface themesArray {
   label: string;
-  theme: Theme | ThemeOptions;
+  theme: Theme;
 }
 
 export const ThemeDropDown = ({
@@ -80,6 +80,7 @@ export const ThemeDropDown = ({
       >
         {themes.map(({ label, theme }) => (
           <ThemeItem
+            key={label}
             setCurrentTheme={setCurrentTheme}
             handleCloseTheme={() => {
               handleCloseTheme(), handleCloseNavMenu();

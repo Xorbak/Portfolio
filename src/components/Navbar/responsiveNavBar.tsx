@@ -11,13 +11,13 @@ import MenuItem from "@mui/material/MenuItem";
 import { TaskDropdown } from "./components/taskDropdown";
 import { HomeButton } from "./components/homeButton";
 import { ThemeDropDown } from "./components/themeDropdown";
-import { ThemeOptions } from "@mui/material/styles";
+import { Theme, ThemeOptions } from "@mui/material/styles";
 
 //Refactor, works but its messy
 const pages = ["Home", "Tasks", "Blog"];
 //const settings = ["Profile", "Account", "Dashboard", "Logout"];
 interface Props {
-  setCurrentTheme: React.Dispatch<React.SetStateAction<ThemeOptions>>;
+  setCurrentTheme: React.Dispatch<React.SetStateAction<Theme>>;
 }
 
 export const ResponsiveAppBar = ({ setCurrentTheme }: Props) => {

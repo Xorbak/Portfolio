@@ -1,13 +1,11 @@
 import { ThemeOptions } from "@mui/material/styles/createTheme";
 import createTheme from "@mui/material/styles/createTheme";
 
-export const defaultTheme = createTheme();
-
 const fontSize = 14;
 const htmlFontSize = 16;
 const coef = fontSize / 14;
 
-export const darkMode: ThemeOptions = {
+const darkModeValues: ThemeOptions = {
   palette: {
     mode: "dark",
     primary: {
@@ -50,21 +48,15 @@ export const darkMode: ThemeOptions = {
     error: {
       main: "#ff1100",
     },
-    success: { main: "#4caf50" },
+    success: { main: "#4CAF50" },
   },
-  typography: {
-    //@ts-ignore
-    pxToRem: (size) => `${(size / htmlFontSize) * coef}rem`,
-    subtitle1: {
-      fontSize: "0.5rem",
-    },
-  },
+
   shape: {
     borderRadius: "5px",
   },
 };
 
-export const cottonCandy: ThemeOptions = {
+const cottonCandyValues: ThemeOptions = {
   palette: {
     mode: "dark",
     primary: {
@@ -108,21 +100,15 @@ export const cottonCandy: ThemeOptions = {
     error: {
       main: "#ff1100",
     },
-    success: { main: "#4caf50" },
+    success: { main: "#4CAF50" },
   },
-  typography: {
-    //@ts-ignore
-    pxToRem: (size) => `${(size / htmlFontSize) * coef}rem`,
-    subtitle1: {
-      fontSize: "0.5rem",
-    },
-  },
+
   shape: {
     borderRadius: 4,
   },
 };
 
-export const morningCoffee: ThemeOptions = {
+const morningCoffeeValues: ThemeOptions = {
   palette: {
     mode: "dark",
     primary: {
@@ -166,20 +152,14 @@ export const morningCoffee: ThemeOptions = {
     error: {
       main: "#f44336",
     },
-    success: { main: " #4caf50" },
+    success: { main: "#4caf50" },
   },
-  typography: {
-    //@ts-ignore
-    pxToRem: (size) => `${(size / htmlFontSize) * coef}rem`,
-    subtitle1: {
-      fontSize: "0.5rem",
-    },
-  },
+
   shape: {
     borderRadius: 4,
   },
 };
-export const SeaSideEve: ThemeOptions = {
+const SeaSideEveValues: ThemeOptions = {
   palette: {
     mode: "dark",
     primary: {
@@ -223,21 +203,15 @@ export const SeaSideEve: ThemeOptions = {
     error: {
       main: "#f44336",
     },
-    success: { main: " #4caf50" },
+    success: { main: "#4caf50" },
   },
-  typography: {
-    //@ts-ignore
-    pxToRem: (size) => `${(size / htmlFontSize) * coef}rem`,
-    subtitle1: {
-      fontSize: "0.5rem",
-    },
-  },
+
   shape: {
     borderRadius: 4,
   },
 };
 
-export const summer: ThemeOptions = {
+const summerValues: ThemeOptions = {
   palette: {
     mode: "dark",
     primary: {
@@ -281,20 +255,14 @@ export const summer: ThemeOptions = {
     error: {
       main: "#f44336",
     },
-    success: { main: "#4caf50" },
+    success: { main: "#4CAF50" },
   },
-  typography: {
-    //@ts-ignore
-    pxToRem: (size) => `${(size / htmlFontSize) * coef}rem`,
-    subtitle1: {
-      fontSize: "0.5rem",
-    },
-  },
+
   shape: {
     borderRadius: 4,
   },
 };
-export const fall: ThemeOptions = {
+const fallValues: ThemeOptions = {
   palette: {
     mode: "dark",
     primary: {
@@ -338,21 +306,15 @@ export const fall: ThemeOptions = {
     error: {
       main: "#f44336",
     },
-    success: { main: "#4caf50" },
+    success: { main: "#4CAF50" },
   },
-  typography: {
-    //@ts-ignore
-    pxToRem: (size) => `${(size / htmlFontSize) * coef}rem`,
-    subtitle1: {
-      fontSize: "0.5rem",
-    },
-  },
+
   shape: {
     borderRadius: 4,
   },
 };
 
-export const winter: ThemeOptions = {
+const winterValues: ThemeOptions = {
   palette: {
     mode: "dark",
     primary: {
@@ -396,21 +358,15 @@ export const winter: ThemeOptions = {
     error: {
       main: "#f44336",
     },
-    success: { main: "#4caf50" },
+    success: { main: "#4CAF50" },
   },
-  typography: {
-    //@ts-ignore
-    pxToRem: (size) => `${(size / htmlFontSize) * coef}rem`,
-    subtitle1: {
-      fontSize: "0.5rem",
-    },
-  },
+
   shape: {
     borderRadius: 4,
   },
 };
 
-export const spring: ThemeOptions = {
+const springValues: ThemeOptions = {
   palette: {
     mode: "dark",
     primary: {
@@ -454,16 +410,19 @@ export const spring: ThemeOptions = {
     error: {
       main: "#f44336",
     },
-    success: { main: "#4caf50" },
+    success: { main: "#4CAF50" },
   },
-  typography: {
-    //@ts-ignore
-    pxToRem: (size) => `${(size / htmlFontSize) * coef}rem`,
-    subtitle1: {
-      fontSize: "0.5rem",
-    },
-  },
+
   shape: {
     borderRadius: 4,
   },
 };
+export const defaultTheme = createTheme();
+export const darkMode = createTheme(darkModeValues);
+export const cottonCandy = createTheme(cottonCandyValues);
+export const morningCoffee = createTheme(morningCoffeeValues);
+export const SeaSideEve = createTheme(SeaSideEveValues);
+export const summer = createTheme(summerValues);
+export const fall = createTheme(fallValues);
+export const winter = createTheme(winterValues);
+export const spring = createTheme(springValues);

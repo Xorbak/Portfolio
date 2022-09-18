@@ -8,10 +8,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 interface Props {
-  setCurrentTheme: React.Dispatch<React.SetStateAction<ThemeOptions>>;
+  setCurrentTheme: React.Dispatch<React.SetStateAction<Theme>>;
   handleCloseTheme: () => void;
   label: string;
-  theme: Theme | ThemeOptions;
+  theme: Theme;
 }
 //used to set the theme
 export const ThemeItem = ({
