@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./Screens/Home";
 import { ThemeTester } from "./components/ThemeTest/Themetester";
@@ -10,6 +10,7 @@ import { ToDo } from "./components/ToDo/ToDo";
 import { TipCalc } from "./components/Tip Calculator/TipCalc";
 import { RegistrationForm } from "./components/Registration/RegistrationForm";
 import { ThemeOptions } from "@mui/system";
+import { Pipeline } from "./components/Pipeline/Pipeline";
 interface Geolocation {
   longitude: number;
   latitude: number;
@@ -45,6 +46,9 @@ function App() {
           <Route path="/Registration" element={<RegistrationForm />} />
           <Route path="/ThemeTest" element={<ThemeTester />} />
           <Route path="/TipCalc" element={<TipCalc />}></Route>
+          <Route path="/Pipeline" element={<Pipeline />}>
+            {" "}
+          </Route>
         </Routes>
       </ThemeProvider>
     </Box>

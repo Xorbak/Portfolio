@@ -29,7 +29,7 @@ export const Home = () => {
           src={bun} //image placeholder
           sx={{
             boxShadow: 3,
-            backgroundColor: "red",
+
             height: "200px",
             width: "200px",
             borderRadius: "300px",
@@ -44,23 +44,48 @@ export const Home = () => {
           }}
         >
           <Typography sx={styles.borderLine}></Typography>
-          <Typography
+          <Box
             // change the sizes in the themes this is still too big
-            variant="body2"
             sx={{
               display: "flex",
+              flexDirection: "column",
               textAlign: "start",
-              alignItems: "center",
+              alignItems: "start",
               justifyContent: "center",
               marginTop: "20px",
               marginBottom: "20px",
             }}
           >
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            voluptates eum aspernatur aliquam! Deserunt autem excepturi modi
-            perferendis iusto reiciendis, minus, ab cupiditate enim doloremque
-            unde aspernatur dolore eius aliquid.
-          </Typography>
+            <Typography
+              sx={{
+                display: "flex",
+                textAlign: "start",
+                alignItems: "start",
+                justifyContent: "start",
+                marginBottom: "10px",
+              }}
+              variant="body1"
+            >
+              From frustration to frontend.
+            </Typography>
+            <Typography variant="body2">
+              I've been coding on and off for the last 2 years. Dipping my toes
+              in various different languages but never leaving TUTORIAL HELL in
+              any of them. Untill I decided to just start building minor
+              projects that slowly morphed into a Portfolio. From there I
+              discoverd my love for coding(Cliche I know..) and it became less
+              of a necessity and more of a way to calm my mind(most of the
+              time). From that point of view I focus less on Quantity and more
+              on Quality. Learning how I can refactor and improve my current set
+              of components. In doing so understanding the underlying concepts
+              much better than just blindly building a mountain of suboptimal
+              components.
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }} variant="caption">
+              PS. Enjoy the photo of my rabbit discovering the outside world for
+              the first time
+            </Typography>
+          </Box>
           <Typography
             // biography ends here
             sx={styles.borderLine}

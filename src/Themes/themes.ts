@@ -6,12 +6,12 @@ const htmlFontSize = 16;
 
 const darkModeValues: ThemeOptions = {
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
       main: "#7A7AFF",
       light: "rgb(85, 87, 110)",
-      dark: "rgb(30, 32, 51)",
-      contrastText: "#2b2e4a",
+      dark: "rgb(34 38 78)",
+      contrastText: "#fff",
     },
     secondary: {
       main: "#14ffec",
@@ -40,9 +40,9 @@ const darkModeValues: ThemeOptions = {
       activatedOpacity: 0.24,
     },
     text: {
-      secondary: "rgba(0, 0, 0, 0.54)",
-      disabled: "rgba(70,63,63,0.5)",
-      primary: "rgba(0,0,0,0.79)",
+      primary: "#fff",
+      secondary: "rgba(255, 255, 255, 0.7)",
+      disabled: "rgba(255, 255, 255, 0.5)",
     },
     error: {
       main: "#ff1100",

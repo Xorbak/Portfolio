@@ -154,16 +154,13 @@ const styles = {
   errorState: {
     P: {
       color: "error.main",
-      fontSize: {
-        xs: "1rem",
-        sm: "1rem",
-        md: "1rem",
-        lg: "1rem",
-        xl: "1rem",
-      },
     },
-    label: { color: "error.main", fontWeight: "50px" },
-    fieldset: { borderColor: "error.main", borderWidth: "2px" },
+    label: { color: "error.main", fontSize: "10px" },
+    fieldset: {
+      borderColor: "error.main",
+      borderWidth: "2px",
+      fontSize: "10px",
+    },
   },
   formContainer: {
     display: "grid",
@@ -177,14 +174,14 @@ const styles = {
       xs: "400px",
       sm: "350px",
       md: "350px",
-      lg: "300px",
+      lg: "250px",
       xl: "300px",
     },
     width: {
       xs: "80vw",
       sm: "500px",
       md: "500px",
-      lg: "500px",
+      lg: "400px",
       xl: "450px",
     },
     borderRadius: "5px",
