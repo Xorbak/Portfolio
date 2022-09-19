@@ -98,8 +98,16 @@ export const Demographics = (
                   <Field
                     name="firstname"
                     component={firstname}
-                    helperText={focus.firstname && errors.firstname}
+                    //helperText={focus.firstname && errors.firstname}
                   />
+                  {focus.firstname && errors.firstname && (
+                    <Typography //Temporary fix untill I can change the size of the helper text
+                      sx={{ color: "error.main", marginLeft: "15px" }}
+                      variant="caption"
+                    >
+                      {errors.firstname}
+                    </Typography>
+                  )}
                 </Box>
                 <Box
                   onFocus={() => {
@@ -110,8 +118,16 @@ export const Demographics = (
                   <Field
                     name="lastname"
                     component={lastname}
-                    helperText={focus.lastname && errors.lastname}
+                    //helperText={focus.lastname && errors.lastname}
                   />
+                  {focus.lastname && errors.lastname && (
+                    <Typography //Temporary fix untill I can change the size of the helper text
+                      sx={{ color: "error.main", marginLeft: "15px" }}
+                      variant="caption"
+                    >
+                      {errors.lastname}
+                    </Typography>
+                  )}
                 </Box>
               </Box>
 
@@ -126,8 +142,17 @@ export const Demographics = (
                   <Field
                     name="age"
                     component={age}
-                    helperText={focus.age && errors.age}
+                    //helperText={focus.age && errors.age}
                   />
+
+                  {focus.age && errors.age && (
+                    <Typography //Temporary fix untill I can change the size of the helper text
+                      sx={{ color: "error.main", marginLeft: "15px" }}
+                      variant="caption"
+                    >
+                      {errors.age}
+                    </Typography>
+                  )}
                 </Box>
                 <Box>
                   <Field name="highestEducation" component={highestEducation} />

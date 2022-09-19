@@ -82,8 +82,17 @@ export const ContactInfo = (
                   sx={{ width: "100%" }}
                   name="email"
                   component={emailInput}
-                  helperText={focus.email && errors.email}
+                  //helperText={focus.email && errors.email}
                 />
+
+                {focus.email && errors.email && (
+                  <Typography //Temporary fix untill I can change the size of the helper text
+                    sx={{ color: "error.main", marginLeft: "15px" }}
+                    variant="caption"
+                  >
+                    {errors.email}
+                  </Typography>
+                )}
               </Box>
               <Box
                 onFocus={() => {
@@ -99,8 +108,16 @@ export const ContactInfo = (
                   sx={{ width: "100%" }}
                   name="phoneNumber"
                   component={phoneNumberInput}
-                  helperText={focus.phoneNumber && errors.phoneNumber}
+                  //helperText={focus.phoneNumber && errors.phoneNumber}
                 />
+                {focus.phoneNumber && errors.phoneNumber && (
+                  <Typography //Temporary fix untill I can change the size of the helper text
+                    sx={{ color: "error.main", marginLeft: "15px" }}
+                    variant="caption"
+                  >
+                    {errors.phoneNumber}
+                  </Typography>
+                )}
               </Box>
               <Box>
                 <Field

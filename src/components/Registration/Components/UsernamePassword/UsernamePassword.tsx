@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
@@ -5,6 +6,7 @@ import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { formModal, userInfoTypes } from "../../RegistrationForm";
+import { HelperText } from "../helperText";
 import idschema from "../validation/idschema";
 import { Password } from "./password";
 import { UserName } from "./username";
@@ -17,13 +19,13 @@ interface Props {
 }
 //  ensures the correct element has focus so that it doesnt default
 //  to the success state as soon as the page renders
-interface Focus {
+export interface Focus {
   username: boolean;
   password: boolean;
   confirmpassword: boolean;
 }
 
-interface IDinterface {
+export interface IDinterface {
   userName: string;
   password: string;
   confirmPassword: string;
@@ -82,8 +84,17 @@ export const UsernamePassword = ({
                   validation={errors.userName}
                   name="userName"
                   component={UserName}
-                  helperText={focus.username && errors.userName}
+                  //helperText={focus.username && errors.userName}
                 />
+
+                {focus.username && errors.userName && (
+                  <Typography //Temporary fix untill I can change the size of the helper text
+                    sx={{ color: "error.main", marginLeft: "15px" }}
+                    variant="caption"
+                  >
+                    {errors.userName}
+                  </Typography>
+                )}
               </Box>
               <Box
                 // password input validation
@@ -98,8 +109,18 @@ export const UsernamePassword = ({
                   name="password"
                   label="Password"
                   component={Password}
-                  helperText={focus.password && errors.password}
+                  //helperText={focus.password && errors.password}
                 />
+                {focus.password && errors.password && (
+                  <Box sx={{ marginLeft: "15px" }}>
+                    <Typography //Temporary fix untill I can change the size of the helper text
+                      sx={{ color: "error.main" }}
+                      variant="caption"
+                    >
+                      {errors.password}
+                    </Typography>
+                  </Box>
+                )}
               </Box>
 
               <Box
@@ -120,8 +141,18 @@ export const UsernamePassword = ({
                   name="confirmPassword"
                   label="Confirm Password"
                   component={Password}
-                  helperText={focus.confirmpassword && errors.confirmPassword}
+                  //helperText={focus.confirmpassword && errors.confirmPassword}
                 />
+                {focus.confirmpassword && errors.confirmPassword && (
+                  <Box sx={{ paddingLeft: "15px" }}>
+                    <Typography //Temporary fix untill I can change the size of the helper text
+                      sx={{ color: "error.main" }}
+                      variant="caption"
+                    >
+                      {errors.confirmPassword}
+                    </Typography>
+                  </Box>
+                )}
               </Box>
               <Button
                 type="submit"
@@ -152,6 +183,7 @@ const styles = {
     label: { color: "success.main" },
   },
   errorState: {
+    color: "error.main",
     P: {
       color: "error.main",
     },
@@ -174,7 +206,7 @@ const styles = {
       xs: "400px",
       sm: "350px",
       md: "350px",
-      lg: "250px",
+      lg: "300px",
       xl: "300px",
     },
     width: {
