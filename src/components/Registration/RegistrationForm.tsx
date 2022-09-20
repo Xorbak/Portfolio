@@ -18,51 +18,38 @@ export interface userInfoTypes {
   highestEducation?: string | null;
 }
 
-export interface formModal {
-  identification: boolean;
-  contactDetails: boolean;
-  demographics: boolean;
-  review: boolean;
-}
 export const RegistrationForm = () => {
   const [userinfo, setUserinfo] = useState<userInfoTypes>();
+  console.log(userinfo);
 
-  //Sets Demographics
-
-  //show/hide certain windows
-
-  const [formModal, setFormModal] = useState<formModal>({
-    // Each step opens the next window by making the current state false and the next true, numbers might work better
-    identification: true,
-    contactDetails: false,
-    demographics: false,
-    review: false,
-  });
-
+  const [formModal, setFormModal] = useState<number>(0);
   return (
     <Box sx={styles.App}>
-      {formModal.identification && (
+      {formModal === 0 && (
         <UsernamePassword
           userinfo={userinfo}
           setUserinfo={setUserinfo}
           setFormModal={setFormModal}
+          formModal={formModal}
         />
       )}
-      {formModal.contactDetails && (
+      {formModal === 1 && (
         <ContactInfo
           userinfo={userinfo}
           setUserinfo={setUserinfo}
           setFormModal={setFormModal}
+          formModal={formModal}
         />
       )}
-      {formModal.demographics && (
+      {formModal === 2 && (
         <Demographics
           userinfo={userinfo}
           setUserinfo={setUserinfo}
           setFormModal={setFormModal}
-        ></Demographics>
+          formModal={formModal}
+        />
       )}
-      {formModal.review && (
+      {formModal === 3 && (
         <Box>
           <Review userinfo={userinfo} />
         </Box>

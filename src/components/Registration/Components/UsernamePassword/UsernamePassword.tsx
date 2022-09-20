@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
-import { formModal, userInfoTypes } from "../../RegistrationForm";
+import { userInfoTypes } from "../../RegistrationForm";
 import { ErrorText } from "../errorText";
 
 import idschema from "../validation/idschema";
@@ -14,9 +14,9 @@ import { UserName } from "./username";
 
 interface Props {
   setUserinfo: React.Dispatch<React.SetStateAction<userInfoTypes | undefined>>;
-
   userinfo: userInfoTypes | null | undefined;
-  setFormModal: React.Dispatch<React.SetStateAction<formModal>>;
+  setFormModal: React.Dispatch<React.SetStateAction<number>>;
+  formModal: number;
 }
 //  ensures the correct element has focus so that it doesnt default
 //  to the success state as soon as the page renders
@@ -38,6 +38,7 @@ export const UsernamePassword = ({
   setUserinfo,
   userinfo,
   setFormModal,
+  formModal,
 }: Props) => {
   //focus check
   const [focus, setFocus] = useState<Focus>({
@@ -57,12 +58,7 @@ export const UsernamePassword = ({
         let username = values.userName;
         setUserinfo((userinfo) => ({ ...userinfo, password, username }));
         console.log(userinfo);
-        setFormModal({
-          identification: false,
-          contactDetails: true,
-          demographics: false,
-          review: false,
-        });
+        setFormModal(formModal + 1);
         resetForm();
       }}
       validationSchema={idschema}

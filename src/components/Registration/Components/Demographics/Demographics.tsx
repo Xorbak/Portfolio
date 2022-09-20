@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
-import { formModal, userInfoTypes } from "../../RegistrationForm";
+import { userInfoTypes } from "../../RegistrationForm";
 import { ErrorText } from "../errorText";
 import demographicSchema from "../validation/demographicsSchema";
 import { age } from "./age";
@@ -23,7 +23,8 @@ interface demographic {
 interface Props {
   setUserinfo: React.Dispatch<React.SetStateAction<userInfoTypes | undefined>>;
   userinfo: userInfoTypes | null | undefined;
-  setFormModal: React.Dispatch<React.SetStateAction<formModal>>;
+  setFormModal: React.Dispatch<React.SetStateAction<number>>;
+  formModal: number;
 }
 //  ensures the correct element has focus so that it doesnt default
 //  to the success state as soon as the page renders
@@ -36,7 +37,7 @@ interface Focus {
 }
 
 export const Demographics = (
-  { setFormModal, userinfo, setUserinfo }: Props,
+  { setFormModal, userinfo, setUserinfo, formModal }: Props,
   touched: any
 ) => {
   //got a big error saying boolean cant be undefined.
@@ -74,12 +75,7 @@ export const Demographics = (
           highestEducation,
         }));
         //once submitted it moves to the next screen
-        setFormModal({
-          identification: false,
-          contactDetails: false,
-          demographics: false,
-          review: true,
-        });
+        setFormModal(formModal + 1);
         console.log(userinfo);
       }}
       validationSchema={demographicSchema}
@@ -143,7 +139,16 @@ export const Demographics = (
               </Box>
               <Field name="married" component={married} />
 
-              <Button type="submit">Submit</Button>
+              <Box
+                sx={{ display: "flex", flexDirection: "row", width: "100%" }}
+              >
+                <Button fullWidth onClick={() => setFormModal(formModal - 1)}>
+                  Back
+                </Button>
+                <Button fullWidth type="submit">
+                  Submit
+                </Button>
+              </Box>
             </Box>
           </Form>
         );

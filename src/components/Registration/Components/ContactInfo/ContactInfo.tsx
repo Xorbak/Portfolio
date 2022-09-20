@@ -6,7 +6,7 @@ import { emailInput } from "./emailInput";
 import { phoneNumberInput } from "./phoneNumberInput";
 import { postalAdress } from "./postalAdress";
 import contactinfoVal from "../validation/contactinfoVal";
-import { formModal, userInfoTypes } from "../../RegistrationForm";
+import { userInfoTypes } from "../../RegistrationForm";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { ErrorText } from "../errorText";
 
@@ -15,11 +15,11 @@ interface ContactinfoInterface {
   phoneNumber: number | null;
   postalAddress: string;
 }
-
 interface Props {
   setUserinfo: React.Dispatch<React.SetStateAction<userInfoTypes | undefined>>;
   userinfo: userInfoTypes | null | undefined;
-  setFormModal: React.Dispatch<React.SetStateAction<formModal>>;
+  setFormModal: React.Dispatch<React.SetStateAction<number>>;
+  formModal: number;
 }
 //  ensures the correct element has focus so that it doesnt default
 //  to the success state as soon as the page renders
@@ -31,7 +31,7 @@ interface Focus {
 
 //@ts-ignore
 export const ContactInfo = (
-  { setUserinfo, setFormModal }: Props,
+  { setUserinfo, setFormModal, formModal }: Props,
   touched: any
 ) => {
   //got a big error saying boolean cant be undefined.
@@ -52,18 +52,13 @@ export const ContactInfo = (
         let postalAddress = values.postalAddress;
 
         setUserinfo((userinfo: any) => ({
-          ...userinfo,
+          ...userinfo, //fix the typing
           email,
           phoneNumber,
           postalAddress,
         }));
         //move to the next page, maybe implement a number system to go forward or back within the form.
-        setFormModal({
-          identification: false,
-          contactDetails: false,
-          demographics: true,
-          review: false,
-        });
+        setFormModal(formModal + 1);
       }}
       validationSchema={contactinfoVal}
     >
@@ -118,8 +113,16 @@ export const ContactInfo = (
                   helperText={errors.postalAddress}
                 />
               </Box>
-
-              <Button type="submit">Submit</Button>
+              <Box
+                sx={{ display: "flex", flexDirection: "row", width: "100%" }}
+              >
+                <Button fullWidth onClick={() => setFormModal(formModal - 1)}>
+                  Back
+                </Button>
+                <Button fullWidth type="submit">
+                  Submit
+                </Button>
+              </Box>
             </Box>
           </Form>
         );
