@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, buttonBaseClasses, Typography } from "@mui/material";
 
 import Box from "@mui/material/Box";
 import { Field, Form, Formik } from "formik";
@@ -139,15 +139,11 @@ export const Demographics = (
               </Box>
               <Field name="married" component={married} />
 
-              <Box
-                sx={{ display: "flex", flexDirection: "row", width: "100%" }}
-              >
-                <Button fullWidth onClick={() => setFormModal(formModal - 1)}>
+              <Box sx={styles.buttonSpacing}>
+                <Button onClick={() => setFormModal(formModal - 1)}>
                   Back
                 </Button>
-                <Button fullWidth type="submit">
-                  Submit
-                </Button>
+                <Button type="submit">Submit</Button>
               </Box>
             </Box>
           </Form>
@@ -195,7 +191,12 @@ const styles = {
     borderRadius: "5px",
     padding: "2%",
   },
-
+  buttonSpacing: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
+  },
   demographicContainer: {
     display: "grid",
     width: "100%",

@@ -33,7 +33,9 @@ export const Biography = ({ title, body, caption }: Props) => {
         >
           {title}
         </Typography>
+
         <Typography variant="body2">{body}</Typography>
+
         <Typography sx={{ marginTop: "10px" }} variant="caption">
           {caption}
         </Typography>
@@ -54,6 +56,7 @@ const styles = {
     marginTop: "10px",
     marginBottom: "10px",
     marginLeft: "20%",
+    boxShadow: 5,
   },
 
   biographyContainer: {

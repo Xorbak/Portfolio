@@ -113,15 +113,11 @@ export const ContactInfo = (
                   helperText={errors.postalAddress}
                 />
               </Box>
-              <Box
-                sx={{ display: "flex", flexDirection: "row", width: "100%" }}
-              >
-                <Button fullWidth onClick={() => setFormModal(formModal - 1)}>
+              <Box sx={styles.buttonSpacing}>
+                <Button onClick={() => setFormModal(formModal - 1)}>
                   Back
                 </Button>
-                <Button fullWidth type="submit">
-                  Submit
-                </Button>
+                <Button type="submit">Submit</Button>
               </Box>
             </Box>
           </Form>
@@ -176,5 +172,11 @@ const styles = {
     },
     borderRadius: "5px",
     padding: "2%",
+  },
+  buttonSpacing: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
   },
 };
