@@ -9,12 +9,13 @@ import { MyInput } from "./MyInput";
 interface Props {
   toDo: ToDoListType[];
   setTodo: React.Dispatch<React.SetStateAction<ToDoListType[]>>;
+  setTodoModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface FormikFieldTypes {
   inputField: string;
 }
 
-export const GrabInput = ({ setTodo, toDo }: Props) => {
+export const GrabInput = ({ setTodo, toDo, setTodoModal }: Props) => {
   return (
     <Formik<FormikFieldTypes>
       initialValues={{ inputField: "" }}
@@ -27,6 +28,7 @@ export const GrabInput = ({ setTodo, toDo }: Props) => {
             completed: false,
           },
         ]);
+        setTodoModal(true);
         resetForm();
       }}
       validationSchema={toDoSchema}

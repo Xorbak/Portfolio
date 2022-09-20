@@ -3,62 +3,107 @@ import ReplayIcon from "@mui/icons-material/Replay";
 import CheckIcon from "@mui/icons-material/Check";
 import { useState } from "react";
 import ToDoListType from "../../Ts/Model";
-import { Box } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { GrabInput } from "./components/GrabInput";
 import { TodoList } from "./components/todoList";
 
 export const ToDo = () => {
   const [toDo, setTodo] = useState<ToDoListType[]>([]);
   const [completedToDo, setCompletedToDO] = useState<ToDoListType[]>([]);
-
+  const [deletedTodo, setDeletedTodo] = useState<ToDoListType[]>([]);
+  const [todoModal, setTodoModal] = useState<boolean>(true);
   //Adds Items to the ToDo part
-
-  //Local Storage
-
-  useEffect(() => {
-    console.log("get");
-    const pending = localStorage.getItem("pending");
-    const completed = localStorage.getItem("completed");
-    if (pending) {
-      setTodo(JSON.parse(pending));
-    }
-    if (completed) {
-      setCompletedToDO(JSON.parse(completed));
-    }
-  }, []);
+  console.log(deletedTodo);
   // provide better keys for to-do elem->errors when making multiple to-dos with the same content
   return (
     <Box sx={styles.App}>
       <Box sx={styles.ToDoContainer}>
         <Box sx={styles.InputContainer}>
-          <GrabInput setTodo={setTodo} toDo={toDo} />
+          <GrabInput
+            setTodoModal={setTodoModal}
+            setTodo={setTodo}
+            toDo={toDo}
+          />
         </Box>
-
         <Box
-          sx={styles.ToDoBox} // The container style for to-do
+          sx={{
+            textAlign: "start",
+            color: "primary.main",
+            "&:hover": {
+              cursor: "pointer",
+            },
+          }}
+          onClick={() => setTodoModal(!todoModal)}
         >
-          <TodoList
-            toDoItemStyle={styles.toDoItem} //to-do item styling
-            buttonStyle={styles.ToDoControl} //hover effect and colors for the check buttom and delete
-            completedButton={<CheckIcon fontSize="small" />}
-            toDoArray={toDo} // In to be used as a "check" or return
-            moveTo={setCompletedToDO} //move to this state
-            removeFrom={setTodo} //remove from this one
-            label={"Pending Task"} //the array where the to-do currently is
-          />
+          <Typography variant="caption">
+            {todoModal ? "Deleted items" : "Todo List"}
+          </Typography>
         </Box>
 
-        <Box sx={styles.Completed}>
-          <TodoList
-            toDoItemStyle={styles.toDoItemCompleted}
-            buttonStyle={styles.ToDoControlCompleted}
-            completedButton={<ReplayIcon fontSize="small" />}
-            moveTo={setTodo}
-            removeFrom={setCompletedToDO}
-            toDoArray={completedToDo}
-            label={"Completed Tasks"}
-          />
-        </Box>
+        {todoModal && (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              width: "100%",
+              justifyContent: { xs: "center", sm: "space-between" },
+            }}
+          >
+            <Box
+              sx={styles.ToDoBox} // The container style for to-do
+            >
+              <TodoList
+                toDoItemStyle={styles.toDoItem} //to-do item styling
+                buttonStyle={styles.ToDoControl} //hover effect and colors for the check buttom and delete
+                completedButton={<CheckIcon fontSize="small" />}
+                toDoArray={toDo} // In to be used as a "check" or return
+                moveTo={setCompletedToDO} //move to this state
+                removeFrom={setTodo} //remove from this one
+                label={"Pending Task"} //the array where the to-do currently is
+                moveToDeleted={setDeletedTodo}
+              />
+            </Box>
+
+            <Box sx={styles.Completed}>
+              <TodoList
+                toDoItemStyle={styles.toDoItemCompleted}
+                buttonStyle={styles.ToDoControlCompleted}
+                completedButton={<ReplayIcon fontSize="small" />}
+                moveTo={setTodo}
+                removeFrom={setCompletedToDO}
+                toDoArray={completedToDo}
+                label={"Completed Tasks"}
+                moveToDeleted={setDeletedTodo}
+              />
+            </Box>
+          </Box>
+        )}
+
+        {todoModal === false && (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              width: "100%",
+              justifyContent: "center",
+            }}
+          >
+            <Box
+              sx={styles.deletedBox} // The container style for to-do
+            >
+              <TodoList
+                toDoItemStyle={styles.toDoItem} //to-do item styling
+                buttonStyle={styles.ToDoControl} //hover effect and colors for the check buttom and delete
+                completedButton={<CheckIcon fontSize="small" />}
+                toDoArray={deletedTodo} // In to be used as a "check" or return
+                moveTo={setTodo} //move to this state
+                removeFrom={setDeletedTodo} //remove from this one
+                label={"Deleted Tasks"} //the array where the to-do currently is
+                moveToDeleted={setDeletedTodo}
+              />
+            </Box>
+          </Box>
+        )}
       </Box>
     </Box>
   );
@@ -77,10 +122,8 @@ const styles = {
     color: "white",
   },
   ToDoContainer: {
-    display: "grid",
-    gridTemplateColumns: { xs: "1fr 1fr", sm: "1fr 1fr 1fr 1fr" },
-    gridTemplateRows: "80px",
-    gridAutoRows: "minmax(10px, auto)",
+    display: "flex",
+    flexDirection: "column",
     gap: "5%",
     backgroundColor: "background.paper",
     minHeight: { xs: "60vh", sm: "50vh" },
@@ -90,22 +133,20 @@ const styles = {
     padding: "1%",
   },
   InputContainer: {
-    gridColumnStart: "1",
-    gridColumnEnd: "-1",
     display: "flex",
     width: "100%",
     justifyContent: "center",
     alignContent: "center",
   },
   ToDoBox: {
-    gridColumn: "span 2",
     marginTop: "10px",
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-start",
+    alignItems: "center",
     color: "#212121",
-    minHeight: { xs: "30vh", sm: "20vh" },
+    minHeight: { xs: "20vh", sm: "40vh" },
     maxHeight: { xs: "400px", sm: "50vh" },
+    width: { xs: "96%", sm: "45%" },
     backgroundColor: "secondary.main",
     borderRadius: "5px",
     padding: "2%",
@@ -160,17 +201,34 @@ const styles = {
     },
   },
   Completed: {
-    gridColumn: "span 2",
     display: "flex",
     marginTop: "10px",
     flexDirection: "column",
-    alignItems: "flex-start",
+    alignItems: "center",
     color: "#212121",
     backgroundColor: "primary.dark",
     borderRadius: "5px",
     padding: "2%",
-    minHeight: { xs: "30vh", sm: "20vh" },
+    minHeight: { xs: "20vh", sm: "40vh" },
     maxHeight: { xs: "400px", sm: "50vh" },
+    width: { xs: "96%", sm: "45%" },
+    overflow: "scroll",
+    "&::-webkit-scrollbar": {
+      display: "none",
+      overflow: "scroll",
+    },
+  },
+  deletedBox: {
+    marginTop: "10px",
+    display: "flex",
+    flexDirection: "column",
+    color: "#212121",
+    minHeight: { xs: "40vh", sm: "30vh" },
+    maxHeight: { xs: "400px", sm: "50vh" },
+    width: "50%",
+    backgroundColor: "secondary.main",
+    borderRadius: "5px",
+    padding: "2%",
     overflow: "scroll",
     "&::-webkit-scrollbar": {
       display: "none",

@@ -8,6 +8,7 @@ interface Props {
   toDoArray: ToDoListType[];
   removeFrom: React.Dispatch<React.SetStateAction<ToDoListType[]>>;
   moveTo: React.Dispatch<React.SetStateAction<ToDoListType[]>>;
+  moveToDeleted: React.Dispatch<React.SetStateAction<ToDoListType[]>>;
   toDoItemStyle: any;
   label: string;
   buttonStyle: any;
@@ -20,6 +21,7 @@ export const TodoList = ({
   toDoArray,
   removeFrom,
   moveTo,
+  moveToDeleted,
   toDoItemStyle,
   buttonStyle,
 }: Props) => {
@@ -74,12 +76,20 @@ export const TodoList = ({
               </Box>
               <Box
                 sx={buttonStyle}
-                onClick={() =>
+                onClick={() => (
+                  moveToDeleted((currentItem) => [
+                    ...currentItem,
+                    {
+                      input: i.input,
+                      key: toDoArray.length + i.input,
+                      completed: false,
+                    },
+                  ]),
                   removeFrom(
                     // removes from current state
                     toDoArray.filter((toDoArray) => toDoArray.key !== i.key)
                   )
-                }
+                )}
               >
                 <DeleteOutlineIcon fontSize="small" />
               </Box>
@@ -114,3 +124,6 @@ const styles = {
     justifyContent: "center",
   },
 };
+function moveToDeleted(arg0: (currentItem: any) => void): void {
+  throw new Error("Function not implemented.");
+}
