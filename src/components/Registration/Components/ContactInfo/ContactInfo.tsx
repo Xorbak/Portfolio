@@ -8,6 +8,7 @@ import { postalAdress } from "./postalAdress";
 import contactinfoVal from "../validation/contactinfoVal";
 import { formModal, userInfoTypes } from "../../RegistrationForm";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
+import { ErrorText } from "../errorText";
 
 interface ContactinfoInterface {
   email: string;
@@ -72,7 +73,7 @@ export const ContactInfo = (
         return (
           <Form>
             <Box sx={styles.formContainer}>
-              <Box
+              <Box //Email container
                 onFocus={() => {
                   setFocus((i) => ({ ...i, email: true }));
                 }}
@@ -86,15 +87,10 @@ export const ContactInfo = (
                 />
 
                 {focus.email && errors.email && (
-                  <Typography //Temporary fix untill I can change the size of the helper text
-                    sx={{ color: "error.main", marginLeft: "15px" }}
-                    variant="caption"
-                  >
-                    {errors.email}
-                  </Typography>
+                  <ErrorText error={errors.email} />
                 )}
               </Box>
-              <Box
+              <Box //Phone number container
                 onFocus={() => {
                   setFocus((i) => ({ ...i, phoneNumber: true }));
                 }}
@@ -111,12 +107,7 @@ export const ContactInfo = (
                   //helperText={focus.phoneNumber && errors.phoneNumber}
                 />
                 {focus.phoneNumber && errors.phoneNumber && (
-                  <Typography //Temporary fix untill I can change the size of the helper text
-                    sx={{ color: "error.main", marginLeft: "15px" }}
-                    variant="caption"
-                  >
-                    {errors.phoneNumber}
-                  </Typography>
+                  <ErrorText error={errors.phoneNumber} />
                 )}
               </Box>
               <Box>

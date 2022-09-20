@@ -6,7 +6,8 @@ import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { formModal, userInfoTypes } from "../../RegistrationForm";
-import { HelperText } from "../helperText";
+import { ErrorText } from "../errorText";
+
 import idschema from "../validation/idschema";
 import { Password } from "./password";
 import { UserName } from "./username";
@@ -85,15 +86,10 @@ export const UsernamePassword = ({
                   name="userName"
                   component={UserName}
                   //helperText={focus.username && errors.userName}
+                  //Temp fix untill I can Change the helpertext size
                 />
-
                 {focus.username && errors.userName && (
-                  <Typography //Temporary fix untill I can change the size of the helper text
-                    sx={{ color: "error.main", marginLeft: "15px" }}
-                    variant="caption"
-                  >
-                    {errors.userName}
-                  </Typography>
+                  <ErrorText error={errors.userName} />
                 )}
               </Box>
               <Box
@@ -110,16 +106,10 @@ export const UsernamePassword = ({
                   label="Password"
                   component={Password}
                   //helperText={focus.password && errors.password}
+                  //Temp fix untill I can Change the helpertext size
                 />
                 {focus.password && errors.password && (
-                  <Box sx={{ marginLeft: "15px" }}>
-                    <Typography //Temporary fix untill I can change the size of the helper text
-                      sx={{ color: "error.main" }}
-                      variant="caption"
-                    >
-                      {errors.password}
-                    </Typography>
-                  </Box>
+                  <ErrorText error={errors.password} />
                 )}
               </Box>
 
@@ -144,14 +134,7 @@ export const UsernamePassword = ({
                   //helperText={focus.confirmpassword && errors.confirmPassword}
                 />
                 {focus.confirmpassword && errors.confirmPassword && (
-                  <Box sx={{ paddingLeft: "15px" }}>
-                    <Typography //Temporary fix untill I can change the size of the helper text
-                      sx={{ color: "error.main" }}
-                      variant="caption"
-                    >
-                      {errors.confirmPassword}
-                    </Typography>
-                  </Box>
+                  <ErrorText error={errors.confirmPassword} />
                 )}
               </Box>
               <Button

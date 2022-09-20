@@ -5,6 +5,7 @@ import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { formModal, userInfoTypes } from "../../RegistrationForm";
+import { ErrorText } from "../errorText";
 import demographicSchema from "../validation/demographicsSchema";
 import { age } from "./age";
 import { firstname } from "./firstName";
@@ -88,8 +89,7 @@ export const Demographics = (
           <Form>
             <Box sx={styles.formContainer}>
               <Box sx={styles.demographicContainer}>
-                <Box
-                  //first and last name container
+                <Box //first and last name container
                   onFocus={() => {
                     setFocus((i) => ({ ...i, firstname: true }));
                   }}
@@ -101,15 +101,11 @@ export const Demographics = (
                     //helperText={focus.firstname && errors.firstname}
                   />
                   {focus.firstname && errors.firstname && (
-                    <Typography //Temporary fix untill I can change the size of the helper text
-                      sx={{ color: "error.main", marginLeft: "15px" }}
-                      variant="caption"
-                    >
-                      {errors.firstname}
-                    </Typography>
+                    <ErrorText error={errors.firstname} />
                   )}
                 </Box>
-                <Box
+                <></>
+                <Box // Last name container
                   onFocus={() => {
                     setFocus((i) => ({ ...i, lastname: true }));
                   }}
@@ -121,19 +117,14 @@ export const Demographics = (
                     //helperText={focus.lastname && errors.lastname}
                   />
                   {focus.lastname && errors.lastname && (
-                    <Typography //Temporary fix untill I can change the size of the helper text
-                      sx={{ color: "error.main", marginLeft: "15px" }}
-                      variant="caption"
-                    >
-                      {errors.lastname}
-                    </Typography>
+                    <ErrorText error={errors.lastname} />
                   )}
                 </Box>
               </Box>
 
+              <></>
               <Box sx={styles.demographicContainer}>
-                <Box
-                  //age and education container
+                <Box //age and education container
                   onFocus={() => {
                     setFocus((i) => ({ ...i, age: true }));
                   }}
@@ -144,21 +135,12 @@ export const Demographics = (
                     component={age}
                     //helperText={focus.age && errors.age}
                   />
-
-                  {focus.age && errors.age && (
-                    <Typography //Temporary fix untill I can change the size of the helper text
-                      sx={{ color: "error.main", marginLeft: "15px" }}
-                      variant="caption"
-                    >
-                      {errors.age}
-                    </Typography>
-                  )}
+                  {focus.age && errors.age && <ErrorText error={errors.age} />}
                 </Box>
                 <Box>
                   <Field name="highestEducation" component={highestEducation} />
                 </Box>
               </Box>
-
               <Field name="married" component={married} />
 
               <Button type="submit">Submit</Button>
