@@ -42,7 +42,7 @@ export const GrabInput = ({ setTodo, toDo, setTodoModal }: Props) => {
               style={{ width: "100%" }}
             />
             <Typography
-              style={{ color: "red", display: "flex", fontSize: "small" }}
+              style={{ color: "red", display: "flex", fontSize: "x-small" }}
             >
               {errors.inputField}
             </Typography>

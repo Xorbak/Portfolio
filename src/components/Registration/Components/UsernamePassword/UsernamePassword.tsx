@@ -7,8 +7,9 @@ import React, { useState } from "react";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { userInfoTypes } from "../../RegistrationForm";
 import { ErrorText } from "../errorText";
-
 import idschema from "../validation/idschema";
+
+import password from "../validation/idschema";
 import { Password } from "./password";
 import { UserName } from "./username";
 

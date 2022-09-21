@@ -1,5 +1,4 @@
 import * as yup from "yup";
-//@ts-ignore
 
 const idschema = yup.object().shape({
   userName: yup
@@ -9,12 +8,15 @@ const idschema = yup.object().shape({
     .required("You cant have an empty username"),
   password: yup
     .string()
-    .min(8, "Your password must be atleast 8 characters long ")
+    .required("Please Enter your password")
+    .min(8, "Your password must be longer than 8 characters.")
+    .matches(/^(?=.{6,})/, "Must Contain 6 Characters")
     .matches(
-      /^(?=.*[A-Z][a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/gm,
-      "Password must have at least 8 characters,contain at least 1 uppercase letter, 1 lowercase letter,1 special character, and 1 number."
+      /^(?=.*[a-z])(?=.*[A-Z])/,
+      "Must Contain One Uppercase, One Lowercase"
     )
-    .required("Required"),
+    .matches(/^(?=.*[!@#\$%\^&\*])/, "Must Contain One Special Case Character")
+    .matches(/^(?=.{6,20}$)\D*\d/, "Must Contain One Number"),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match")
