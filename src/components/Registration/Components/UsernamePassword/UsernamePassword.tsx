@@ -1,16 +1,22 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { userInfoTypes } from "../../RegistrationForm";
 import { ErrorText } from "../errorText";
-import idschema from "../validation/idschema";
-
-import password from "../validation/idschema";
+import {
+  idschema,
+  lengthCheck,
+  lowerCheck,
+  numberCheck,
+  passwordCheck,
+  specialCheck,
+  upperCheck,
+} from "../validation/idschema";
 import { Password } from "./password";
+import { PasswordHint } from "./passwordHint";
 import { UserName } from "./username";
 
 interface Props {
@@ -47,6 +53,11 @@ export const UsernamePassword = ({
     password: false,
     confirmpassword: false,
   });
+
+  //____________________________________________
+
+  //____________________________________________
+
   return (
     <Formik<IDinterface>
       initialValues={{
@@ -64,21 +75,43 @@ export const UsernamePassword = ({
       }}
       validationSchema={idschema}
     >
-      {({ errors, touched }) => {
+      {({ errors, touched, values }) => {
+        //Arry to render helper text for password validation
+        const errorsArray = [
+          {
+            check: specialCheck.isValidSync(values.password),
+            message: "One Special character",
+          },
+          {
+            check: lengthCheck.isValidSync(values.password),
+            message: "Atleast 8 characters",
+          },
+          {
+            check: upperCheck.isValidSync(values.password),
+            message: "One Uppercase",
+          },
+          {
+            check: lowerCheck.isValidSync(values.password),
+            message: "One lowercase",
+          },
+
+          {
+            check: numberCheck.isValidSync(values.password),
+            message: "One number",
+          },
+        ];
         return (
           <Form>
             <Box sx={styles.formContainer}>
-              <Box
-                //username input field validation
-                onFocus={() => {
-                  setFocus((i) => ({ ...i, username: true })),
-                    console.log(focus);
-                }}
-                sx={errorSuccess(focus.username, errors.userName, touched)}
-                //sets the Error/success state
-              >
+              <Box>
                 <Field
-                  sx={{ width: "100%" }}
+                  //username input field validation
+                  onFocus={() => {
+                    setFocus((i) => ({ ...i, username: true })),
+                      console.log(focus);
+                  }}
+                  //sets the Error/success state
+                  sx={errorSuccess(focus.username, errors.userName, touched)}
                   validation={errors.userName}
                   name="userName"
                   component={UserName}
@@ -90,50 +123,71 @@ export const UsernamePassword = ({
                 )}
               </Box>
               <Box
-                // password input validation
-                onFocus={() => {
-                  setFocus((i) => ({ ...i, password: true }));
+                sx={{
+                  display: "flex",
+                  alignContent: "space-around",
+                  justifyContent: "space-between",
                 }}
-                //sets the Error/success state
-                sx={errorSuccess(focus.password, errors.password, touched)}
               >
-                <Field
-                  sx={{ width: "100%" }}
-                  name="password"
-                  label="Password"
-                  component={Password}
-                  //helperText={focus.password && errors.password}
-                  //Temp fix untill I can Change the helpertext size
-                />
-                {focus.password && errors.password && (
-                  <ErrorText error={errors.password} />
-                )}
+                <Box //Password Box
+                  sx={{ width: "48%" }}
+                >
+                  <Field
+                    // password input validation
+                    onFocus={() => {
+                      setFocus((i) => ({ ...i, password: true }));
+                    }}
+                    //sets the Error/success state
+                    sx={errorSuccess(focus.password, errors.password, touched)}
+                    name="password"
+                    label="Password"
+                    component={Password}
+                    //helperText={focus.password && errors.password}
+                    //Temp fix untill I can Change the helpertext size
+                  />
+                  <Typography
+                    variant="caption"
+                    color={
+                      passwordCheck.isValidSync(values.password)
+                        ? "success.main"
+                        : "primary.main"
+                    }
+                    sx={{ textDecoration: "underline", marginLeft: "10px" }}
+                  >
+                    Your Password must have:
+                  </Typography>
+
+                  {errorsArray.map(({ check, message }) => {
+                    return <PasswordHint check={check} message={message} />;
+                  })}
+                </Box>
+
+                <Box //confirm Password box
+                  sx={{ width: "48%" }}
+                  // confirmPassword input validation
+                >
+                  <Field
+                    onFocus={() => {
+                      setFocus((i) => ({ ...i, confirmpassword: true })),
+                        console.log(focus);
+                    }}
+                    //sets the Error/success state
+                    sx={errorSuccess(
+                      focus.confirmpassword,
+                      errors.confirmPassword,
+                      touched
+                    )}
+                    name="confirmPassword"
+                    label="Confirm Password"
+                    component={Password}
+                    //helperText={focus.confirmpassword && errors.confirmPassword}
+                  />
+                  {focus.confirmpassword && errors.confirmPassword && (
+                    <ErrorText error={errors.confirmPassword} />
+                  )}
+                </Box>
               </Box>
 
-              <Box
-                // confirmPassword input validation
-                onFocus={() => {
-                  setFocus((i) => ({ ...i, confirmpassword: true })),
-                    console.log(focus);
-                }}
-                //sets the Error/success state
-                sx={errorSuccess(
-                  focus.confirmpassword,
-                  errors.confirmPassword,
-                  touched
-                )}
-              >
-                <Field
-                  sx={{ width: "100%" }}
-                  name="confirmPassword"
-                  label="Confirm Password"
-                  component={Password}
-                  //helperText={focus.confirmpassword && errors.confirmPassword}
-                />
-                {focus.confirmpassword && errors.confirmPassword && (
-                  <ErrorText error={errors.confirmPassword} />
-                )}
-              </Box>
               <Button
                 type="submit"
                 // setFocus to true on everything in focus to show all errors
@@ -175,11 +229,9 @@ const styles = {
     },
   },
   formContainer: {
-    display: "grid",
-    fontSize: "medium",
-    gridTemplateColumns: "1fr",
+    display: "flex",
+    flexDirection: "column",
     justifyContent: "space-around",
-    gridAutoRows: "minmax(1vh, auto)",
     gap: "1%",
     backgroundColor: "background.paper",
     minHeight: {

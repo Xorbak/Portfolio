@@ -10,10 +10,7 @@ export const Pipeline = () => {
         <MenuItem>
           Fix Helper text on Registration form --- edit helper text in theme
         </MenuItem>
-        <MenuItem>
-          Set up a proper Password validation that shows which char you still
-          need in your password
-        </MenuItem>
+        <MenuItem>Fix themes- Some hurt my eyes</MenuItem>
 
         <MenuItem>Add Geolocation to show what City user is in</MenuItem>
         <MenuItem>

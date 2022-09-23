@@ -11,6 +11,7 @@ import { TipCalc } from "./components/Tip Calculator/TipCalc";
 import { RegistrationForm } from "./components/Registration/RegistrationForm";
 import { ThemeOptions } from "@mui/system";
 import { Pipeline } from "./components/Pipeline/Pipeline";
+import { Playground } from "./components/playground/Playground";
 interface Geolocation {
   longitude: number;
   latitude: number;
@@ -46,9 +47,8 @@ function App() {
           <Route path="/Registration" element={<RegistrationForm />} />
           <Route path="/ThemeTest" element={<ThemeTester />} />
           <Route path="/TipCalc" element={<TipCalc />}></Route>
-          <Route path="/Pipeline" element={<Pipeline />}>
-            {" "}
-          </Route>
+          <Route path="/Pipeline" element={<Pipeline />} />
+          <Route path="/Playground" element={<Playground />} />
         </Routes>
       </ThemeProvider>
     </Box>
