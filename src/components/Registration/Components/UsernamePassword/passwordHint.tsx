@@ -19,7 +19,7 @@ export const PasswordHint = ({ check, message }: Props) => {
         color: "success.main",
       }}
     >
-      <Typography variant="caption" sx={{ width: "50%" }}>
+      <Typography variant="caption" sx={{ width: { xs: "50%", sm: "100%" } }}>
         {message}
       </Typography>
       <Check fontSize="small" />
@@ -33,7 +33,7 @@ export const PasswordHint = ({ check, message }: Props) => {
         color: "primary.main",
       }}
     >
-      <Typography variant="caption" sx={{ width: "50%" }}>
+      <Typography variant="caption" sx={{ width: { xs: "50%", sm: "100%" } }}>
         {message}
       </Typography>
       <CloseSharp fontSize="small" />

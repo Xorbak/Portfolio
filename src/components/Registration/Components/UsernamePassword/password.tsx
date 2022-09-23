@@ -16,6 +16,7 @@ export const Password = ({ field, form, ...props }) => {
   return (
     <TextField
       type={showPassword ? "password" : "text"}
+      fullWidth={{ xs: "true", sm: "false" }}
       autoComplete="off"
       {...field}
       {...props}
