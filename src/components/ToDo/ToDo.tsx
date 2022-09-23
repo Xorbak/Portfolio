@@ -94,7 +94,7 @@ export const ToDo = () => {
               <TodoList
                 toDoItemStyle={styles.toDoItem} //to-do item styling
                 buttonStyle={styles.ToDoControl} //hover effect and colors for the check buttom and delete
-                completedButton={<CheckIcon fontSize="small" />}
+                completedButton={<ReplayIcon fontSize="small" />}
                 toDoArray={deletedTodo} // In to be used as a "check" or return
                 moveTo={setTodo} //move to this state
                 removeFrom={setDeletedTodo} //remove from this one
