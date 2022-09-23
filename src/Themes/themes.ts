@@ -97,9 +97,9 @@ const cottonCandyValues: ThemeOptions = {
       primary: "rgba(0, 0, 0, 0.87)",
     },
     error: {
-      main: "#ff1100",
+      main: "#990A00",
     },
-    success: { main: "#4CAF50" },
+    success: { main: "#165816" },
   },
   typography: { htmlFontSize: 20 },
   shape: {
@@ -109,7 +109,7 @@ const cottonCandyValues: ThemeOptions = {
 
 const morningCoffeeValues: ThemeOptions = {
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
       main: "#E5B299",
       light: "rgb(234, 193, 173)",
@@ -149,9 +149,9 @@ const morningCoffeeValues: ThemeOptions = {
       primary: "rgba(0,0,0,0.79)",
     },
     error: {
-      main: "#f44336",
+      main: "#841010",
     },
-    success: { main: "#4caf50" },
+    success: { main: "#A8FFAB" },
   },
   typography: { htmlFontSize: 20 },
   shape: {
@@ -214,15 +214,15 @@ const summerValues: ThemeOptions = {
   palette: {
     mode: "dark",
     primary: {
-      main: "#F2DF3A",
-      light: "rgb(244, 229, 97)",
-      dark: "rgb(169, 156, 40)",
+      main: "#CC9C75",
+      light: "rgb(214, 175, 144)",
+      dark: "rgb(142, 109, 81)",
       contrastText: "rgba(0, 0, 0, 0.87)",
     },
     secondary: {
-      main: "#F6F6F6",
-      light: "rgb(247, 247, 247)",
-      dark: "rgb(172, 172, 172)",
+      main: "#D5D8B5",
+      light: "rgb(221, 223, 195)",
+      dark: "rgb(149, 151, 126)",
       contrastText: "rgba(0, 0, 0, 0.87)",
     },
     grey: {
@@ -230,8 +230,8 @@ const summerValues: ThemeOptions = {
       900: "#212121",
     },
     background: {
-      default: "#0078AA",
-      paper: "#3AB4F2",
+      default: "#809A6F",
+      paper: "#A25B5B",
     },
     action: {
       active: "#FFFFFF",
@@ -252,7 +252,7 @@ const summerValues: ThemeOptions = {
       primary: "rgba(0,0,0,0.79)",
     },
     error: {
-      main: "#f44336",
+      main: "#FFA3A3",
     },
     success: { main: "#4CAF50" },
   },
@@ -263,7 +263,7 @@ const summerValues: ThemeOptions = {
 };
 const fallValues: ThemeOptions = {
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
       main: "#DD4A48",
       light: "rgb(227, 110, 108)",
@@ -300,7 +300,7 @@ const fallValues: ThemeOptions = {
     text: {
       secondary: "rgba(0, 0, 0, 0.54)",
       disabled: "rgba(70,63,63,0.5)",
-      primary: "rgba(0,0,0,0.79)",
+      primary: "rgba(0, 0, 0, 0.87)",
     },
     error: {
       main: "#f44336",
@@ -315,7 +315,7 @@ const fallValues: ThemeOptions = {
 
 const winterValues: ThemeOptions = {
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
       main: "#7DEDFF",
       light: "rgb(151, 240, 255)",
@@ -368,7 +368,7 @@ const winterValues: ThemeOptions = {
 
 const springValues: ThemeOptions = {
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
       main: "#91C788",
       light: "rgb(167, 210, 159)",
