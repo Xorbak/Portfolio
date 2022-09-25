@@ -12,28 +12,10 @@ import { RegistrationForm } from "./components/Registration/RegistrationForm";
 import { ThemeOptions } from "@mui/system";
 import { Pipeline } from "./components/Pipeline/Pipeline";
 import { Playground } from "./components/playground/Playground";
-interface Geolocation {
-  longitude: number;
-  latitude: number;
-}
+import { WeatherForcast } from "./components/Weatherforcast/Weatherforcast";
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState<Theme>(SeaSideEve);
-  const [geolocation, setGeolocation] = useState<Geolocation>();
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setGeolocation({
-        longitude: position.coords.longitude,
-        latitude: position.coords.latitude,
-      });
-    });
-    console.log(`Longitude is : ${geolocation && geolocation.longitude}`);
-    console.log(`Latitude is : ${geolocation && geolocation.latitude}`);
-  }, [
-    geolocation && geolocation.longitude,
-    geolocation && geolocation.latitude,
-  ]);
 
   return (
     <Box>
@@ -49,6 +31,7 @@ function App() {
           <Route path="/TipCalc" element={<TipCalc />}></Route>
           <Route path="/Pipeline" element={<Pipeline />} />
           <Route path="/Playground" element={<Playground />} />
+          <Route path="/WeatherForcast" element={<WeatherForcast />} />
         </Routes>
       </ThemeProvider>
     </Box>
