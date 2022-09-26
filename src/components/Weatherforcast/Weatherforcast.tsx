@@ -31,38 +31,61 @@ interface CurrentWeatherData {
   };
   timezone: number;
 }
+interface City {
+  name: string;
+}
 export const WeatherForcast = () => {
   const [geolocation, setGeolocation] = useState<Geolocation>();
   const [weatherData, setWeatherData] = useState<CurrentWeatherData>();
-
-  const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${geolocation &&
+  const [city, setCity] = useState<City[]>();
+  //------ reverse geocoding url
+  const cityApiUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${geolocation &&
     geolocation.latitude}&lon=${geolocation &&
-    geolocation.longitude}&appid=0d004acbd263f70a7810a4c700aff384`;
+    geolocation.longitude}&limit=5&appid=0d004acbd263f70a7810a4c700aff384`;
+
+  //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key} <<<< API call using city name instead of lon lat
+  const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=midrand&appid=0d004acbd263f70a7810a4c700aff384&units=metric`;
+  //--------------------------------------------
   const imgUrl = `http://openweathermap.org/img/wn/${weatherData &&
     weatherData.weather[0].icon}.png`;
+  //--------------------------------------------------
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCity = async () => {
       navigator.geolocation.getCurrentPosition((position) => {
         setGeolocation({
           longitude: position.coords.longitude,
           latitude: position.coords.latitude,
         });
       });
-
+      console.log(geolocation);
       geolocation &&
-        (await fetch(url)
+        (await fetch(cityApiUrl)
+          .then((res) => res.json())
+          .then((result) => {
+            setCity(result);
+          }));
+
+      city &&
+        (await fetch(weatherApiUrl)
           .then((res) => res.json())
           .then((result) => {
             setWeatherData(result);
           }));
     };
-    fetchData();
+
+    fetchCity();
   }, [
     geolocation && geolocation.longitude,
     geolocation && geolocation.latitude,
+    city && city[0].name,
   ]);
+  console.log(city);
+  useEffect(() => {
+    const fetchData = async () => {};
+    console.log(weatherData);
+    city && fetchData();
+  }, [weatherData]);
 
-  console.log(geolocation);
   return (
     <Box sx={styles.App}>
       {weatherData !== undefined ? (
