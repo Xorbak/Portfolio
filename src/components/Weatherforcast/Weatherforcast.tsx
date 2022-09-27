@@ -34,17 +34,34 @@ interface CurrentWeatherData {
 interface City {
   name: string;
 }
-export const WeatherForcast = () => {
-  const [geolocation, setGeolocation] = useState<Geolocation>();
-  const [weatherData, setWeatherData] = useState<CurrentWeatherData>();
-  const [city, setCity] = useState<City[]>();
-  //------ reverse geocoding url
+
+interface Props {
+  setGeolocation: React.Dispatch<React.SetStateAction<Geolocation | undefined>>;
+  setWeatherData: React.Dispatch<
+    React.SetStateAction<CurrentWeatherData | undefined>
+  >;
+  geolocation: Geolocation | undefined;
+  weatherData: CurrentWeatherData | undefined;
+}
+export const WeatherForcast = ({
+  setGeolocation,
+  setWeatherData,
+  geolocation,
+  weatherData,
+}: Props) => {
+  const apiKey = "0d004acbd263f70a7810a4c700aff384";
+  //------ reverse geocoding url << not working too well
+
   const cityApiUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${geolocation &&
     geolocation.latitude}&lon=${geolocation &&
     geolocation.longitude}&limit=5&appid=0d004acbd263f70a7810a4c700aff384`;
 
   //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key} <<<< API call using city name instead of lon lat
-  const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=midrand&appid=0d004acbd263f70a7810a4c700aff384&units=metric`;
+  //https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API key} <<<<<< API call using lon lat
+
+  const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${geolocation &&
+    geolocation.latitude}&lon=${geolocation &&
+    geolocation.longitude}&appid=${apiKey}`;
   //--------------------------------------------
   const imgUrl = `http://openweathermap.org/img/wn/${weatherData &&
     weatherData.weather[0].icon}.png`;
@@ -59,13 +76,6 @@ export const WeatherForcast = () => {
       });
       console.log(geolocation);
       geolocation &&
-        (await fetch(cityApiUrl)
-          .then((res) => res.json())
-          .then((result) => {
-            setCity(result);
-          }));
-
-      city &&
         (await fetch(weatherApiUrl)
           .then((res) => res.json())
           .then((result) => {
@@ -77,14 +87,7 @@ export const WeatherForcast = () => {
   }, [
     geolocation && geolocation.longitude,
     geolocation && geolocation.latitude,
-    city && city[0].name,
   ]);
-  console.log(city);
-  useEffect(() => {
-    const fetchData = async () => {};
-    console.log(weatherData);
-    city && fetchData();
-  }, [weatherData]);
 
   return (
     <Box sx={styles.App}>
