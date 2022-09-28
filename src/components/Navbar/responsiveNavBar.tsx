@@ -12,7 +12,7 @@ import { TaskDropdown } from "./components/taskDropdown";
 import { HomeButton } from "./components/homeButton";
 import { ThemeDropDown } from "./components/themeDropdown";
 import { Theme, ThemeOptions } from "@mui/material/styles";
-import { CurrentWeatherData, Geolocation } from "../../App";
+import { AllWeatherData, CurrentWeatherData, Geolocation } from "../../App";
 import { useEffect } from "react";
 
 //Refactor, works but its messy
@@ -23,10 +23,10 @@ interface Props {
   setCurrentTheme: React.Dispatch<React.SetStateAction<Theme>>;
   setGeolocation: React.Dispatch<React.SetStateAction<Geolocation | undefined>>;
   setWeatherData: React.Dispatch<
-    React.SetStateAction<CurrentWeatherData | undefined>
+    React.SetStateAction<AllWeatherData | undefined>
   >;
   geolocation: Geolocation | undefined;
-  weatherData: CurrentWeatherData | undefined;
+  weatherData: AllWeatherData | undefined;
 }
 
 export const ResponsiveAppBar = ({
@@ -38,22 +38,12 @@ export const ResponsiveAppBar = ({
 }: Props) => {
   //--------------------weather forcast
   const apiKey = "0d004acbd263f70a7810a4c700aff384";
-  //------ reverse geocoding url << not working too well
-
-  const cityApiUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${geolocation &&
-    geolocation.latitude}&lon=${geolocation &&
-    geolocation.longitude}&limit=5&appid=0d004acbd263f70a7810a4c700aff384`;
-
-  //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key} <<<< API call using city name instead of lon lat
-  //https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API key} <<<<<< API call using lon lat
-
   const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${geolocation &&
     geolocation.latitude}&lon=${geolocation &&
     geolocation.longitude}&appid=${apiKey}`;
-  //--------------------------------------------
   const imgUrl = `http://openweathermap.org/img/wn/${weatherData &&
-    weatherData.weather[0].icon}.png`;
-  //--------------------------------------------------
+    weatherData.navbarWeather.weather[0].icon}.png`;
+  //-------------------------------------------------- fetch API
   useEffect(() => {
     const fetchCity = async () => {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -67,7 +57,10 @@ export const ResponsiveAppBar = ({
         (await fetch(weatherApiUrl)
           .then((res) => res.json())
           .then((result) => {
-            setWeatherData(result);
+            setWeatherData({
+              navbarWeather: result, //-----------------cant get the spread to work
+              search: !weatherData ? result : weatherData.search,
+            });
           }));
     };
 
@@ -159,6 +152,7 @@ export const ResponsiveAppBar = ({
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
               justifyContent: "center",
+              paddingLeft: "100px",
             }}
           >
             {//instead of rendering components one by one here. It maps through the array and the switch-case decides what to render
@@ -186,11 +180,11 @@ export const ResponsiveAppBar = ({
               </Box>
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <Typography variant="subtitle1">
-                  {Math.round(weatherData.main.feels_like)}°C
+                  {Math.round(weatherData.navbarWeather.main.feels_like)}°C
                 </Typography>
                 <Typography variant="caption">
-                  {Math.round(weatherData.main.temp_max)}°C/
-                  {Math.round(weatherData.main.temp_min)}°C
+                  {Math.round(weatherData.navbarWeather.main.temp_max)}°C/
+                  {Math.round(weatherData.navbarWeather.main.temp_min)}°C
                 </Typography>
               </Box>
             </Box>
@@ -202,5 +196,5 @@ export const ResponsiveAppBar = ({
 };
 
 const styles = {
-  navbar: { backgroundColor: "background.default" },
+  navbar: { backgroundColor: "background.default", paddingLeft: "100px" },
 };

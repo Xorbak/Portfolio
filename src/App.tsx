@@ -44,12 +44,16 @@ export interface CurrentWeatherData {
 interface City {
   name: string;
 }
+export interface AllWeatherData {
+  navbarWeather: CurrentWeatherData;
+  search: CurrentWeatherData;
+}
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState<Theme>(SeaSideEve);
   //--------------Weather states
   const [geolocation, setGeolocation] = useState<Geolocation>();
-  const [weatherData, setWeatherData] = useState<CurrentWeatherData>();
+  const [weatherData, setWeatherData] = useState<AllWeatherData>();
   const apiKey = "0d004acbd263f70a7810a4c700aff384";
   return (
     <Box>
