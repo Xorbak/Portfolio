@@ -7,35 +7,31 @@ import React from "react";
 
 //@ts-ignore
 export const married = ({ field, form, ...props }) => {
+  const marriedArray: string[] = [
+    "Unmarried",
+    "Married",
+    "Divorced",
+    "Widowed",
+  ];
   return (
     <Box>
       <FormLabel>Mariage Status</FormLabel>
+
       <RadioGroup
         row
         sx={{ color: "rgba(0, 0, 0, 0.6)" }}
         {...field}
         {...props}
       >
-        <FormControlLabel //map through an array instead
-          value="Unmarried"
-          control={<Radio size="small" />}
-          label="Unmarried"
-        />
-        <FormControlLabel
-          value="Married"
-          control={<Radio size="small" />}
-          label="Married"
-        />
-        <FormControlLabel
-          value="Divorced"
-          control={<Radio size="small" />}
-          label="Divorced"
-        />
-        <FormControlLabel
-          value="Widowed"
-          control={<Radio size="small" />}
-          label="Widowed"
-        />
+        {marriedArray.map((i) => {
+          return (
+            <FormControlLabel //map through an array instead
+              value={i}
+              control={<Radio size="small" />}
+              label={i}
+            />
+          );
+        })}
       </RadioGroup>
     </Box>
   );

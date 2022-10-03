@@ -129,7 +129,7 @@ const styles = {
     minHeight: { xs: "60vh", sm: "50vh" },
     maxHeight: { xs: "800px", sm: "100vh" },
     width: { xs: "90vw", md: "50vw", lg: "600px", xl: "50vw" },
-    borderRadius: "5px",
+    borderRadius: "15px",
     padding: "1%",
   },
   InputContainer: {
@@ -148,7 +148,7 @@ const styles = {
     maxHeight: { xs: "400px", sm: "50vh" },
     width: { xs: "96%", sm: "45%" },
     backgroundColor: "secondary.main",
-    borderRadius: "5px",
+    borderRadius: "10px",
     padding: "2%",
     overflow: "scroll",
     "&::-webkit-scrollbar": {
@@ -160,7 +160,7 @@ const styles = {
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "primary.main",
-      borderRadius: "5px",
+      borderRadius: "2px",
     },
   },
   toDoItem: {
@@ -197,7 +197,7 @@ const styles = {
     "&:hover": {
       cursor: "pointer",
       backgroundColor: "secondary.dark",
-      borderRadius: "5px",
+      borderRadius: "2px",
     },
   },
   Completed: {
@@ -207,7 +207,7 @@ const styles = {
     alignItems: "center",
     color: "#212121",
     backgroundColor: "primary.dark",
-    borderRadius: "5px",
+    borderRadius: "10px",
     padding: "2%",
     minHeight: { xs: "20vh", sm: "40vh" },
     maxHeight: { xs: "400px", sm: "50vh" },
@@ -227,7 +227,7 @@ const styles = {
     maxHeight: { xs: "400px", sm: "50vh" },
     width: "50%",
     backgroundColor: "secondary.main",
-    borderRadius: "5px",
+    borderRadius: "15px",
     padding: "2%",
     overflow: "scroll",
     "&::-webkit-scrollbar": {

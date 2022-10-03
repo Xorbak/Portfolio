@@ -12,9 +12,6 @@ export interface Tip {
 export const TipCalc = () => {
   const [tipData, setTipData] = useState<Tip>();
   const [val, setVal] = useState(null);
-  console.log("this is in the main screen tipdata state", tipData);
-  console.log("this is in the main screen value state", val);
-  console.log("-------------------------------------------");
   return (
     <Box sx={styles.App}>
       <Box sx={styles.tipBox}>

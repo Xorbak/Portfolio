@@ -20,9 +20,8 @@ export interface userInfoTypes {
 
 export const RegistrationForm = () => {
   const [userinfo, setUserinfo] = useState<userInfoTypes>();
-  console.log(userinfo);
+  const [formModal, setFormModal] = useState<number>(2);
 
-  const [formModal, setFormModal] = useState<number>(0);
   return (
     <Box sx={styles.App}>
       {formModal === 0 && (

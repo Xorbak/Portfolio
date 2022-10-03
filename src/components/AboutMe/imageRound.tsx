@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import React from "react";
 
 interface Props {
-  image: any;
+  image: string;
 }
 
 export const ImageRound = ({ image }: Props) => {

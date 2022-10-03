@@ -15,10 +15,7 @@ export const Pipeline = () => {
           Add Advanced Tip Calculation(how many people and how to split the
           bill)
         </MenuItem>
-        <MenuItem>Add Geolocation to show what City user is in</MenuItem>
-        <MenuItem>
-          Use Geolocation to show weather where user currently is
-        </MenuItem>
+        <MenuItem>create QR code and QR code maker</MenuItem>
       </Box>
     </Box>
   );

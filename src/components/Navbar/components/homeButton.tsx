@@ -1,13 +1,15 @@
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { NavLink } from "react-router-dom";
 import React from "react";
+import Box from "@mui/material/Box";
+import { NavLink } from "react-router-dom";
+
 interface Props {
   handleCloseNavMenu: () => void;
 }
+
 export const HomeButton = ({ handleCloseNavMenu }: Props) => {
   return (
-    <Typography variant="h6" sx={styles.NavbarItem}>
+    <Box sx={styles.NavbarItem}>
       <NavLink style={{ textDecoration: "none" }} to="/">
         <Button
           onClick={handleCloseNavMenu}
@@ -18,7 +20,7 @@ export const HomeButton = ({ handleCloseNavMenu }: Props) => {
           Home
         </Button>
       </NavLink>
-    </Typography>
+    </Box>
   );
 };
 

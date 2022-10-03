@@ -209,7 +209,194 @@ const SeaSideEveValues: ThemeOptions = {
     borderRadius: 4,
   },
 };
+const GrapeSodaValues: ThemeOptions = {
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#916bbf",
+      light: "rgb(167, 136, 203)",
+      dark: "rgb(101, 74, 133)",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#c996cc",
+      light: "rgb(211, 171, 214)",
+      dark: "rgb(140, 105, 142)",
+      contrastText: "rgba(0, 0, 0, 0.87)",
+    },
+    grey: {
+      100: "#f5f5f5",
+      900: "#212121",
+    },
+    background: {
+      default: "#1c0c5b",
+      paper: "#3d2c8D",
+    },
+    action: {
+      active: "#FFFFFF",
+      hover: "rgba(255, 255, 255, 0.08)",
+      hoverOpacity: 0.08,
+      selected: "rgba(255, 255, 255, 0.16)",
+      selectedOpacity: 0.16,
+      disabled: "rgba(255, 255, 255, 0.3)",
+      disabledBackground: "rgba(255, 255, 255, 0.12)",
+      disabledOpacity: 0.38,
+      focus: "rgba(255, 255, 255, 0.08)",
+      focusOpacity: 0.12,
+      activatedOpacity: 0.24,
+    },
 
+    error: {
+      main: "#f44336",
+    },
+    success: { main: "#4CAF50" },
+  },
+  typography: { htmlFontSize: 20 },
+  shape: {
+    borderRadius: 4,
+  },
+};
+const GranpaGrapeValues: ThemeOptions = {
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#787a91",
+      light: "rgb(147, 148, 167)",
+      dark: "rgb(84, 85, 101)",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#eeeeee",
+      light: "rgb(241, 241, 241)",
+      dark: "rgb(166, 166, 166)",
+      contrastText: "rgba(0, 0, 0, 0.87)",
+    },
+    grey: {
+      100: "#f5f5f5",
+      900: "#212121",
+    },
+    background: {
+      default: "#0f044c",
+      paper: "#141E61",
+    },
+    action: {
+      active: "#FFFFFF",
+      hover: "rgba(255, 255, 255, 0.08)",
+      hoverOpacity: 0.08,
+      selected: "rgba(255, 255, 255, 0.16)",
+      selectedOpacity: 0.16,
+      disabled: "rgba(255, 255, 255, 0.3)",
+      disabledBackground: "rgba(255, 255, 255, 0.12)",
+      disabledOpacity: 0.38,
+      focus: "rgba(255, 255, 255, 0.08)",
+      focusOpacity: 0.12,
+      activatedOpacity: 0.24,
+    },
+
+    error: {
+      main: "#f44336",
+    },
+    success: { main: "#4CAF50" },
+  },
+  typography: { htmlFontSize: 20 },
+  shape: {
+    borderRadius: 4,
+  },
+};
+const BumbleBeeValues: ThemeOptions = {
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#ffd369",
+      light: "rgb(255, 219, 135)",
+      dark: "rgb(178, 147, 73)",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#eeeeee",
+      light: "rgb(241, 241, 241)",
+      dark: "rgb(166, 166, 166)",
+      contrastText: "rgba(0, 0, 0, 0.87)",
+    },
+    grey: {
+      100: "#f5f5f5",
+      900: "#212121",
+    },
+    background: {
+      default: "#222831",
+      paper: "#393e46",
+    },
+    action: {
+      active: "#FFFFFF",
+      hover: "rgba(255, 255, 255, 0.08)",
+      hoverOpacity: 0.08,
+      selected: "rgba(255, 255, 255, 0.16)",
+      selectedOpacity: 0.16,
+      disabled: "rgba(255, 255, 255, 0.3)",
+      disabledBackground: "rgba(255, 255, 255, 0.12)",
+      disabledOpacity: 0.38,
+      focus: "rgba(255, 255, 255, 0.08)",
+      focusOpacity: 0.12,
+      activatedOpacity: 0.24,
+    },
+
+    error: {
+      main: "#f44336",
+    },
+    success: { main: "#4CAF50" },
+  },
+  typography: { htmlFontSize: 20 },
+  shape: {
+    borderRadius: 4,
+  },
+};
+const CorporateGreyValues: ThemeOptions = {
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#a5c9ca",
+      light: "rgb(183, 211, 212)",
+      dark: "rgb(115, 140, 141)",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#e7f6f2",
+      light: "rgb(235, 247, 244)",
+      dark: "rgb(161, 172, 169)",
+      contrastText: "rgba(0, 0, 0, 0.87)",
+    },
+    grey: {
+      100: "#f5f5f5",
+      900: "#212121",
+    },
+    background: {
+      default: "#2c3333",
+      paper: "#395b64",
+    },
+    action: {
+      active: "#FFFFFF",
+      hover: "rgba(255, 255, 255, 0.08)",
+      hoverOpacity: 0.08,
+      selected: "rgba(255, 255, 255, 0.16)",
+      selectedOpacity: 0.16,
+      disabled: "rgba(255, 255, 255, 0.3)",
+      disabledBackground: "rgba(255, 255, 255, 0.12)",
+      disabledOpacity: 0.38,
+      focus: "rgba(255, 255, 255, 0.08)",
+      focusOpacity: 0.12,
+      activatedOpacity: 0.24,
+    },
+
+    error: {
+      main: "#f44336",
+    },
+    success: { main: "#4CAF50" },
+  },
+  typography: { htmlFontSize: 20 },
+  shape: {
+    borderRadius: 4,
+  },
+};
 const summerValues: ThemeOptions = {
   palette: {
     mode: "dark",
@@ -422,6 +609,10 @@ export const darkMode = createTheme(darkModeValues);
 export const cottonCandy = createTheme(cottonCandyValues);
 export const morningCoffee = createTheme(morningCoffeeValues);
 export const SeaSideEve = createTheme(SeaSideEveValues);
+export const GrapeSoda = createTheme(GrapeSodaValues);
+export const GrandpaGrape = createTheme(GranpaGrapeValues);
+export const BumbleBee = createTheme(BumbleBeeValues);
+export const CorporateGrey = createTheme(CorporateGreyValues);
 export const summer = createTheme(summerValues);
 export const fall = createTheme(fallValues);
 export const winter = createTheme(winterValues);

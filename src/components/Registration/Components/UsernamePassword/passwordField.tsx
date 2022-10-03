@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { FormikTouched } from "formik";
-import { Field, Form, Formik } from "formik";
+import { Field } from "formik";
 import React from "react";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import {
@@ -23,6 +23,10 @@ interface Props {
   touched: FormikTouched<IDinterface>;
   input: string;
 }
+interface ErrorArray {
+  check: boolean;
+  message: string;
+}
 export const PasswordField = ({
   setFocus,
   focus,
@@ -30,7 +34,7 @@ export const PasswordField = ({
   touched,
   input,
 }: Props) => {
-  const errorsArray = [
+  const errorsArray: ErrorArray[] = [
     {
       check: specialCheck.isValidSync(input),
       message: "One Special character",

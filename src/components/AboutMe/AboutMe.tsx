@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import React from "react";
 import { Biography } from "./biography";
 import bun from "./bun.jpg";

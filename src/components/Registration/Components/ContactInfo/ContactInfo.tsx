@@ -10,17 +10,19 @@ import { userInfoTypes } from "../../RegistrationForm";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { ErrorText } from "../errorText";
 
-interface ContactinfoInterface {
-  email: string;
-  phoneNumber: number | null;
-  postalAddress: string;
-}
 interface Props {
   setUserinfo: React.Dispatch<React.SetStateAction<userInfoTypes | undefined>>;
   userinfo: userInfoTypes | null | undefined;
   setFormModal: React.Dispatch<React.SetStateAction<number>>;
   formModal: number;
 }
+
+interface ContactinfoInterface {
+  email: string;
+  phoneNumber: number | null;
+  postalAddress: string;
+}
+
 //  ensures the correct element has focus so that it doesnt default
 //  to the success state as soon as the page renders
 interface Focus {
@@ -52,12 +54,13 @@ export const ContactInfo = (
         let postalAddress = values.postalAddress;
 
         setUserinfo((userinfo: any) => ({
-          ...userinfo, //fix the typing
+          // not sure what typing to use here
+          ...userinfo,
           email,
           phoneNumber,
           postalAddress,
         }));
-        //move to the next page, maybe implement a number system to go forward or back within the form.
+        //move to the next page
         setFormModal(formModal + 1);
       }}
       validationSchema={contactinfoVal}
@@ -68,7 +71,7 @@ export const ContactInfo = (
         return (
           <Form>
             <Box sx={styles.formContainer}>
-              <Box //Email container
+              <Box //---------------------------------------Email container
                 onFocus={() => {
                   setFocus((i) => ({ ...i, email: true }));
                 }}
@@ -80,12 +83,11 @@ export const ContactInfo = (
                   component={emailInput}
                   //helperText={focus.email && errors.email}
                 />
-
                 {focus.email && errors.email && (
                   <ErrorText error={errors.email} />
                 )}
               </Box>
-              <Box //Phone number container
+              <Box //--------------------------------------Phone number container
                 onFocus={() => {
                   setFocus((i) => ({ ...i, phoneNumber: true }));
                 }}
@@ -105,7 +107,8 @@ export const ContactInfo = (
                   <ErrorText error={errors.phoneNumber} />
                 )}
               </Box>
-              <Box>
+              <Box //--------------------------------------postal Address
+              >
                 <Field
                   sx={{ width: "100%" }}
                   name="postalAddress"

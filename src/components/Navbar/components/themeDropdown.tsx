@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import { Theme, ThemeOptions } from "@mui/material/styles";
@@ -14,6 +13,10 @@ import {
   fall,
   winter,
   spring,
+  GrapeSoda,
+  GrandpaGrape,
+  BumbleBee,
+  CorporateGrey,
 } from "../../../Themes/themes";
 import { ThemeItem } from "./themeItem";
 
@@ -41,12 +44,17 @@ export const ThemeDropDown = ({
   const handleCloseTheme = () => {
     setAnchorElTheme(null);
   };
+  //------------------------------------
   const themes: themesArray[] = [
     { label: "Default", theme: defaultTheme },
     { label: "Sea Side Evening", theme: SeaSideEve },
     { label: "Cotton Candy", theme: cottonCandy },
     { label: "Morning Coffee", theme: morningCoffee },
     { label: "Dark mode", theme: darkMode },
+    { label: "Grape Soda", theme: GrapeSoda },
+    { label: "Grandpa Grape", theme: GrandpaGrape },
+    { label: "Bumble bee", theme: BumbleBee },
+    { label: "Corporate Grey", theme: CorporateGrey },
     { label: "Summer", theme: summer },
     { label: "Fall", theme: fall },
     { label: "Winter", theme: winter },
@@ -63,7 +71,7 @@ export const ThemeDropDown = ({
         size="large"
         sx={styles.NavbarItem}
       >
-        <Box>Themes</Box>
+        <Typography>Themes</Typography>
       </Button>
 
       <Menu

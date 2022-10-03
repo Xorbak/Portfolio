@@ -85,7 +85,7 @@ export const Demographics = (
           <Form>
             <Box sx={styles.formContainer}>
               <Box sx={styles.demographicContainer}>
-                <Box //first and last name container
+                <Box //---------------------------------------first and last name container
                   onFocus={() => {
                     setFocus((i) => ({ ...i, firstname: true }));
                   }}
@@ -101,7 +101,7 @@ export const Demographics = (
                   )}
                 </Box>
                 <></>
-                <Box // Last name container
+                <Box // --------------------------------------Last name container
                   onFocus={() => {
                     setFocus((i) => ({ ...i, lastname: true }));
                   }}

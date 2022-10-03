@@ -11,13 +11,11 @@ import MenuItem from "@mui/material/MenuItem";
 import { TaskDropdown } from "./components/taskDropdown";
 import { HomeButton } from "./components/homeButton";
 import { ThemeDropDown } from "./components/themeDropdown";
-import { Theme, ThemeOptions } from "@mui/material/styles";
-import { AllWeatherData, CurrentWeatherData, Geolocation } from "../../App";
+import { Theme } from "@mui/material/styles";
+import { AllWeatherData, Geolocation } from "../../App";
 import { useEffect } from "react";
 
 //Refactor, works but its messy
-const pages = ["Home", "Tasks", "Blog"];
-//const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 interface Props {
   setCurrentTheme: React.Dispatch<React.SetStateAction<Theme>>;
@@ -37,11 +35,11 @@ export const ResponsiveAppBar = ({
   weatherData,
 }: Props) => {
   //--------------------weather forcast
-  const apiKey = "0d004acbd263f70a7810a4c700aff384";
-  const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${geolocation &&
+  const apiKey: string = "0d004acbd263f70a7810a4c700aff384";
+  const weatherApiUrl: string = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${geolocation &&
     geolocation.latitude}&lon=${geolocation &&
     geolocation.longitude}&appid=${apiKey}`;
-  const imgUrl = `http://openweathermap.org/img/wn/${weatherData &&
+  const imgUrl: string = `http://openweathermap.org/img/wn/${weatherData &&
     weatherData.navbarWeather.weather[0].icon}.png`;
   //-------------------------------------------------- fetch API
   useEffect(() => {
@@ -78,30 +76,19 @@ export const ResponsiveAppBar = ({
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu: () => void = () => {
     setAnchorElNav(null);
   };
-
-  const menuItem = (i: any) => {
-    let component;
-    switch (i) {
-      case "Home":
-        component = <HomeButton handleCloseNavMenu={handleCloseNavMenu} />;
-        break;
-      case "Tasks":
-        component = <TaskDropdown handleCloseNavMenu={handleCloseNavMenu} />;
-        break;
-      default:
-        //default will always be the last item to be rendered
-        component = (
-          <ThemeDropDown
-            handleCloseNavMenu={handleCloseNavMenu}
-            setCurrentTheme={setCurrentTheme}
-          />
-        );
-    }
-    return component;
-  };
+  //---------------------------
+  const pages = [
+    <HomeButton handleCloseNavMenu={handleCloseNavMenu} />,
+    <TaskDropdown handleCloseNavMenu={handleCloseNavMenu} />,
+    <ThemeDropDown
+      handleCloseNavMenu={handleCloseNavMenu}
+      setCurrentTheme={setCurrentTheme}
+    />,
+  ];
+  //---------------------------
 
   return (
     <AppBar position="sticky">
@@ -140,14 +127,14 @@ export const ResponsiveAppBar = ({
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page}>
-                  <Typography textAlign="center">{menuItem(page)}</Typography>
+                <MenuItem key={pages.indexOf(page)}>
+                  <Box textAlign="center">{page}</Box>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Box
-            //------------------mobile and up navbar
+            //------------------larger screen navbar
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
@@ -155,14 +142,13 @@ export const ResponsiveAppBar = ({
               paddingLeft: "100px",
             }}
           >
-            {//instead of rendering components one by one here. It maps through the array and the switch-case decides what to render
-            pages.map((page) => (
-              <Typography
-                key={page}
+            {pages.map((page) => (
+              <Box
+                key={pages.indexOf(page)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {menuItem(page)}
-              </Typography>
+                {page}
+              </Box>
             ))}
           </Box>
           {weatherData && (

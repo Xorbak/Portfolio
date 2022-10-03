@@ -8,7 +8,7 @@ export const firstname = ({ field, form, ...props }) => {
   return (
     <TextField
       fullWidth
-      onKeyDownCapture={(key) => {
+      onKeyDownCapture={(key: React.KeyboardEvent<HTMLDivElement>) => {
         /\d/g.test(key.key) && key.preventDefault();
       }}
       autoComplete="off"

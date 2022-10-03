@@ -10,7 +10,7 @@ export const Password = ({ field, form, ...props }) => {
   //set states to toggle visibility of password field
   const [showPassword, setShowPassword] = useState(true);
 
-  const togglePassword = () => {
+  const togglePassword: () => void = () => {
     setShowPassword(!showPassword);
   };
   return (

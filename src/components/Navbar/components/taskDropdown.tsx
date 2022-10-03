@@ -10,14 +10,16 @@ interface Props {
 //@ts-ignore
 export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
   //handels the opening and closing of the dropdown
+
   const [anchorElTasks, setAnchorElTasks] = useState<null | HTMLElement>(null);
   const openTasks = Boolean(anchorElTasks);
   const handleClickTasks = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElTasks(event.currentTarget);
   };
-  const handleCloseTasks = () => {
+  const handleCloseTasks: () => any = () => {
     setAnchorElTasks(null);
   };
+
   interface taskArray {
     location: string;
     label: string;
@@ -50,7 +52,7 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
         anchorEl={anchorElTasks}
         open={openTasks}
         onClose={() => {
-          //Closes the dropdown and menu when on mobile screens when an Item is chosen
+          //Closes the dropdown when on mobile screens when an Item is chosen
           handleCloseTasks(), handleCloseNavMenu();
         }}
         MenuListProps={{
@@ -76,6 +78,7 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
 const styles = {
   NavbarItem: {
     color: "text.primary",
+    transition: "top 5s ease-in-out",
     "&:hover": {
       backgroundColor: "transparent",
       color: "primary.main",

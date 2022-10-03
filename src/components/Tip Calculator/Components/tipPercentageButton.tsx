@@ -16,12 +16,12 @@ export const TipPercentageButton = ({
   val,
   setVal,
 }: Props) => {
+  const tipArray: number[] = [5, 10, 15, 20];
   return (
     <Box sx={styles.tipButtonBox}>
-      <TipButton percentage={5} val={val} setVal={setVal} />
-      <TipButton percentage={10} val={val} setVal={setVal} />
-      <TipButton percentage={15} val={val} setVal={setVal} />
-      <TipButton percentage={20} val={val} setVal={setVal} />
+      {tipArray.map((i) => {
+        return <TipButton percentage={i} val={val} setVal={setVal} />;
+      })}
     </Box>
   );
 };

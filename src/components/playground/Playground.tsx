@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/system/Box";
-import React, { useState } from "react";
+import React from "react";
 
 export const Playground = () => {
   return (
