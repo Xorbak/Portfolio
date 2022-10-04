@@ -17,7 +17,7 @@ export const WeatherForcast = ({ setWeatherData, weatherData }: Props) => {
 
   return (
     <Box sx={styles.App}>
-      <Box sx={styles.weatherbox}>
+      <Box boxShadow={5} sx={styles.weatherbox}>
         <WeatherSearch
           weatherData={weatherData}
           setWeatherData={setWeatherData}
