@@ -26,6 +26,7 @@ export const married = ({ field, form, ...props }) => {
         {marriedArray.map((i) => {
           return (
             <FormControlLabel //map through an array instead
+              key={i}
               value={i}
               control={<Radio size="small" />}
               label={i}

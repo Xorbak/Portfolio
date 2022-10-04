@@ -8,12 +8,13 @@ import { userInfoTypes } from "../../RegistrationForm";
 import { ErrorText } from "../errorText";
 import demographicSchema from "../validation/demographicsSchema";
 import { age } from "./age";
+import { FirstLastNameField } from "./firstLastNameField";
 import { firstname } from "./firstName";
 import { highestEducation } from "./highestEducation";
 import { lastname } from "./lastName";
 import { married } from "./maritalStatus";
 
-interface demographic {
+export interface demographic {
   firstname: string;
   lastname: string;
   age: number | null;
@@ -28,7 +29,7 @@ interface Props {
 }
 //  ensures the correct element has focus so that it doesnt default
 //  to the success state as soon as the page renders
-interface Focus {
+export interface Focus {
   firstname: boolean;
   lastname: boolean;
   age: boolean;
@@ -85,37 +86,29 @@ export const Demographics = (
           <Form>
             <Box sx={styles.formContainer}>
               <Box sx={styles.demographicContainer}>
-                <Box //---------------------------------------first and last name container
-                  onFocus={() => {
+                <></>
+                <FirstLastNameField
+                  //first name
+                  setFocus={() => {
                     setFocus((i) => ({ ...i, firstname: true }));
                   }}
-                  sx={errorSuccess(focus.firstname, errors.firstname, touched)}
-                >
-                  <Field
-                    name="firstname"
-                    component={firstname}
-                    //helperText={focus.firstname && errors.firstname}
-                  />
-                  {focus.firstname && errors.firstname && (
-                    <ErrorText error={errors.firstname} />
-                  )}
-                </Box>
-                <></>
-                <Box // --------------------------------------Last name container
-                  onFocus={() => {
+                  focus={focus.firstname}
+                  error={errors.firstname}
+                  touched={touched}
+                  name={"firstname"}
+                  component={firstname}
+                />
+                <FirstLastNameField
+                  //last name
+                  setFocus={() => {
                     setFocus((i) => ({ ...i, lastname: true }));
                   }}
-                  sx={errorSuccess(focus.lastname, errors.lastname, touched)}
-                >
-                  <Field
-                    name="lastname"
-                    component={lastname}
-                    //helperText={focus.lastname && errors.lastname}
-                  />
-                  {focus.lastname && errors.lastname && (
-                    <ErrorText error={errors.lastname} />
-                  )}
-                </Box>
+                  focus={focus.lastname}
+                  error={errors.lastname}
+                  touched={touched}
+                  name={"lastname"}
+                  component={lastname}
+                />
               </Box>
 
               <></>
