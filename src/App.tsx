@@ -12,6 +12,7 @@ import { RegistrationForm } from "./components/Registration/RegistrationForm";
 import { Pipeline } from "./components/Pipeline/Pipeline";
 import { Playground } from "./components/playground/Playground";
 import { WeatherForcast } from "./components/Weatherforcast/Weatherforcast";
+import { InspirationalQuote } from "./components/InspirationalQuote/InspirationalQuote";
 export interface Geolocation {
   longitude: number;
   latitude: number;
@@ -68,6 +69,7 @@ function App() {
           <Route path="/Registration" element={<RegistrationForm />} />
           <Route path="/ThemeTest" element={<ThemeTester />} />
           <Route path="/TipCalc" element={<TipCalc />}></Route>
+          <Route path="/Inspiration" element={<InspirationalQuote />}></Route>
           <Route path="/Pipeline" element={<Pipeline />} />
           <Route path="/Playground" element={<Playground />} />
           <Route

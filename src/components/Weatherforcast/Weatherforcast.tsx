@@ -9,12 +9,10 @@ interface Props {
   setWeatherData: React.Dispatch<
     React.SetStateAction<AllWeatherData | undefined>
   >;
-
   weatherData: AllWeatherData | undefined;
 }
 export const WeatherForcast = ({ setWeatherData, weatherData }: Props) => {
-  //--------------------------------------------
-  const imgUrl = `http://openweathermap.org/img/wn/${weatherData &&
+  const imgUrl: string = `http://openweathermap.org/img/wn/${weatherData &&
     weatherData.search.weather[0].icon}.png`;
 
   return (

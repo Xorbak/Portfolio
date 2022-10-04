@@ -29,6 +29,7 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
     { location: "/TipCalc", label: "Tip Calculator" },
     { location: "/To-do", label: "To do list" },
     { location: "/Registration", label: "Registration form" },
+    { location: "/Inspiration", label: "Inspire me" },
     { location: "/Pipeline", label: "Pipeline" },
     { location: "/Playground", label: "Playground" },
     { location: "/WeatherForcast", label: "Weather Forcast" },
