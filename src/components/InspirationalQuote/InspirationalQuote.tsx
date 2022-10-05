@@ -4,26 +4,35 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import React, { useState } from "react";
-interface Quotes {
+import { InspirationButton } from "./components/inspirationButton";
+import { InspireMe } from "./components/inspireMe";
+import { QuoteError } from "./components/quoteError";
+import { QuoteMessage } from "./components/quoteMessage";
+export interface Quotes {
   anime: string;
   character: string;
   quote: string;
 }
+
+export interface QuoteVisibility {
+  box: boolean;
+  error: boolean;
+}
 export const InspirationalQuote = () => {
-  const [inspiration, setInspiration] = useState(6);
-  const [window, setWindow] = useState({ box: true, error: false });
+  const [window, setWindow] = useState<QuoteVisibility>({
+    box: true,
+    error: false,
+  });
   const [quote, setQuote] = useState<Quotes | null>();
-  const quoteAPI = "https://animechan.vercel.app/api/random";
+  const quoteAPI: string = "https://animechan.vercel.app/api/random";
 
   const getQuote = async (url: string) => {
     await fetch(url)
       .then((res) => res.json())
       .then((result) => {
         setQuote(result);
-        console.log(result);
       })
-      .catch((e) => {
-        console.log(e);
+      .catch(() => {
         setWindow((i) => ({ ...i, error: true }));
       });
   };
@@ -32,39 +41,12 @@ export const InspirationalQuote = () => {
     <Box sx={styles.App}>
       {window.box ? (
         <Box>
-          <Typography //@ts-ignore
-            variant={`h${inspiration}`}
-          >
-            {inspiration == 1
-              ? "YOU'VE REACHED MAX LEVEL OF INSPIRATION CALMDOWN"
-              : "INSPIRATION"}
-          </Typography>
-          {inspiration == 1 ? (
-            <Button
-              onClick={() => {
-                setInspiration(6);
-              }}
-            >
-              calm me down please
-            </Button>
-          ) : (
-            <Button
-              onClick={() => {
-                setInspiration(inspiration - 1);
-              }}
-            >
-              inspire me
-            </Button>
-          )}
-          <Button
-            onClick={() => {
-              setQuote(null),
-                setWindow((i) => ({ ...i, box: false })),
-                getQuote(quoteAPI);
-            }}
-          >
-            Show me a quote
-          </Button>
+          <InspireMe
+            getQuote={getQuote}
+            quoteAPI={quoteAPI}
+            setQuote={setQuote}
+            setWindow={setWindow}
+          />
         </Box>
       ) : (
         <Box>
@@ -81,40 +63,23 @@ export const InspirationalQuote = () => {
             }}
           >
             {window.error ? (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography variant="h5">
-                  {quote ? quote.quote : "something went wrong"}
-                </Typography>
-                <Typography variant="caption">
-                  -{quote ? quote.character : "Unkown"} *
-                  {quote ? quote.anime : "Life"}
-                </Typography>
-              </Box>
+              <QuoteError
+                quoteState={quote}
+                quote={quote && quote.quote}
+                character={quote && quote.character}
+                anime={quote && quote.anime}
+              />
             ) : quote ? (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography variant="h5">{quote && quote.quote}</Typography>
-                <Typography variant="caption">
-                  -{quote && quote.character} *{quote && quote.anime}
-                </Typography>
-              </Box>
+              <QuoteMessage
+                quote={quote && quote.quote}
+                character={quote && quote.character}
+                anime={quote && quote.anime}
+              />
             ) : (
               <Typography
                 sx={{
                   display: "flex",
                   justifyContent: "center",
-
                   alignItems: "center",
                   width: "100%",
                 }}
@@ -126,6 +91,7 @@ export const InspirationalQuote = () => {
           <Button onClick={() => setWindow((i) => ({ ...i, box: true }))}>
             inspire
           </Button>
+
           <Button
             onClick={() => {
               getQuote(quoteAPI),
