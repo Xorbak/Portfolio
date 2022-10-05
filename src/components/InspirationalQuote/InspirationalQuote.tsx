@@ -1,4 +1,5 @@
-import { Button } from "@mui/material";
+import { SensorWindow } from "@mui/icons-material";
+import { Button, CircularProgress } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
@@ -10,8 +11,8 @@ interface Quotes {
 }
 export const InspirationalQuote = () => {
   const [inspiration, setInspiration] = useState(6);
-  const [window, setWindow] = useState(true);
-  const [quote, setQuote] = useState<Quotes>();
+  const [window, setWindow] = useState({ box: true, error: false });
+  const [quote, setQuote] = useState<Quotes | null>();
   const quoteAPI = "https://animechan.vercel.app/api/random";
 
   const getQuote = async (url: string) => {
@@ -23,12 +24,13 @@ export const InspirationalQuote = () => {
       })
       .catch((e) => {
         console.log(e);
+        setWindow((i) => ({ ...i, error: true }));
       });
   };
 
   return (
     <Box sx={styles.App}>
-      {window ? (
+      {window.box ? (
         <Box>
           <Typography //@ts-ignore
             variant={`h${inspiration}`}
@@ -56,7 +58,9 @@ export const InspirationalQuote = () => {
           )}
           <Button
             onClick={() => {
-              setWindow(!window), getQuote(quoteAPI);
+              setQuote(null),
+                setWindow((i) => ({ ...i, box: false })),
+                getQuote(quoteAPI);
             }}
           >
             Show me a quote
@@ -76,24 +80,61 @@ export const InspirationalQuote = () => {
               borderRadius: "5px",
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Typography variant="h5">
-                {quote ? quote.quote : "something went wrong"}
+            {window.error ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <Typography variant="h5">
+                  {quote ? quote.quote : "something went wrong"}
+                </Typography>
+                <Typography variant="caption">
+                  -{quote ? quote.character : "Unkown"} *
+                  {quote ? quote.anime : "Life"}
+                </Typography>
+              </Box>
+            ) : quote ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <Typography variant="h5">{quote && quote.quote}</Typography>
+                <Typography variant="caption">
+                  -{quote && quote.character} *{quote && quote.anime}
+                </Typography>
+              </Box>
+            ) : (
+              <Typography
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                <CircularProgress color="primary" />
               </Typography>
-              <Typography variant="caption">
-                -{quote ? quote.character : "Unkown"} *
-                {quote ? quote.anime : "Life"}
-              </Typography>
-            </Box>
+            )}
           </Box>
-          <Button onClick={() => setWindow(!window)}>inspire</Button>{" "}
-          <Button onClick={() => getQuote(quoteAPI)}>Get another qoute</Button>
+          <Button onClick={() => setWindow((i) => ({ ...i, box: true }))}>
+            inspire
+          </Button>
+          <Button
+            onClick={() => {
+              getQuote(quoteAPI),
+                setQuote(null),
+                setWindow((i) => ({ ...i, error: false }));
+            }}
+          >
+            Get another qoute
+          </Button>
         </Box>
       )}
     </Box>
