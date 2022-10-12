@@ -1,6 +1,6 @@
 type ToDoListType = {
   input: string | null;
-  key: string | null;
+  _id: string | null;
   completed: boolean;
 };
 

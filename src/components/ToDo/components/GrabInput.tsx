@@ -16,6 +16,28 @@ interface FormikFieldTypes {
 }
 
 export const GrabInput = ({ setTodo, toDo, setTodoModal }: Props) => {
+  const addTodo = (input: string, key: string) => {
+    fetch("https://krat.es/2491831feac26db887a6/todo", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      //make sure to serialize your JSON body
+      body: JSON.stringify({
+        input: input,
+        key: key,
+      }),
+    }).then(async () => {
+      await fetch("https://krat.es/2491831feac26db887a6/todo")
+        .then((res) => res.json())
+        .then((result) => {
+          setTodo(result);
+        });
+    });
+  };
+  console.log(toDo);
   return (
     <Formik<FormikFieldTypes>
       initialValues={{ inputField: "" }}
@@ -24,12 +46,14 @@ export const GrabInput = ({ setTodo, toDo, setTodoModal }: Props) => {
           ...currentItem,
           {
             input: values.inputField,
-            key: toDo.length + values.inputField, // might have to change to random number
+            _id: toDo.length + values.inputField, // might have to change to random number
             completed: false,
           },
         ]);
+        const key = toDo.length + values.inputField;
         setTodoModal(true);
         resetForm();
+        addTodo(values.inputField, key);
       }}
       validationSchema={toDoSchema}
     >

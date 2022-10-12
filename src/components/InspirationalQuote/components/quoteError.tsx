@@ -1,6 +1,8 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import React from "react";
 import { Quotes } from "../InspirationalQuote";
+
 interface Props {
   quoteState: Quotes | null | undefined;
   quote: string | null | undefined;

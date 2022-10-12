@@ -1,9 +1,6 @@
 import { ThemeOptions } from "@mui/material/styles/createTheme";
 import createTheme from "@mui/material/styles/createTheme";
 
-const fontSize = 14;
-const htmlFontSize = 16;
-
 const darkModeValues: ThemeOptions = {
   palette: {
     mode: "light",

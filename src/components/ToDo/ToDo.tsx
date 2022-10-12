@@ -13,7 +13,16 @@ export const ToDo = () => {
   const [deletedTodo, setDeletedTodo] = useState<ToDoListType[]>([]);
   const [todoModal, setTodoModal] = useState<boolean>(true);
   //Adds Items to the ToDo part
-  console.log(deletedTodo);
+  useEffect(() => {
+    const loadTodo = async () => {
+      await fetch("https://krat.es/2491831feac26db887a6/todo")
+        .then((res) => res.json())
+        .then((result) => {
+          setTodo(result);
+        });
+    };
+    loadTodo();
+  }, []);
   // provide better keys for to-do elem->errors when making multiple to-dos with the same content
   return (
     <Box sx={styles.App}>
