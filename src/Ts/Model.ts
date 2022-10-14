@@ -1,7 +1,7 @@
 type ToDoListType = {
-  input: string | null;
-  _id: string | null;
-  completed: boolean;
+  input: string;
+  _id: string;
+  status: string;
 };
 
 export default ToDoListType;

@@ -13,6 +13,8 @@ interface Props {
   label: string;
   buttonStyle: any;
   completedButton: any;
+  setstatus: string;
+  deletestatus: string;
 }
 
 export const TodoList = ({
@@ -24,25 +26,9 @@ export const TodoList = ({
   moveToDeleted,
   toDoItemStyle,
   buttonStyle,
+  setstatus,
+  deletestatus,
 }: Props) => {
-  const poop = async () => {};
-  const moveToCompleted = (input: string, key: string) => {
-    fetch("https://krat.es/8681e82ae86318a999b9/completed", {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-
-      //make sure to serialize your JSON body
-      body: JSON.stringify({
-        input: input,
-        key: key,
-      }),
-    }).then((response) => {
-      console.log(response);
-    });
-  };
   return (
     <Box
       sx={{
@@ -63,64 +49,109 @@ export const TodoList = ({
       <Box
         style={{ width: "100%" }} //fullWidth for the to-do item
       >
-        {toDoArray.map((i: any) => (
-          <Box sx={toDoItemStyle} key={i._id}>
-            <MenuItem key={i._id} sx={styles.ToDoInput}>
-              {i.input}
-            </MenuItem>
+        {toDoArray.map((i: ToDoListType) => (
+          <Box>
+            {i.status === label && ( //add the conditional rendering here
+              <Box sx={toDoItemStyle} key={i._id}>
+                <MenuItem sx={styles.ToDoInput}>{i.input}</MenuItem>
 
-            <Box //box for the two buttons on the to-do
-              sx={styles.App}
-            >
-              <Box
-                sx={buttonStyle}
-                onClick={() => {
-                  moveTo((currentItem) => [
-                    //moves from the current state to the next
-                    ...currentItem,
-                    {
-                      input: i.input,
-                      _id: toDoArray.length + i.input,
-                      completed: false,
-                    },
-                  ]);
-                  removeFrom(
-                    // remove from currentstate after moving to completed/back to to-do
-                    toDoArray.filter((toDoArray) => toDoArray._id !== i._id)
-                  );
-                }}
-              >
-                {completedButton}
-              </Box>
-              <Box
-                sx={buttonStyle}
-                onClick={() => (
-                  moveToDeleted((currentItem) => [
-                    ...currentItem,
-                    {
-                      input: i.input,
-                      _id: toDoArray.length + i.input,
-                      completed: false,
-                    },
-                  ]),
-                  removeFrom(
-                    // removes from current state
-                    toDoArray.filter((toDoArray) => toDoArray._id !== i._id)
-                  ),
-                  fetch(
-                    "https://krat.es/2491831feac26db887a6/record/" + i._id,
-                    {
-                      method: "DELETE",
-                      redirect: "follow",
+                <Box //box for the two buttons on the to-do
+                  sx={styles.App}
+                >
+                  <Box // check and reload button
+                    sx={buttonStyle}
+                    onClick={() => {
+                      removeFrom(
+                        //deletes the object with the current status
+                        toDoArray.filter((toDoArray) => toDoArray._id !== i._id)
+                      );
+                      moveTo((currentItem) => [
+                        // makes a new object to have the new status
+                        ...currentItem,
+                        {
+                          input: i.input,
+                          _id: i._id,
+                          status: setstatus,
+                        },
+                      ]);
+
+                      console.log(toDoArray);
+
+                      fetch("https://krat.es/6685b8328aa899faddec/" + i._id, {
+                        //changes the status on db
+                        method: "PUT",
+                        headers: {
+                          "content-type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          _id: i._id,
+                          input: i.input,
+                          status: setstatus,
+                        }),
+                      });
+                    }}
+                  >
+                    {completedButton}
+                  </Box>
+                  <Box //trashcan button
+                    sx={buttonStyle}
+                    onClick={() =>
+                      i.status !== deletestatus
+                        ? (removeFrom(
+                            //deletes the object with the current status
+                            toDoArray.filter(
+                              (toDoArray) => toDoArray._id !== i._id
+                            )
+                          ),
+                          moveTo((currentItem) => [
+                            // makes a new object to have the new status
+                            ...currentItem,
+                            {
+                              input: i.input,
+                              _id: i._id,
+                              status: deletestatus,
+                            },
+                          ]),
+                          console.log(toDoArray),
+                          fetch(
+                            "https://krat.es/6685b8328aa899faddec/" + i._id,
+                            {
+                              //changes the status on db
+                              method: "PUT",
+                              headers: {
+                                "content-type": "application/json",
+                              },
+                              body: JSON.stringify({
+                                _id: i._id,
+                                input: i.input,
+                                status: deletestatus,
+                              }),
+                            }
+                          ))
+                        : (removeFrom(
+                            // if its in the deleted box just delete the thing
+
+                            toDoArray.filter(
+                              (toDoArray) => toDoArray._id !== i._id
+                            )
+                          ),
+                          fetch(
+                            "https://krat.es/6685b8328aa899faddec/record/" +
+                              i._id,
+                            {
+                              method: "DELETE",
+                              redirect: "follow",
+                            }
+                          )
+                            .then((res) => res.text()) // or res.json()
+                            .then((res) => console.log(res)))
                     }
-                  )
-                    .then((res) => res.text()) // or res.json()
-                    .then((res) => console.log(res))
-                )}
-              >
-                <DeleteOutlineIcon fontSize="small" />
+                  >
+                    <DeleteOutlineIcon fontSize="small" />
+                  </Box>
+                </Box>
               </Box>
-            </Box>
+            )}
           </Box>
         ))}
       </Box>

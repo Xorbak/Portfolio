@@ -15,10 +15,12 @@ export const ToDo = () => {
   //Adds Items to the ToDo part
   useEffect(() => {
     const loadTodo = async () => {
-      await fetch("https://krat.es/2491831feac26db887a6/todo")
+      await fetch("https://krat.es/6685b8328aa899faddec/todo")
         .then((res) => res.json())
         .then((result) => {
           setTodo(result);
+          console.log("this is running");
+          console.log(result);
         });
     };
     loadTodo();
@@ -49,7 +51,7 @@ export const ToDo = () => {
           </Typography>
         </Box>
 
-        {todoModal && (
+        {todoModal && ( // pending box
           <Box
             sx={{
               display: "flex",
@@ -59,36 +61,40 @@ export const ToDo = () => {
             }}
           >
             <Box
-              sx={styles.ToDoBox} // The container style for to-do
+              sx={styles.ToDoBox} // The container style for pending
             >
               <TodoList
+                setstatus="Completed"
+                deletestatus="Deleted"
                 toDoItemStyle={styles.toDoItem} //to-do item styling
                 buttonStyle={styles.ToDoControl} //hover effect and colors for the check buttom and delete
                 completedButton={<CheckIcon fontSize="small" />}
                 toDoArray={toDo} // In to be used as a "check" or return
-                moveTo={setCompletedToDO} //move to this state
+                moveTo={setTodo} //move to this state
                 removeFrom={setTodo} //remove from this one
-                label={"Pending Task"} //the array where the to-do currently is
+                label="Pending" //the array where the to-do currently is
                 moveToDeleted={setDeletedTodo}
               />
             </Box>
 
             <Box sx={styles.Completed}>
-              <TodoList
+              <TodoList //completed box
+                setstatus="Pending"
+                deletestatus="Deleted"
                 toDoItemStyle={styles.toDoItemCompleted}
                 buttonStyle={styles.ToDoControlCompleted}
                 completedButton={<ReplayIcon fontSize="small" />}
                 moveTo={setTodo}
-                removeFrom={setCompletedToDO}
-                toDoArray={completedToDo}
-                label={"Completed Tasks"}
+                removeFrom={setTodo}
+                toDoArray={toDo}
+                label="Completed"
                 moveToDeleted={setDeletedTodo}
               />
             </Box>
           </Box>
         )}
 
-        {todoModal === false && (
+        {todoModal === false && ( //completed
           <Box
             sx={{
               display: "flex",
@@ -101,13 +107,15 @@ export const ToDo = () => {
               sx={styles.deletedBox} // The container style for to-do
             >
               <TodoList
+                setstatus="Pending"
+                deletestatus="Deleted"
                 toDoItemStyle={styles.toDoItem} //to-do item styling
                 buttonStyle={styles.ToDoControl} //hover effect and colors for the check buttom and delete
                 completedButton={<ReplayIcon fontSize="small" />}
-                toDoArray={deletedTodo} // In to be used as a "check" or return
+                toDoArray={toDo} // In to be used as a "check" or return
                 moveTo={setTodo} //move to this state
-                removeFrom={setDeletedTodo} //remove from this one
-                label={"Deleted Tasks"} //the array where the to-do currently is
+                removeFrom={setTodo} //remove from this one
+                label={"Deleted"} //the array where the to-do currently is
                 moveToDeleted={setDeletedTodo}
               />
             </Box>
