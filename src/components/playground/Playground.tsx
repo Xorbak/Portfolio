@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/system/Box";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 
 interface CartoonQuotes {
   name: string;
@@ -15,15 +15,15 @@ export const Playground = () => {
     return Math.floor(Math.random() * max);
   };
   const fetchCartoon = async () => {
-    await fetch("https://krat.es/8681e82ae86318a999b9/inspQuote")
+    await fetch("https://krat.es/6685b8328aa899faddec/cartoonQuotes?limit=100")
       .then((res) => res.json())
       .then((result) => {
-        console.log(result[getRandomInt(4)]);
-        setQuote(result[getRandomInt(4)]);
+        console.log(result);
+        setQuote(result[getRandomInt(result.length)]);
       });
   };
   useEffect(() => {
-    fetchCartoon();
+    !quote && fetchCartoon();
   }, []);
 
   //"api-key":"KevlS7u5BhBodDotk49xIc8FZxprXLw4FiRZMkq7guPmIRDMJSWl1mwmAIRoRPiQ",
@@ -36,16 +36,50 @@ export const Playground = () => {
           flexDirection: "column",
         }}
       >
-        <Typography variant="h5">{quote && quote.quote}</Typography>
-        <Typography variant="caption">
-          -{quote && quote.name} *{quote && quote.cartoon}
-        </Typography>
+        <Box
+          boxShadow={5}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            backgroundColor: "background.paper",
+            minWidth: "100px",
+            maxWidth: "300px",
+            minHeight: "100px",
+            padding: "10px",
+            borderRadius: "5px",
+          }}
+        >
+          {!quote ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                alignContent: "center",
+              }}
+            >
+              <CircularProgress
+                sx={{ justifySelf: "center" }}
+                color="primary"
+              />
+            </Box>
+          ) : (
+            <Box>
+              <Typography variant="h5">{quote && quote.quote}</Typography>
+              <Typography variant="caption">
+                -{quote && quote.name} *{quote && quote.cartoon}
+              </Typography>
+            </Box>
+          )}
+        </Box>
+
         <Button
           onClick={() => {
             fetchCartoon();
           }}
         >
-          {" "}
           Change quote
         </Button>
       </Box>

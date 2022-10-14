@@ -33,6 +33,7 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
     { location: "/Pipeline", label: "Pipeline" },
     { location: "/Playground", label: "Playground" },
     { location: "/WeatherForcast", label: "Weather Forcast" },
+    { location: "/AddQuote", label: "Add Quote" },
   ];
   return (
     <Typography variant="h6" sx={styles.NavbarItem}>

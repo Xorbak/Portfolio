@@ -41,7 +41,7 @@ export const InspirationalQuote = () => {
     <Box sx={styles.App}>
       {window.box ? (
         <Box>
-          <InspireMe
+          <InspireMe // click button to get inspiration
             getQuote={getQuote}
             quoteAPI={quoteAPI}
             setQuote={setQuote}

@@ -13,6 +13,7 @@ import { Pipeline } from "./components/Pipeline/Pipeline";
 import { Playground } from "./components/playground/Playground";
 import { WeatherForcast } from "./components/Weatherforcast/Weatherforcast";
 import { InspirationalQuote } from "./components/InspirationalQuote/InspirationalQuote";
+import { AddQuoteConsole } from "./components/addquote/AddQuoteConsole";
 export interface Geolocation {
   longitude: number;
   latitude: number;
@@ -72,6 +73,7 @@ function App() {
           <Route path="/Inspiration" element={<InspirationalQuote />}></Route>
           <Route path="/Pipeline" element={<Pipeline />} />
           <Route path="/Playground" element={<Playground />} />
+          <Route path="/AddQuote" element={<AddQuoteConsole />} />
           <Route
             path="/WeatherForcast"
             element={
