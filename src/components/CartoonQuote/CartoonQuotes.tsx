@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/system/Box";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import { Button, CircularProgress } from "@mui/material";
 
 interface CartoonQuotes {
@@ -9,17 +9,24 @@ interface CartoonQuotes {
   quote: string;
   cartoon: string;
 }
-export const Playground = () => {
-  const [quote, setQuote] = useState<CartoonQuotes>();
+interface Props {
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export const CartoonQuotes = ({ setModal }: Props) => {
   const getRandomInt = (max: number) => {
     return Math.floor(Math.random() * max);
   };
+
+  const [quote, setQuote] = useState<CartoonQuotes[]>();
+  const [quoteNumber, setQuoteNumber] = useState<number>(getRandomInt(50));
+
   const fetchCartoon = async () => {
     await fetch("https://krat.es/6685b8328aa899faddec/cartoonQuotes?limit=100")
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
-        setQuote(result[getRandomInt(result.length)]);
+        !quote && setQuote(result);
+        setQuoteNumber(getRandomInt(result.length));
       });
   };
   useEffect(() => {
@@ -67,9 +74,12 @@ export const Playground = () => {
             </Box>
           ) : (
             <Box>
-              <Typography variant="h5">{quote && quote.quote}</Typography>
+              <Typography variant="h5">
+                {quote && quote[quoteNumber].quote}
+              </Typography>
               <Typography variant="caption">
-                -{quote && quote.name} *{quote && quote.cartoon}
+                -{quote && quote[quoteNumber].name} *
+                {quote && quote[quoteNumber].cartoon}
               </Typography>
             </Box>
           )}
@@ -77,11 +87,12 @@ export const Playground = () => {
 
         <Button
           onClick={() => {
-            fetchCartoon();
+            setQuoteNumber(getRandomInt(!quote ? 50 : quote.length));
           }}
         >
           Change quote
         </Button>
+        <Button onClick={() => setModal(false)}>Add a new quote</Button>
       </Box>
     </Box>
   );

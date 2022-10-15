@@ -9,29 +9,29 @@ interface CartoonQuote {
   name: string;
   cartoon: string;
 }
-export const AddQuoteConsole = () => {
+interface Props {
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export const AddQuoteConsole = ({ setModal }: Props) => {
   return (
     <Box sx={styles.App}>
       <Formik<CartoonQuote>
         initialValues={{ quote: "", name: "", cartoon: "" }}
         onSubmit={(values, { resetForm }) => {
-          fetch(
-            "https://krat.es/6685b8328aa899faddec/cartoonQuotes?limit=100",
-            {
-              method: "post",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
+          fetch("https://krat.es/6685b8328aa899faddec/cartoonQuotes", {
+            method: "post",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
 
-              //make sure to serialize your JSON body
-              body: JSON.stringify({
-                quote: values.quote,
-                name: values.name,
-                cartoon: values.cartoon,
-              }),
-            }
-          ),
+            //make sure to serialize your JSON body
+            body: JSON.stringify({
+              quote: values.quote,
+              name: values.name,
+              cartoon: values.cartoon,
+            }),
+          }),
             resetForm();
         }}
       >
@@ -69,6 +69,7 @@ export const AddQuoteConsole = () => {
                 </Box>
                 <Button type="submit">Submit</Button>
               </Form>
+              <Button onClick={() => setModal(true)}>Back</Button>
             </Box>
           );
         }}

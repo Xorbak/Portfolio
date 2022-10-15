@@ -10,10 +10,11 @@ import { ToDo } from "./components/ToDo/ToDo";
 import { TipCalc } from "./components/Tip Calculator/TipCalc";
 import { RegistrationForm } from "./components/Registration/RegistrationForm";
 import { Pipeline } from "./components/Pipeline/Pipeline";
-import { Playground } from "./components/playground/Playground";
+import { CartoonQuotes } from "./components/CartoonQuote/CartoonQuotes";
 import { WeatherForcast } from "./components/Weatherforcast/Weatherforcast";
 import { InspirationalQuote } from "./components/InspirationalQuote/InspirationalQuote";
-import { AddQuoteConsole } from "./components/addquote/AddQuoteConsole";
+import { AddQuoteConsole } from "./components/CartoonQuote/AddQuoteConsole";
+import { CartoonQuoteWindow } from "./components/CartoonQuote/CartoonQuoteWindow";
 export interface Geolocation {
   longitude: number;
   latitude: number;
@@ -72,8 +73,8 @@ function App() {
           <Route path="/TipCalc" element={<TipCalc />}></Route>
           <Route path="/Inspiration" element={<InspirationalQuote />}></Route>
           <Route path="/Pipeline" element={<Pipeline />} />
-          <Route path="/Playground" element={<Playground />} />
-          <Route path="/AddQuote" element={<AddQuoteConsole />} />
+          <Route path="/CartoonQuotes" element={<CartoonQuoteWindow />} />
+
           <Route
             path="/WeatherForcast"
             element={
