@@ -182,6 +182,3 @@ const styles = {
     justifyContent: "center",
   },
 };
-function moveToDeleted(arg0: (currentItem: any) => void): void {
-  throw new Error("Function not implemented.");
-}
