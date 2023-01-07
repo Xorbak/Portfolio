@@ -1,14 +1,16 @@
+import { MenuItem } from "@mui/material";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Taskitem } from "./taskItem";
 
 interface Props {
   handleCloseNavMenu: () => void;
 }
 //@ts-ignore
-export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
+export const Projects = ({ handleCloseNavMenu }: Props) => {
   //handels the opening and closing of the dropdown
 
   const [anchorElTasks, setAnchorElTasks] = useState<null | HTMLElement>(null);
@@ -25,15 +27,14 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
     label: string;
   }
   const tasks: taskArray[] = [
-    { location: "/CartoonQuotes", label: "Cartoon Quotes" },
-    { location: "/Inspiration", label: "Inspire me" },
-    { location: "/ThemeTest", label: "Theme test" },
-    { location: "/TipCalc", label: "Tip Calculator" },
-    { location: "/To-do", label: "To do list" },
-    { location: "/Registration", label: "Registration form" },
-
-    { location: "/Pipeline", label: "Pipeline" },
-    { location: "/WeatherForcast", label: "Weather Forcast" },
+    {
+      location: "https://xorbak.github.io/CWMWebsite/",
+      label: "Estate Website",
+    },
+    {
+      location: "https://xorbak.github.io/NoBsCooking/",
+      label: "Recipe Website",
+    },
   ];
   return (
     <Typography variant="h6" sx={styles.NavbarItem}>
@@ -46,7 +47,7 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
         size="large"
         sx={styles.NavbarItem}
       >
-        Tasks
+        Projects
       </Button>
 
       <Menu
@@ -63,14 +64,15 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
         sx={{ color: "text.primary" }}
       >
         {tasks.map(({ location, label }) => (
-          <Taskitem
-            key={label}
-            handleCloseTasks={() => {
+          <MenuItem
+            onClick={() => {
               handleCloseTasks(), handleCloseNavMenu();
+              window.open(location);
             }}
-            location={location}
-            label={label}
-          />
+            sx={{ color: "text.primary" }}
+          >
+            {label}
+          </MenuItem>
         ))}
       </Menu>
     </Typography>
