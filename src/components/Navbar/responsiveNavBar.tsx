@@ -14,6 +14,7 @@ import { ThemeDropDown } from "./components/themeDropdown";
 import { Theme } from "@mui/material/styles";
 import { AllWeatherData, Geolocation } from "../../App";
 import { useEffect } from "react";
+import { Projects } from "./components/Projects";
 
 //Refactor, works but its messy
 
@@ -87,6 +88,7 @@ export const ResponsiveAppBar = ({
       handleCloseNavMenu={handleCloseNavMenu}
       setCurrentTheme={setCurrentTheme}
     />,
+    <Projects handleCloseNavMenu={handleCloseNavMenu} />,
   ];
   //---------------------------
 
@@ -96,9 +98,14 @@ export const ResponsiveAppBar = ({
         <Toolbar disableGutters>
           <Box
             //--------------------------------mobile size menu
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              justifyContent: "space-between",
+            }}
           >
             <IconButton
+              sx={{ display: "flex" }}
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -123,7 +130,7 @@ export const ResponsiveAppBar = ({
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                display: { xs: "flex", md: "none" },
               }}
             >
               {pages.map((page) => (
@@ -182,5 +189,5 @@ export const ResponsiveAppBar = ({
 };
 
 const styles = {
-  navbar: { backgroundColor: "background.default", paddingLeft: "100px" },
+  navbar: { backgroundColor: "background.default" },
 };
