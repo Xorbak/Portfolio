@@ -77,18 +77,22 @@ export const TodoList = ({
 
                       console.log(toDoArray);
 
-                      fetch("https://krat.es/6685b8328aa899faddec/" + i._id, {
-                        //changes the status on db
-                        method: "PUT",
-                        headers: {
-                          "content-type": "application/json",
-                        },
-                        body: JSON.stringify({
-                          _id: i._id,
-                          input: i.input,
-                          status: setstatus,
-                        }),
-                      });
+                      fetch(
+                        `https://krat.es/${process.env.REACT_APP_TODO}/` +
+                          i._id,
+                        {
+                          //changes the status on db
+                          method: "PUT",
+                          headers: {
+                            "content-type": "application/json",
+                          },
+                          body: JSON.stringify({
+                            _id: i._id,
+                            input: i.input,
+                            status: setstatus,
+                          }),
+                        }
+                      );
                     }}
                   >
                     {completedButton}
@@ -114,7 +118,8 @@ export const TodoList = ({
                           ]),
                           console.log(toDoArray),
                           fetch(
-                            "https://krat.es/6685b8328aa899faddec/" + i._id,
+                            `https://krat.es/${process.env.REACT_APP_TODO}/` +
+                              i._id,
                             {
                               //changes the status on db
                               method: "PUT",
@@ -136,7 +141,7 @@ export const TodoList = ({
                             )
                           ),
                           fetch(
-                            "https://krat.es/6685b8328aa899faddec/record/" +
+                            `https://krat.es/${process.env.REACT_APP_TODO}/record/` +
                               i._id,
                             {
                               method: "DELETE",

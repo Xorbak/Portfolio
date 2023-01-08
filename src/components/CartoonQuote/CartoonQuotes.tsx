@@ -19,9 +19,9 @@ export const CartoonQuotes = ({ setModal }: Props) => {
 
   const [quote, setQuote] = useState<CartoonQuotes[]>();
   const [quoteNumber, setQuoteNumber] = useState<number>(getRandomInt(50));
-
+  const cartoonFetch = `${process.env.REACT_APP_CARTOON}`;
   const fetchCartoon = async () => {
-    await fetch("https://krat.es/6685b8328aa899faddec/cartoonQuotes?limit=100")
+    await fetch(`${process.env.REACT_APP_CARTOON}?limit=100`)
       .then((res) => res.json())
       .then((result) => {
         console.log(result);

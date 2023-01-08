@@ -36,10 +36,11 @@ export const ResponsiveAppBar = ({
   weatherData,
 }: Props) => {
   //--------------------weather forcast
-  const apiKey: string = "0d004acbd263f70a7810a4c700aff384";
+
   const weatherApiUrl: string = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${geolocation &&
-    geolocation.latitude}&lon=${geolocation &&
-    geolocation.longitude}&appid=${apiKey}`;
+    geolocation.latitude}&lon=${geolocation && geolocation.longitude}&appid=${
+    process.env.REACT_APP_WEATHER
+  }`;
   const imgUrl: string = `http://openweathermap.org/img/wn/${weatherData &&
     weatherData.navbarWeather.weather[0].icon}.png`;
   //-------------------------------------------------- fetch API

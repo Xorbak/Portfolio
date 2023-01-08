@@ -18,7 +18,7 @@ export const AddQuoteConsole = ({ setModal }: Props) => {
       <Formik<CartoonQuote>
         initialValues={{ quote: "", name: "", cartoon: "" }}
         onSubmit={(values, { resetForm }) => {
-          fetch("https://krat.es/6685b8328aa899faddec/cartoonQuotes", {
+          fetch(`${process.env.REACT_APP_CARTOON}`, {
             method: "post",
             headers: {
               Accept: "application/json",

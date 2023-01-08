@@ -17,7 +17,7 @@ interface FormikFieldTypes {
 
 export const GrabInput = ({ setTodo, toDo, setTodoModal }: Props) => {
   const addTodo = (input: string, key: string) => {
-    fetch("https://krat.es/6685b8328aa899faddec/todo", {
+    fetch(`https://krat.es/${process.env.REACT_APP_TODO}/todo`, {
       method: "post",
       headers: {
         Accept: "application/json",
@@ -30,7 +30,7 @@ export const GrabInput = ({ setTodo, toDo, setTodoModal }: Props) => {
         status: key,
       }),
     }).then(async () => {
-      await fetch("https://krat.es/6685b8328aa899faddec/todo")
+      await fetch(`https://krat.es/${process.env.REACT_APP_TODO}/todo`)
         .then((res) => res.json())
         .then((result) => {
           setTodo(result);

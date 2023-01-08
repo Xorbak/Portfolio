@@ -24,7 +24,7 @@ export const InspirationalQuote = () => {
     error: false,
   });
   const [quote, setQuote] = useState<Quotes | null>();
-  const quoteAPI: string = "https://animechan.vercel.app/api/random";
+  const quoteAPI: string = `${process.env.REACT_APP_ANIME}`;
 
   const getQuote = async (url: string) => {
     await fetch(url)
