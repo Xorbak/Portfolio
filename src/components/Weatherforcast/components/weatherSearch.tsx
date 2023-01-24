@@ -22,7 +22,7 @@ export const WeatherSearch = ({ setWeatherData, weatherData }: Props) => {
       onSubmit={(values, { resetForm }) => {
         setError(false);
 
-        const cityApi: string = `http://api.openweathermap.org/geo/1.0/direct?q=${values.input}&limit=5&appid=${process.env.REACT_APP_WEATHER}`;
+        const cityApi: string = `https://api.openweathermap.org/geo/1.0/direct?q=${values.input}&limit=1&appid=${process.env.REACT_APP_WEATHER}`;
 
         const fetchCoordinates = async () => {
           await fetch(cityApi) //get the city to get longitude and latitude
