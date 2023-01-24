@@ -1,6 +1,6 @@
 {
-  "homepage": "https://xorbak.github.io/xorfolio/",
-  "name": "xorfolio",
+  "homepage": "https://xorbak.github.io/Portfolio/",
+  "name": "portfolio",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
