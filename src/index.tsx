@@ -13,11 +13,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter basename="/Portfolio">
+    <BrowserRouter basename="/Portfolio">
+      <ThemeProvider theme={defaultTheme}>
         <App />
-      </BrowserRouter>
-    </ThemeProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

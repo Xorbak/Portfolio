@@ -115,7 +115,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: { sm: "start", md: "center" },
+    justifyContent: { xs: "center", md: "center" },
     fontSize: "calc(10px + 2vmin)",
   },
 };

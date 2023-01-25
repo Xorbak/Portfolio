@@ -9,7 +9,7 @@ import { ResponsiveAppBar } from "./components/Navbar/responsiveNavBar";
 import { ToDo } from "./components/ToDo/ToDo";
 import { TipCalc } from "./components/Tip Calculator/TipCalc";
 import { RegistrationForm } from "./components/Registration/RegistrationForm";
-import { Pipeline } from "./components/Pipeline/Pipeline";
+
 import { CartoonQuotes } from "./components/CartoonQuote/CartoonQuotes";
 import { WeatherForcast } from "./components/Weatherforcast/Weatherforcast";
 import { InspirationalQuote } from "./components/InspirationalQuote/InspirationalQuote";
@@ -72,7 +72,7 @@ function App() {
           <Route path="/ThemeTest" element={<ThemeTester />} />
           <Route path="/TipCalc" element={<TipCalc />}></Route>
           <Route path="/Inspiration" element={<InspirationalQuote />}></Route>
-          <Route path="/Pipeline" element={<Pipeline />} />
+
           <Route path="/CartoonQuotes" element={<CartoonQuoteWindow />} />
 
           <Route

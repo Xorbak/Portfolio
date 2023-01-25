@@ -33,7 +33,6 @@ export const CartoonQuotes = ({ setModal }: Props) => {
     !quote && fetchCartoon();
   }, []);
 
-  //"api-key":"KevlS7u5BhBodDotk49xIc8FZxprXLw4FiRZMkq7guPmIRDMJSWl1mwmAIRoRPiQ",
   return (
     <Box sx={styles.App}>
       <Box
@@ -48,11 +47,13 @@ export const CartoonQuotes = ({ setModal }: Props) => {
           sx={{
             display: "flex",
             alignItems: "center",
+            justifyContent: "center",
             flexDirection: "column",
             backgroundColor: "background.paper",
             minWidth: "100px",
-            maxWidth: "300px",
+            maxWidth: { xs: "90vw", sm: "300px" },
             minHeight: "100px",
+
             padding: "10px",
             borderRadius: "5px",
           }}
@@ -67,10 +68,7 @@ export const CartoonQuotes = ({ setModal }: Props) => {
                 alignContent: "center",
               }}
             >
-              <CircularProgress
-                sx={{ justifySelf: "center" }}
-                color="primary"
-              />
+              <CircularProgress color="primary" />
             </Box>
           ) : (
             <Box>
@@ -105,7 +103,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: { sm: "start", md: "center" },
+    justifyContent: { xs: "center", md: "center" },
     fontSize: "calc(10px + 2vmin)",
   },
 };

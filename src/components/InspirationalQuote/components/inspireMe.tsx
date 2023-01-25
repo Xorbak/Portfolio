@@ -18,12 +18,12 @@ export const InspireMe = ({
   setWindow,
 }: Props) => {
   const [inspiration, setInspiration] = useState<number>(6);
-
+  let size = window.innerWidth <= 899 ? 2 : 1;
   return (
     <Box>
       <Inspirationline inspiration={inspiration} />
 
-      {inspiration == 1 ? (
+      {inspiration == size ? (
         <InspirationButton
           setInspiration={setInspiration}
           inspirationValue={6}
