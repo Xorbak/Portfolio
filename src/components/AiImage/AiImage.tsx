@@ -67,7 +67,11 @@ export const AiImage = () => {
                   </Typography>
                   <Button
                     type="submit"
-                    onClick={() => setSubmitted(true)}
+                    onClick={() => {
+                      setSubmitted(true);
+                      setImageResult("");
+                      setSearchInput("");
+                    }}
                     sx={{ width: "30%" }}
                   >
                     GO!
