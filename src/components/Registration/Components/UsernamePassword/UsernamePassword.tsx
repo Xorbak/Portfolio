@@ -6,17 +6,9 @@ import React, { useState } from "react";
 import { errorSuccess } from "../../../../HelperFunctions/errorSuccess";
 import { userInfoTypes } from "../../RegistrationForm";
 import { ErrorText } from "../errorText";
-import {
-  idschema,
-  lengthCheck,
-  lowerCheck,
-  numberCheck,
-  passwordCheck,
-  specialCheck,
-  upperCheck,
-} from "../validation/idschema";
+import { idschema } from "../validation/idschema";
 import { ConfirmPasswordField } from "./confirmPasswordField";
-import { Password } from "./password";
+
 import { PasswordField } from "./passwordField";
 import { PasswordHint } from "./passwordHint";
 import { UserName } from "./username";

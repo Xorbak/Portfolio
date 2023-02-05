@@ -26,6 +26,7 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
   }
   const tasks: taskArray[] = [
     { location: "/CartoonQuotes", label: "Cartoon Quotes" },
+    { location: "/ImageGeneration", label: "Generate an Image" },
     { location: "/Inspiration", label: "Inspire me" },
     { location: "/ThemeTest", label: "Theme test" },
     { location: "/TipCalc", label: "Tip Calculator" },
