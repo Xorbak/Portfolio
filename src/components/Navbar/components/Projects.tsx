@@ -65,6 +65,7 @@ export const Projects = ({ handleCloseNavMenu }: Props) => {
       >
         {tasks.map(({ location, label }) => (
           <MenuItem
+            key={label}
             onClick={() => {
               handleCloseTasks(), handleCloseNavMenu();
               window.open(location);

@@ -38,7 +38,7 @@ export const AiImage = () => {
         alignItems="center"
       >
         <Formik
-          initialValues={{ prompt: "", loading: false, password: "" }}
+          initialValues={{ prompt: "", loading: false }}
           onSubmit={(values, { resetForm }) => {
             setLoading(true),
               generateImage(values.prompt),
@@ -56,17 +56,6 @@ export const AiImage = () => {
                   flexDirection={"column"}
                   alignItems={"center"}
                 >
-                  <Field
-                    sx={{ marginBottom: "10px" }}
-                    placeholder="Password"
-                    name="password"
-                    validation={errors.password}
-                    size="small"
-                    component={Password}
-                  />
-                  <Typography color="error" variant="caption">
-                    {submitted && errors.password}
-                  </Typography>
                   <Field
                     placeholder="What do you want to see?"
                     name="prompt"
