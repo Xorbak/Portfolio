@@ -20,7 +20,7 @@ export const AiImage = () => {
   const getImage = (prompt: string) => {
     const options = {
       method: "GET",
-      url: "https://xorprod.herokuapp.com/image",
+      url: "/image",
       params: { input: prompt },
     };
     axios.request(options).then((res) => {
