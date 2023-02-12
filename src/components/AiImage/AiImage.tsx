@@ -1,13 +1,13 @@
 import Grid from "@mui/material/Grid";
 import React, { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-import TextField from "@mui/material/TextField";
+
 import { Button, Typography } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import { AiInput } from "./AiInput";
 import { imageValidation } from "./validation";
-import { ErrorText } from "../Registration/Components/errorText";
-import { Password } from "../Registration/Components/UsernamePassword/password";
+
+import axios from "axios";
 
 export const AiImage = () => {
   const [searchInput, setSearchInput] = useState<string>("");
@@ -16,13 +16,17 @@ export const AiImage = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);
   const config = new Configuration({ apiKey: process.env.REACT_APP_OPEN }); //used to get the API from the .env
   const openAi = new OpenAIApi(config); //setting up the new instance of OpenAIApi
-  const generateImage = async (prompt: string) => {
-    const res = await openAi.createImage({
-      prompt: prompt,
-      n: 1,
-      size: "256x256",
+
+  const getImage = (prompt: string) => {
+    const options = {
+      method: "GET",
+      url: "/image",
+      params: { input: prompt },
+    };
+    axios.request(options).then((res) => {
+      console.log(res.data.data[0].url);
+      setImageResult(res.data.data[0].url ? res.data.data[0].url : "");
     });
-    setImageResult(res.data.data[0].url ? res.data.data[0].url : "");
   };
   console.log(imageResult);
   return (
@@ -40,10 +44,8 @@ export const AiImage = () => {
         <Formik
           initialValues={{ prompt: "", loading: false }}
           onSubmit={(values, { resetForm }) => {
-            setLoading(true),
-              generateImage(values.prompt),
-              setSearchInput(values.prompt),
-              resetForm();
+            setLoading(true), getImage(values.prompt);
+            setSearchInput(values.prompt), resetForm();
           }}
           validationSchema={imageValidation}
         >
