@@ -14,6 +14,7 @@ export const AiImage = () => {
   const [imageResult, setImageResult] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [errorCode, setErrorCode] = useState<undefined | string>();
   const config = new Configuration({ apiKey: process.env.REACT_APP_OPEN }); //used to get the API from the .env
   const openAi = new OpenAIApi(config); //setting up the new instance of OpenAIApi
 
@@ -23,10 +24,13 @@ export const AiImage = () => {
       url: "https://xorprod.herokuapp.com/image",
       params: { input: prompt },
     };
-    axios.request(options).then((res) => {
-      console.log(res.data.data[0].url);
-      setImageResult(res.data.data[0].url ? res.data.data[0].url : "");
-    });
+    axios
+      .request(options)
+      .then((res) => {
+        console.log(res.data.data[0].url);
+        setImageResult(res.data.data[0].url ? res.data.data[0].url : "");
+      })
+      .catch((e) => setErrorCode(e.response.data));
   };
   console.log(imageResult);
   return (
@@ -99,8 +103,10 @@ export const AiImage = () => {
                 src={imageResult}
               />
             </React.Fragment>
-          ) : (
+          ) : errorCode == undefined ? (
             <Typography>Loading...</Typography>
+          ) : (
+            <Typography sx={{ color: "error.main" }}>{errorCode}</Typography>
           )
         ) : (
           <></>
