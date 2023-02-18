@@ -25,12 +25,12 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
     label: string;
   }
   const tasks: taskArray[] = [
+    { location: "/chat", label: "Ask a question" },
     { location: "/CartoonQuotes", label: "Cartoon Quotes" },
     { location: "/ImageGeneration", label: "Generate an Image" },
     { location: "/Inspiration", label: "Inspire me" },
     { location: "/ThemeTest", label: "Theme test" },
     { location: "/TipCalc", label: "Tip Calculator" },
-
     { location: "/Registration", label: "Registration form" },
     { location: "/WeatherForcast", label: "Weather Forcast" },
   ];
