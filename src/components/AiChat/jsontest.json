@@ -1,0 +1,19 @@
+{
+  "id": "cmpl-6lDtUlSknCiQU0C4OsYz3dkKdnVmZ",
+  "object": "text_completion",
+  "created": 1676712844,
+  "model": "text-davinci-003",
+  "choices": [
+    {
+      "text": "\n\nQ: What did the old person say when they stepped on a Lego?\nA: \"Oh, this takes me back!\"",
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 7,
+    "completion_tokens": 28,
+    "total_tokens": 35
+  }
+}
