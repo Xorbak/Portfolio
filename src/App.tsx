@@ -16,6 +16,7 @@ import { InspirationalQuote } from "./components/InspirationalQuote/Inspirationa
 import { AddQuoteConsole } from "./components/CartoonQuote/AddQuoteConsole";
 import { CartoonQuoteWindow } from "./components/CartoonQuote/CartoonQuoteWindow";
 import { AiImage } from "./components/AiImage/AiImage";
+import { AiChat } from "./components/AiChat/AiChat";
 export interface Geolocation {
   longitude: number;
   latitude: number;
@@ -76,6 +77,7 @@ function App() {
 
           <Route path="/CartoonQuotes" element={<CartoonQuoteWindow />} />
           <Route path="/ImageGeneration" element={<AiImage />} />
+          <Route path="/chat" element={<AiChat />} />
 
           <Route
             path="/WeatherForcast"
