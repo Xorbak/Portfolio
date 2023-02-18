@@ -6,7 +6,6 @@ export const AiInput = ({ field, form, ...props }) => {
     <TextField
       maxRows={5}
       minRows={3}
-      inputProps={{ maxLength: 50 }}
       multiline
       size="small"
       autoComplete="off"

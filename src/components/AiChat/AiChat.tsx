@@ -17,7 +17,7 @@ export const AiChat = () => {
   const getChat = (prompt: string, input: string) => {
     const options = {
       method: "GET",
-      url: `http://localhost:5000/${input}`,
+      url: `https://xorprod.herokuapp.com/${input}`,
       params: { input: prompt },
     };
     axios
@@ -63,7 +63,9 @@ export const AiChat = () => {
                   placeholder="What do you want to know?"
                   component={AiInput}
                 />
-                <Button type="submit">Go!</Button>
+                <Button onClick={() => setChatresult("")} type="submit">
+                  Go!
+                </Button>
               </Grid>
             </Form>
           );
