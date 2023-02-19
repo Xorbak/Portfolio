@@ -1,18 +1,17 @@
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import { AiInput } from "../AiImage/AiInput";
 import { Button } from "@mui/material";
 import axios from "axios";
-import jsontest from "./jsontest.json";
-import { stringify } from "querystring";
 
 export const AiChat = () => {
-  const [chat, setChatresult] = useState<string>();
+  const [chat, setChatresult] = useState<string>("");
   const [errorCode, setErrorCode] = useState<string>();
   const [question, setQuestion] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [typewriter, setTypewriter] = useState<string>("");
 
   const getChat = (prompt: string, input: string) => {
     const options = {
@@ -23,11 +22,8 @@ export const AiChat = () => {
     axios
       .request(options)
       .then((res) => {
-        console.log(res);
-
         const json = JSON.stringify(res.data);
         let finalJson = JSON.parse(json);
-        console.log(finalJson.text);
 
         setChatresult(
           finalJson.text.charAt(0) === "?"
@@ -35,14 +31,34 @@ export const AiChat = () => {
             : finalJson.text
         );
       })
+
       .catch((e) => setErrorCode(e.response));
   };
+  let i = 0;
+  let j: string = "";
+  const run = () => {
+    setTypewriter(j);
+  };
+  const loop = () => {
+    if (i < chat.length) {
+      j = j + chat[i];
+      run();
+      console.log(typewriter);
+      i++;
+    }
+    setTimeout(loop, 50);
+  };
+
+  useEffect(() => {
+    chat.length != 0 ? loop() : null;
+  }, [chat]);
+
+  console.log(typewriter);
   return (
     <Grid item container flexDirection={"column"} sx={styles.App}>
       <Formik
         initialValues={{ prompt: "" }}
         onSubmit={(values, { resetForm }) => {
-          console.log(values.prompt);
           getChat(values.prompt, "chat");
           setQuestion(values.prompt);
           setLoading(true);
@@ -82,16 +98,27 @@ export const AiChat = () => {
       >
         {" "}
         {question && (
-          <Typography
-            variant="h6"
-            sx={{
-              whiteSpace: "pre-wrap",
-              padding: "10px",
-              textDecoration: "underline",
-            }}
-          >
-            Question: {question}
-          </Typography>
+          <Grid container item flexDirection={"row"}>
+            <Typography
+              variant="h6"
+              sx={{
+                whiteSpace: "pre-wrap",
+                padding: "10px",
+                textDecoration: "underline",
+              }}
+            >
+              Question:
+            </Typography>
+            <Typography
+              sx={{
+                whiteSpace: "pre-wrap",
+                paddingY: "10px",
+              }}
+              variant="h6"
+            >
+              {`${question}`}
+            </Typography>
+          </Grid>
         )}
         {loading && !chat && (
           <Typography sx={{ whiteSpace: "pre-wrap", padding: "10px" }}>
@@ -99,8 +126,15 @@ export const AiChat = () => {
           </Typography>
         )}
         {chat && (
-          <Typography sx={{ whiteSpace: "pre-wrap", padding: "10px" }}>
-            {chat ? chat : loading ? "Loading..." : null}
+          <Typography
+            sx={{
+              whiteSpace: "pre-wrap",
+              padding: "10px",
+              overflow: "hidden",
+              animation: "typing 3.5s steps(40,end)",
+            }}
+          >
+            {typewriter}
           </Typography>
         )}
       </Grid>

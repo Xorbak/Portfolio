@@ -52,7 +52,7 @@ export const ResponsiveAppBar = ({
           latitude: position.coords.latitude,
         });
       });
-      console.log(geolocation);
+
       geolocation &&
         (await fetch(weatherApiUrl)
           .then((res) => res.json())
