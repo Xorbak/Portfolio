@@ -3,6 +3,7 @@ import Box from "@mui/system/Box";
 import React, { useEffect, useState } from "react";
 
 import { Button, CircularProgress } from "@mui/material";
+import axios from "axios";
 
 interface CartoonQuotes {
   name: string;
@@ -12,6 +13,7 @@ interface CartoonQuotes {
 interface Props {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 export const CartoonQuotes = ({ setModal }: Props) => {
   const getRandomInt = (max: number) => {
     return Math.floor(Math.random() * max);
@@ -29,8 +31,18 @@ export const CartoonQuotes = ({ setModal }: Props) => {
         setQuoteNumber(getRandomInt(result.length));
       });
   };
+  const getQuotes = () => {
+    const options = {
+      method: "GET",
+      url: "https://xorprod.herokuapp.com/mongoQuote",
+    };
+    axios.request(options).then((res) => {
+      !quote && setQuote(res.data.documents);
+      setQuoteNumber(getRandomInt(res.data.documents.length));
+    });
+  };
   useEffect(() => {
-    !quote && fetchCartoon();
+    !quote && getQuotes();
   }, []);
 
   return (

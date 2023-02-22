@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 import { Field, Form, Formik } from "formik";
 import React from "react";
 import { QuoteInput } from "./quoteInput";
@@ -12,27 +13,27 @@ interface CartoonQuote {
 interface Props {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const addQuote = (quote: string, name: string, cartoon: string) => {
+  const options = {
+    method: "GET",
+    url: "https://xorprod.herokuapp.com/mongoQuoteAdd",
+    document: {
+      quote: quote,
+      name: name,
+      cartoon: cartoon,
+    },
+  };
+  axios.request(options).then((res) => console.log(res));
+};
 export const AddQuoteConsole = ({ setModal }: Props) => {
   return (
     <Box sx={styles.App}>
       <Formik<CartoonQuote>
         initialValues={{ quote: "", name: "", cartoon: "" }}
         onSubmit={(values, { resetForm }) => {
-          fetch(`${process.env.REACT_APP_CARTOON}`, {
-            method: "post",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-
-            //make sure to serialize your JSON body
-            body: JSON.stringify({
-              quote: values.quote,
-              name: values.name,
-              cartoon: values.cartoon,
-            }),
-          }),
-            resetForm();
+          addQuote(values.quote, values.name, values.cartoon);
+          resetForm();
         }}
       >
         {() => {
