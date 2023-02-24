@@ -1,15 +1,64 @@
 import Box from "@mui/material/Box";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Biography } from "./biography";
 import bun from "./bun.jpg";
 import { ImageRound } from "./imageRound";
 
 export const AboutMe = () => {
+  const [headingContent, setHeadingContent] = useState([
+    "Front-end",
+    "Back-end",
+    "Full-stack.",
+  ]);
+  const [headingTypwriter, setHeadingTypwriter] = useState("");
+
+  let stop = 0;
+  let n = 0;
+  let i = 0;
+  let j: string = "";
+  let removing = false;
+
+  const run = () => {
+    setHeadingTypwriter(j);
+  };
+
+  const loop = () => {
+    if (n < headingContent.length) {
+      if (!removing && i < headingContent[n].length) {
+        j = j + headingContent[n][i];
+        run();
+        console.log(headingContent[n][i]);
+        i++;
+      }
+
+      if (removing && i <= headingContent[n].length) {
+        j = headingContent[n].slice(0, i);
+        run();
+        console.log(j);
+        i--;
+      }
+
+      if (i == headingContent[n].length && n != headingContent.length - 1) {
+        removing = true;
+      }
+      if (removing && i == 0) {
+        n++;
+        j = "";
+        removing = false;
+      }
+      setTimeout(loop, 150);
+    }
+  };
+
+  useEffect(() => {
+    stop == 0 ? loop() : null;
+    stop = 1;
+  }, []);
   return (
     <Box sx={styles.Container}>
       <ImageRound image={bun} />
       <Biography
-        title="From frustration to frontend."
+        title={`From frustration to ${headingTypwriter}`}
         body="I've been coding on and off for the last 2 years. Dipping my toes in
           various languages but never leaving TUTORIAL HELL in any of them.
           Untill I decided to just start building minor projects that slowly

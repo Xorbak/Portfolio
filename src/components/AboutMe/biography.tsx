@@ -29,7 +29,7 @@ export const Biography = ({ title, body, caption }: Props) => {
             justifyContent: "start",
             marginBottom: "10px",
           }}
-          variant="body1"
+          variant="h3"
         >
           {title}
         </Typography>
