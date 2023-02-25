@@ -21,8 +21,9 @@ export const AboutMe = () => {
   const run = () => {
     setHeadingTypwriter(j);
   };
+  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
-  const loop = () => {
+  const loop = async () => {
     if (n < headingContent.length) {
       if (!removing && i < headingContent[n].length) {
         j = j + headingContent[n][i];
@@ -32,33 +33,30 @@ export const AboutMe = () => {
       }
 
       if (removing && i <= headingContent[n].length) {
-        j = headingContent[n].slice(0, i);
-        run();
-        console.log(j);
-        i--;
+        i == 0
+          ? ((j = " "), (removing = false), await delay(400), n++)
+          : ((j = headingContent[n].slice(0, i)), run(), console.log(j), i--);
+        console.log(i);
       }
 
       if (i == headingContent[n].length && n != headingContent.length - 1) {
         removing = true;
       }
-      if (removing && i == 0) {
-        n++;
-        j = "";
-        removing = false;
-      }
+
       setTimeout(loop, 150);
     }
   };
 
   useEffect(() => {
-    stop == 0 ? loop() : null;
+    stop == 0 ? setTimeout(loop, 1000) : null;
     stop = 1;
   }, []);
   return (
     <Box sx={styles.Container}>
       <ImageRound image={bun} />
       <Biography
-        title={`From frustration to ${headingTypwriter}`}
+        title={`From frustration to `}
+        titleContent={` ${headingTypwriter}`}
         body="I've been coding on and off for the last 2 years. Dipping my toes in
           various languages but never leaving TUTORIAL HELL in any of them.
           Untill I decided to just start building minor projects that slowly

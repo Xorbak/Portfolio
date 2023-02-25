@@ -1,12 +1,27 @@
+import styled from "@emotion/styled";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import React from "react";
 interface Props {
   title: string;
+  titleContent: string;
   body: string;
   caption: string;
 }
-export const Biography = ({ title, body, caption }: Props) => {
+const Keyframes = styled("div")({
+  "@keyframes pulsate": {
+    from: {},
+    to: {
+      borderColor: "transparent",
+    },
+  },
+  borderRight: "solid black 1px",
+  animation: "pulsate 0.5s infinite ease",
+  position: "absolute",
+});
+
+export const Biography = ({ title, titleContent, body, caption }: Props) => {
   return (
     <Box // biography container
       sx={{
@@ -21,7 +36,7 @@ export const Biography = ({ title, body, caption }: Props) => {
         //start of biography
         sx={styles.biographyContainer}
       >
-        <Typography
+        <Grid
           sx={{
             display: "flex",
             textAlign: "start",
@@ -29,13 +44,18 @@ export const Biography = ({ title, body, caption }: Props) => {
             justifyContent: "start",
             marginBottom: "10px",
           }}
-          variant="h3"
+          flexDirection="row"
         >
-          {title}
-        </Typography>
+          <Typography component={"div"} variant="h3">
+            {`${title}`}{" "}
+            <Typography display={"inline"} variant="h3" sx={styles.flash}>
+              {` ${titleContent}`}
+            </Typography>
+          </Typography>
 
+          <Keyframes />
+        </Grid>{" "}
         <Typography variant="body2">{body}</Typography>
-
         <Typography sx={{ marginTop: "10px" }} variant="caption">
           {caption}
         </Typography>
@@ -49,6 +69,19 @@ export const Biography = ({ title, body, caption }: Props) => {
 };
 
 const styles = {
+  "@keyframes pulsate": {
+    from: { borderColor: "white" },
+    to: {
+      borderColor: "transparent",
+      opacity: 1,
+    },
+  },
+
+  flash: {
+    borderRight: "solid 3px",
+
+    animation: "pulsate 0.75s infinite ease",
+  },
   borderLine: {
     borderBottom: "1px solid",
     borderColor: "primary.main",
