@@ -24,23 +24,25 @@ export const AboutMe = () => {
   //actual loop that adds and removes things from the state
   const typewriterLoop = async () => {
     if (n < headingContent.length) {
+      //the initial push
       if (!removing && i < headingContent[n].length) {
         j = j + headingContent[n][i];
         run();
         i++;
       }
-
+      //removing char
       if (removing && i <= headingContent[n].length) {
         i == 0
           ? ((j = " "), (removing = false), await delay(400), n++)
           : ((j = headingContent[n].slice(0, i)), run(), console.log(j), i--);
         console.log(i);
       }
-
-      if (i == headingContent[n].length && n != headingContent.length - 1) {
+      // starts the backspace
+      if (i == headingContent[n].length) {
         await delay(1000);
         removing = true;
       }
+      // loops over headingContent untill the array is done
 
       setTimeout(typewriterLoop, 150);
     }
