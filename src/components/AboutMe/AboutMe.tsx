@@ -38,7 +38,7 @@ export const AboutMe = () => {
         console.log(i);
       }
       // starts the backspace
-      if (i == headingContent[n].length) {
+      if (i == headingContent[n].length && n != headingContent.length - 1) {
         await delay(1000);
         removing = true;
       }
