@@ -5,30 +5,28 @@ import bun from "./bun.jpg";
 import { ImageRound } from "./imageRound";
 
 export const AboutMe = () => {
-  const [headingContent, setHeadingContent] = useState([
-    "Front-end",
-    "Back-end",
-    "Full-stack.",
-  ]);
+  //Array to be looped through to do the Typewriter effect
+  const headingContent = ["Front-end", "Back-end", "Full-stack."];
+  //Pushing each letter one by one into this state
   const [headingTypwriter, setHeadingTypwriter] = useState("");
-
+  //Stop forces the typewriterLoop to only run once
   let stop = 0;
-  let n = 0;
-  let i = 0;
-  let j: string = "";
-  let removing = false;
 
+  let n = 0; //position in the array
+  let i = 0; //position in string
+  let j: string = ""; //string to be pushed into headingTypwriter
+  let removing = false;
+  //pushes each letter into the state
   const run = () => {
     setHeadingTypwriter(j);
   };
   const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
-  const loop = async () => {
+  //actual loop that adds and removes things from the state
+  const typewriterLoop = async () => {
     if (n < headingContent.length) {
       if (!removing && i < headingContent[n].length) {
         j = j + headingContent[n][i];
         run();
-        console.log(headingContent[n][i]);
         i++;
       }
 
@@ -40,17 +38,19 @@ export const AboutMe = () => {
       }
 
       if (i == headingContent[n].length && n != headingContent.length - 1) {
+        await delay(1000);
         removing = true;
       }
 
-      setTimeout(loop, 150);
+      setTimeout(typewriterLoop, 150);
     }
   };
 
   useEffect(() => {
-    stop == 0 ? setTimeout(loop, 1000) : null;
+    stop == 0 ? setTimeout(typewriterLoop, 1000) : null;
     stop = 1;
   }, []);
+
   return (
     <Box sx={styles.Container}>
       <ImageRound image={bun} />
