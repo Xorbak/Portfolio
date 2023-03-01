@@ -28,7 +28,6 @@ export const ToDo = () => {
   // provide better keys for to-do elem->errors when making multiple to-dos with the same content
   return (
     <Box sx={styles.App}>
-      <Typography color={"error"}>*Service hosting ToDo offline</Typography>
       <Box sx={styles.ToDoContainer}>
         <Box sx={styles.InputContainer}>
           <GrabInput
