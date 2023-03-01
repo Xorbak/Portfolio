@@ -5,6 +5,7 @@ import toDoSchema from "../Validation";
 
 import ToDoListType from "../../../Ts/Model";
 import { MyInput } from "./MyInput";
+import axios from "axios";
 
 interface Props {
   toDo: ToDoListType[];
@@ -16,26 +17,17 @@ interface FormikFieldTypes {
 }
 
 export const GrabInput = ({ setTodo, toDo, setTodoModal }: Props) => {
-  const addTodo = (input: string, key: string) => {
-    fetch(`https://krat.es/${process.env.REACT_APP_TODO}/todo`, {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-
-      //make sure to serialize your JSON body
-      body: JSON.stringify({
+  const newAddTodo = async (input: string, status: string) => {
+    const options = {
+      method: "GET",
+      url: "https://xorprod.herokuapp.com/todo",
+      params: {
+        _id: Date.now(),
         input: input,
-        status: key,
-      }),
-    }).then(async () => {
-      await fetch(`https://krat.es/${process.env.REACT_APP_TODO}/todo`)
-        .then((res) => res.json())
-        .then((result) => {
-          setTodo(result);
-        });
-    });
+        status: status,
+      },
+    };
+    axios.request(options).then((res) => console.log(res));
   };
 
   return (
@@ -46,14 +38,14 @@ export const GrabInput = ({ setTodo, toDo, setTodoModal }: Props) => {
           ...currentItem,
           {
             input: values.inputField,
-            _id: toDo.length + values.inputField, // might have to change to random number
+            // might have to change to random number
             status: "Pending",
           },
         ]);
         const key = toDo.length + values.inputField;
         setTodoModal(true);
         resetForm();
-        addTodo(values.inputField, "Pending");
+        newAddTodo(values.inputField, "Pending");
       }}
       validationSchema={toDoSchema}
     >

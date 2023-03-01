@@ -6,6 +6,7 @@ import ToDoListType from "../../Ts/Model";
 import { Box, Button, Typography } from "@mui/material";
 import { GrabInput } from "./components/GrabInput";
 import { TodoList } from "./components/todoList";
+import axios from "axios";
 
 export const ToDo = () => {
   const [toDo, setTodo] = useState<ToDoListType[]>([]);
@@ -13,18 +14,17 @@ export const ToDo = () => {
   const [deletedTodo, setDeletedTodo] = useState<ToDoListType[]>([]);
   const [todoModal, setTodoModal] = useState<boolean>(true);
   //Adds Items to the ToDo part
+
   useEffect(() => {
-    const loadTodo = async () => {
-      await fetch("https://krat.es/6685b8328aa899faddec/todo")
-        .then((res) => res.json())
-        .then((result) => {
-          setTodo(result);
-          console.log("this is running");
-          console.log(result);
-        });
+    const options = {
+      method: "get",
+      url: "https://xorprod.herokuapp.com/todoget",
     };
-    loadTodo();
+    axios.request(options).then((res) => {
+      setTodo(res.data.documents);
+    });
   }, []);
+
   // provide better keys for to-do elem->errors when making multiple to-dos with the same content
   return (
     <Box sx={styles.App}>

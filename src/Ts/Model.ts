@@ -1,6 +1,6 @@
 type ToDoListType = {
   input: string;
-  _id: string;
+  _id?: string;
   status: string;
 };
 

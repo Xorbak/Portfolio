@@ -1,6 +1,7 @@
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
+import axios from "axios";
 import React from "react";
 import ToDoListType from "../../../Ts/Model";
 
@@ -17,6 +18,28 @@ interface Props {
   deletestatus: string;
 }
 
+const movetodo = (_id: string | undefined, status: string) => {
+  const options = {
+    method: "GET",
+    url: "https://xorprod.herokuapp.com/todoupdate",
+    params: { _id: _id, status: status },
+  };
+
+  axios.request(options).then((res) => console.log(res.data));
+  console.log("moved");
+  console.log(_id);
+};
+
+const deletetodo = (_id: string | undefined) => {
+  const options = {
+    method: "GET",
+    url: "https://xorprod.herokuapp.com/tododelete",
+    params: { _id: _id },
+  };
+  axios.request(options).then((res) => console.log(res.data));
+  console.log("deleted");
+  console.log(_id);
+};
 export const TodoList = ({
   label,
   completedButton,
@@ -76,23 +99,7 @@ export const TodoList = ({
                       ]);
 
                       console.log(toDoArray);
-
-                      fetch(
-                        `https://krat.es/${process.env.REACT_APP_TODO}/` +
-                          i._id,
-                        {
-                          //changes the status on db
-                          method: "PUT",
-                          headers: {
-                            "content-type": "application/json",
-                          },
-                          body: JSON.stringify({
-                            _id: i._id,
-                            input: i.input,
-                            status: setstatus,
-                          }),
-                        }
-                      );
+                      movetodo(i._id, setstatus);
                     }}
                   >
                     {completedButton}
@@ -117,22 +124,7 @@ export const TodoList = ({
                             },
                           ]),
                           console.log(toDoArray),
-                          fetch(
-                            `https://krat.es/${process.env.REACT_APP_TODO}/` +
-                              i._id,
-                            {
-                              //changes the status on db
-                              method: "PUT",
-                              headers: {
-                                "content-type": "application/json",
-                              },
-                              body: JSON.stringify({
-                                _id: i._id,
-                                input: i.input,
-                                status: deletestatus,
-                              }),
-                            }
-                          ))
+                          movetodo(i._id, deletestatus))
                         : (removeFrom(
                             // if its in the deleted box just delete the thing
 
@@ -140,16 +132,7 @@ export const TodoList = ({
                               (toDoArray) => toDoArray._id !== i._id
                             )
                           ),
-                          fetch(
-                            `https://krat.es/${process.env.REACT_APP_TODO}/record/` +
-                              i._id,
-                            {
-                              method: "DELETE",
-                              redirect: "follow",
-                            }
-                          )
-                            .then((res) => res.text()) // or res.json()
-                            .then((res) => console.log(res)))
+                          deletetodo(i._id))
                     }
                   >
                     <DeleteOutlineIcon fontSize="small" />
