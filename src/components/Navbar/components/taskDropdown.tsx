@@ -31,6 +31,7 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
     { location: "/Inspiration", label: "Inspire me" },
     { location: "/ThemeTest", label: "Theme test" },
     { location: "/TipCalc", label: "Tip Calculator" },
+    { location: "/To-do", label: "Todo" },
     { location: "/Registration", label: "Registration form" },
     { location: "/WeatherForcast", label: "Weather Forcast" },
   ];
@@ -45,7 +46,7 @@ export const TaskDropdown = ({ handleCloseNavMenu }: Props) => {
         size="large"
         sx={styles.NavbarItem}
       >
-        Tasks
+        Components
       </Button>
 
       <Menu
