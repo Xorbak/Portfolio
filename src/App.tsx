@@ -17,6 +17,7 @@ import { AddQuoteConsole } from "./components/CartoonQuote/AddQuoteConsole";
 import { CartoonQuoteWindow } from "./components/CartoonQuote/CartoonQuoteWindow";
 import { AiImage } from "./components/AiImage/AiImage";
 import { AiChat } from "./components/AiChat/AiChat";
+import { TaskManagement } from "./Screens/TaskManagement";
 export interface Geolocation {
   longitude: number;
   latitude: number;
@@ -74,7 +75,7 @@ function App() {
           <Route path="/ThemeTest" element={<ThemeTester />} />
           <Route path="/TipCalc" element={<TipCalc />}></Route>
           <Route path="/Inspiration" element={<InspirationalQuote />}></Route>
-
+          <Route path="/taskmanagement" element={<TaskManagement />} />
           <Route path="/CartoonQuotes" element={<CartoonQuoteWindow />} />
           <Route path="/ImageGeneration" element={<AiImage />} />
           <Route path="/chat" element={<AiChat />} />

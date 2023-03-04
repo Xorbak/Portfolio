@@ -1,27 +1,101 @@
 [
-  {
-    "_id": "63fe279df73e441a9a30ce8d",
-    "input": "This is to see if it works",
-    "status": "Pending"
-  },
-  {
-    "_id": "63fe281cee20ef4102ee79e7",
-    "input": "why did it run twice",
-    "status": "Pending"
-  },
-  {
-    "_id": "63fe2d2bee20ef4102ef972e",
-    "input": "e21e2e",
-    "status": "Pending"
-  },
-  {
-    "_id": "63fe2d45a64b0ddcc491cc37",
-    "input": "poop",
-    "status": "Pending"
-  },
-  {
-    "_id": "63feda0c3133cf8e8d4c28a2",
-    "input": "pending works",
-    "status": "Pending"
-  }
+  [
+    {
+      "username": "1",
+      "name": "1",
+      "surname": "1",
+      "password": "1",
+      "_id": 5
+    },
+    {
+      "username": "meisfree",
+      "name": "piet",
+      "surname": "pompies",
+      "password": "1234",
+      "_id": 2
+    },
+    {
+      "username": "dude",
+      "name": "guy",
+      "surname": "Dudenstein",
+      "password": "password",
+      "_id": 3
+    }
+  ],
+  [
+    { "status_id": "pending", "user_id": "1", "container": "pending" },
+    { "status_id": "busy", "user_id": "1", "container": "busy" },
+    { "status_id": "completed", "user_id": "1", "container": "completed" },
+    { "status_id": "pending", "user_id": "2", "container": "pending" },
+    { "status_id": "busy", "user_id": "2", "container": "busy" },
+    { "status_id": "completed", "user_id": "2", "container": "completed" },
+    { "status_id": "pending", "user_id": "5", "container": "pending" },
+    { "status_id": "busy", "user_id": "5", "container": "busy" },
+    { "status_id": "completed", "user_id": "5", "container": "completed" }
+  ],
+  [
+    {
+      "task_id": "1",
+      "user_id": "1",
+      "container": "pending",
+      "task": "lets see if this works",
+      "created": "10 Jan 2023"
+    },
+    {
+      "task_id": "2",
+      "user_id": "4",
+      "container": "pending",
+      "task": "this one goes in Pending",
+      "created": "10 Jan 2023"
+    },
+    {
+      "task_id": "3",
+      "user_id": "2",
+      "container": "pending",
+      "task": "to see how it goes",
+      "created": "10 Jan 2023"
+    },
+    {
+      "task_id": "4",
+      "user_id": "3",
+      "container": "busy",
+      "task": "lets see if this works",
+      "created": "10 Jan 2023"
+    },
+    {
+      "task_id": "5",
+      "user_id": "2",
+      "container": "busy",
+      "task": "this one goes in Pending",
+      "created": "10 Jan 2023"
+    },
+    {
+      "task_id": "6",
+      "user_id": "1",
+      "container": "busy",
+      "task": "to see how it goes",
+      "created": "10 Jan 2023"
+    },
+    {
+      "task_id": "7",
+      "user_id": "3",
+      "container": "completed",
+      "task": "lets see if this works",
+      "created": "10 Jan 2023"
+    },
+    {
+      "task_id": "8",
+      "user_id": "2",
+      "container": "completed",
+      "task": "this one goes in Pending",
+      "created": "10 Jan 2023"
+    },
+    {
+      "task_id": "9",
+      "user_id": "1",
+      "container": "completed",
+      "task": "to see how it goes",
+      "created": "10 Jan 2023"
+    }
+  ]
 ]
