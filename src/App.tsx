@@ -9,11 +9,8 @@ import { ResponsiveAppBar } from "./components/Navbar/responsiveNavBar";
 import { ToDo } from "./components/ToDo/ToDo";
 import { TipCalc } from "./components/Tip Calculator/TipCalc";
 import { RegistrationForm } from "./components/Registration/RegistrationForm";
-
-import { CartoonQuotes } from "./components/CartoonQuote/CartoonQuotes";
 import { WeatherForcast } from "./components/Weatherforcast/Weatherforcast";
 import { InspirationalQuote } from "./components/InspirationalQuote/InspirationalQuote";
-import { AddQuoteConsole } from "./components/CartoonQuote/AddQuoteConsole";
 import { CartoonQuoteWindow } from "./components/CartoonQuote/CartoonQuoteWindow";
 import { AiImage } from "./components/AiImage/AiImage";
 import { AiChat } from "./components/AiChat/AiChat";
