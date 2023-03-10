@@ -21,7 +21,7 @@ interface Props {
 const movetodo = (_id: string | undefined, status: string) => {
   const options = {
     method: "GET",
-    url: "https://xorprod.herokuapp.com/todoupdate",
+    url: "http://localhost:5000/todo/update",
     params: { _id: _id, status: status },
   };
 
@@ -33,7 +33,7 @@ const movetodo = (_id: string | undefined, status: string) => {
 const deletetodo = (_id: string | undefined) => {
   const options = {
     method: "GET",
-    url: "https://xorprod.herokuapp.com/tododelete",
+    url: "https://xorprod.herokuapp.com/todo/delete",
     params: { _id: _id },
   };
   axios.request(options).then((res) => console.log(res.data));

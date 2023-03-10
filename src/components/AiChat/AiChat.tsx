@@ -16,7 +16,7 @@ export const AiChat = () => {
   const getChat = (prompt: string, input: string) => {
     const options = {
       method: "GET",
-      url: `https://xorprod.herokuapp.com/${input}`,
+      url: `https://xorprod.herokuapp.com/ai/${input}`,
       params: { input: prompt },
     };
     axios

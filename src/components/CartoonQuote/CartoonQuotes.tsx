@@ -34,7 +34,7 @@ export const CartoonQuotes = ({ setModal }: Props) => {
   const getQuotes = () => {
     const options = {
       method: "GET",
-      url: "https://xorprod.herokuapp.com/mongoQuote",
+      url: "https://xorprod.herokuapp.com/quote",
     };
     axios.request(options).then((res) => {
       !quote && setQuote(res.data.documents);

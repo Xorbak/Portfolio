@@ -20,7 +20,7 @@ export const GrabInput = ({ setTodo, toDo, setTodoModal }: Props) => {
   const newAddTodo = async (input: string, status: string) => {
     const options = {
       method: "GET",
-      url: "https://xorprod.herokuapp.com/todo",
+      url: "https://xorprod.herokuapp.com/todo/post",
       params: {
         _id: Date.now(),
         input: input,

@@ -26,7 +26,7 @@ export const TaskUserDetails = ({ userDetails }: Props) => {
     console.log("how many times will it run?");
     const options = {
       method: "GET",
-      url: "http://localhost:5000/dbstatusContainers",
+      url: "https://xorprod.herokuapp.com/manage/container",
       params: { user_id: userDetails && userDetails.id.toString() },
     };
     axios.request(options).then((result) => {
@@ -38,7 +38,7 @@ export const TaskUserDetails = ({ userDetails }: Props) => {
     console.log("how many times will it run?");
     const options = {
       method: "GET",
-      url: "http://localhost:5000/dbtasks",
+      url: "https://xorprod.herokuapp.com/manage/task",
       params: { user_id: userDetails && userDetails.id.toString() },
     };
     axios.request(options).then((result) => {

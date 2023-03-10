@@ -41,7 +41,7 @@ export const TaskLogIn = ({ register, setUserDetails }: Props) => {
         onSubmit={(values, { resetForm }) => {
           const options = {
             method: "GET",
-            url: "http://localhost:5000/db",
+            url: "https://xorprod.herokuapp.com/manage/login",
             params: { username: values.username, password: values.password },
           };
           axios.request(options).then((result) =>

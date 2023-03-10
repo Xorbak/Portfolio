@@ -18,7 +18,7 @@ export const ToDo = () => {
   useEffect(() => {
     const options = {
       method: "get",
-      url: "https://xorprod.herokuapp.com/todoget",
+      url: "https://xorprod.herokuapp.com/todo",
     };
     axios.request(options).then((res) => {
       setTodo(res.data.documents);

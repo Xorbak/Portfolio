@@ -17,8 +17,8 @@ interface Props {
 const addQuote = (quote: string, name: string, cartoon: string) => {
   const options = {
     method: "GET",
-    url: "https://xorprod.herokuapp.com/mongoQuoteAdd",
-    document: {
+    url: "https://xorprod.herokuapp.com/quote/add",
+    params: {
       quote: quote,
       name: name,
       cartoon: cartoon,

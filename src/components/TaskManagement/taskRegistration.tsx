@@ -26,45 +26,71 @@ export const TaskRegistration = ({ register }: Props) => {
       {" "}
       <Typography variant="h5">Registration</Typography>
       <Formik
-        initialValues={{ username: "", password: "", confirmPassword: "" }}
+        initialValues={{
+          username: "",
+          password: "",
+          confirmPassword: "",
+          name: "",
+          surname: "",
+        }}
         onSubmit={(values, { resetForm }) => {
           const options = {
             method: "GET",
-            url: "http://localhost:5000/dbcreateuser",
-            params: { username: values.username, password: values.password },
+            url: "https://xorprod.herokuapp.com/manage/newuser",
+            params: {
+              username: values.username,
+              name: values.username,
+              surname: values.surname,
+              password: values.password,
+            },
           };
           axios.request(options).then((result) => console.log(result));
-          resetForm;
+          resetForm();
         }}
       >
         {() => {
           return (
             <Form>
-              <Field
-                name="username"
-                lable="Username"
-                placeholder="Username"
-                component={taskInput}
-              />
-              <Field
-                name="name"
-                lable="name"
-                placeholder="name"
-                component={taskInput}
-              />
-              <Field
-                name="surname"
-                lable="surname"
-                placeholder="surname"
-                component={taskInput}
-              />
-              <Field
-                name="password"
-                lable="Password"
-                placeholder="Password"
-                component={taskInput}
-              />
-              <Button type="submit">Submit</Button>
+              <Grid>
+                <Grid>
+                  <Field
+                    sx={{
+                      width: "27.5%",
+                      marginRight: "2.5%",
+                      marginY: "10px",
+                    }}
+                    name="name"
+                    lable="Name"
+                    placeholder="Name"
+                    component={taskInput}
+                  />
+                  <Field
+                    sx={{ width: "27.5%", marginLeft: "2.5%", marginY: "10px" }}
+                    name="surname"
+                    lable="Surname"
+                    placeholder="Surname"
+                    component={taskInput}
+                  />
+                </Grid>
+                <Grid>
+                  <Field
+                    name="username"
+                    lable="Username"
+                    placeholder="Username"
+                    component={taskInput}
+                  />
+                </Grid>
+                <Grid>
+                  <Field
+                    name="password"
+                    lable="Password"
+                    placeholder="Password"
+                    component={taskInput}
+                  />
+                </Grid>
+
+                <Button type="submit">Submit</Button>
+              </Grid>
             </Form>
           );
         }}
