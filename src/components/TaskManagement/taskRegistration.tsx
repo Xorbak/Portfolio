@@ -2,7 +2,7 @@ import { Button, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { taskInput } from "./taskInput";
 
 interface Props {
@@ -13,7 +13,23 @@ interface Props {
     }>
   >;
 }
+
 export const TaskRegistration = ({ register }: Props) => {
+  const [error, setError] = useState<string>();
+
+  const checkUser = (user: string) => {
+    const options = {
+      method: "GET",
+      url: "http://localhost:5000/manage/check",
+      params: { username: user },
+    };
+    axios
+      .request(options)
+      .then((result) =>
+        result.data.error ? setError(result.data.error) : setError(undefined)
+      );
+  };
+  useEffect(() => {}, [error]);
   return (
     <Grid
       xs={4}
@@ -34,21 +50,33 @@ export const TaskRegistration = ({ register }: Props) => {
           surname: "",
         }}
         onSubmit={(values, { resetForm }) => {
-          const options = {
-            method: "GET",
-            url: "https://xorprod.herokuapp.com/manage/newuser",
-            params: {
-              username: values.username,
-              name: values.username,
-              surname: values.surname,
-              password: values.password,
-            },
-          };
-          axios.request(options).then((result) => console.log(result));
-          resetForm();
+          if (error == undefined) {
+            const options = {
+              method: "GET",
+              url: "http://localhost:5000/manage/newuser",
+              params: {
+                username: values.username,
+                name: values.username,
+                surname: values.surname,
+                password: values.password,
+              },
+            };
+            axios
+              .request(options)
+              .then((result) =>
+                result.data.error
+                  ? setError(result.data.error)
+                  : (console.log(result), resetForm())
+              );
+          }
         }}
       >
-        {() => {
+        {({ values }) => {
+          useEffect(() => {
+            const timer = setTimeout(() => checkUser(values.username), 500);
+            return () => clearTimeout(timer);
+          }, [values.username]);
+
           return (
             <Form>
               <Grid>
@@ -88,7 +116,7 @@ export const TaskRegistration = ({ register }: Props) => {
                     component={taskInput}
                   />
                 </Grid>
-
+                {error && <Typography color={"error"}>{`${error}`}</Typography>}
                 <Button type="submit">Submit</Button>
               </Grid>
             </Form>
