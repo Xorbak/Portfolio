@@ -125,13 +125,6 @@ export const TaskRegistration = ({ register }: Props) => {
       </Formik>
       <Button
         onClick={() =>
-          register((currentItem) => ({ isRegistered: true, isLoggedIn: true }))
-        }
-      >
-        Log in!
-      </Button>
-      <Button
-        onClick={() =>
           register((currentItem) => ({ ...currentItem, isRegistered: true }))
         }
       >

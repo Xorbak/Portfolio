@@ -7,7 +7,7 @@ import { userDetails } from "../../Screens/TaskManagement";
 import { taskInput } from "./taskInput";
 
 interface Props {
-  setUserDetails: React.Dispatch<React.SetStateAction<userDetails | undefined>>;
+  setUserDetails: React.Dispatch<React.SetStateAction<userDetails>>;
   register: React.Dispatch<
     React.SetStateAction<{
       isLoggedIn: boolean;
