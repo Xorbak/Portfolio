@@ -20,12 +20,12 @@ export interface TaskContainers {
 }
 export interface Tasks {
   task_id: string;
-  user_id: string;
+  user_id?: string;
   container: string;
   task: string;
   discription?: string;
   due?: string;
-  created: string;
+  created?: string;
 }
 export const TaskManagement = () => {
   const [loggedin, setLoggedin] = useState({

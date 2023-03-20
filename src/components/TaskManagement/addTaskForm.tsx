@@ -4,6 +4,7 @@ import { taskInput } from "./taskInput";
 import React from "react";
 import Button from "@mui/material/Button";
 import { Tasks, userDetails } from "../../Screens/TaskManagement";
+import axios from "axios";
 
 interface TaskInputs {
   name: string;
@@ -19,6 +20,29 @@ interface Props {
   tasks: Tasks[] | undefined;
   toggleVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const addTaskToDb = (
+  taskId: string,
+  userId: string,
+  currentContainer: string,
+  task: string,
+  createdDate: string
+) => {
+  const options = {
+    method: "GET",
+    url: "http://localhost:5000/manage/add",
+    params: {
+      task_id: taskId,
+      user_id: userId,
+      container: currentContainer,
+      task: task,
+      created: createdDate,
+    },
+  };
+  axios.request(options).then((res) => {
+    console.log(res), console.log("added");
+  });
+};
 export const TaskForm = ({
   currentContainer,
   toggleVisibility,
@@ -39,16 +63,26 @@ export const TaskForm = ({
           created: "",
         }}
         onSubmit={(values, { resetForm }) => {
+          const taskId = Date.now().toString();
+          const createdDate = new Date().toString();
+
           setTasks((currentItems) => [
             ...currentItems,
             {
-              task_id: Date.now().toString(),
+              task_id: taskId,
               user_id: userId,
               container: currentContainer,
               task: values.task,
-              created: new Date().toString(),
+              created: createdDate,
             },
           ]);
+          addTaskToDb(
+            taskId,
+            userId,
+            currentContainer,
+            values.task,
+            createdDate
+          );
           toggleVisibility(false), resetForm;
         }}
       >

@@ -16,7 +16,7 @@ interface Props {
     React.SetStateAction<TaskContainers[] | undefined>
   >;
   setTasks: React.Dispatch<React.SetStateAction<Tasks[]>>;
-  tasks: Tasks[] | undefined;
+  tasks: Tasks[];
   backgroundBlur: boolean;
   userDetails: userDetails | undefined;
   toggleVisibility: React.Dispatch<React.SetStateAction<boolean>>;
@@ -94,8 +94,15 @@ export const TaskUserDetails = ({
               {tasks && //then render the correct task in the correct container
                 tasks.map((task) =>
                   task.container == container ? (
-                    <Grid container>
-                      <Task content={`${task.task}`} />
+                    <Grid container justifyContent={"center"} marginY={"5px"}>
+                      <Task
+                        parentContainer={container}
+                        task={tasks}
+                        setTask={setTasks}
+                        content={`${task.task}`}
+                        id={`${task.task_id}`}
+                        taskContainers={taskContainers}
+                      />
                     </Grid>
                   ) : null
                 )}
@@ -104,6 +111,8 @@ export const TaskUserDetails = ({
       </Grid>
       <Button
         onClick={() => {
+          setTasks([]);
+          setTaskContainers([]);
           setLoggedin((i) => ({ ...i, isLoggedIn: false }));
         }}
       >
