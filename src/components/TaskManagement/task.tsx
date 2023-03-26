@@ -30,7 +30,7 @@ export const Task = ({
   const moveTask = (taskId: string, moveTo: string) => {
     const options = {
       method: "GET",
-      url: "http://localhost:5000/manage/update",
+      url: "https://xorprod.herokuapp.com/manage/update",
       params: { task_id: taskId, container: moveTo },
     };
 

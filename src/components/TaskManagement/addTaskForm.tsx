@@ -30,7 +30,7 @@ const addTaskToDb = (
 ) => {
   const options = {
     method: "GET",
-    url: "http://localhost:5000/manage/add",
+    url: "https://xorprod.herokuapp.com/manage/add",
     params: {
       task_id: taskId,
       user_id: userId,
