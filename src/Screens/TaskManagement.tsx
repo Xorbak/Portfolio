@@ -69,7 +69,12 @@ export const TaskManagement = () => {
           sx={{ filter: addTaskModal ? "blur(10px)" : null }}
         >
           {" "}
-          <Grid container item xs={2}>
+          <Grid
+            container
+            item
+            xs={1}
+            sx={{ display: { xs: "none", md: "block" } }}
+          >
             <Grid
               sx={{
                 height: "100vh",

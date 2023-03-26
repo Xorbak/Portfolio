@@ -52,8 +52,10 @@ export const Task = ({
         backgroundColor: "primary.dark",
       }}
     >
-      <Grid xs={8} item>
-        <Typography display={"flex"}>{content}</Typography>
+      <Grid xs={8} lg={7} item>
+        <Typography display={"flex"} sx={{ marginLeft: "10px" }}>
+          {content}
+        </Typography>
       </Grid>
 
       <Grid
@@ -74,7 +76,16 @@ export const Task = ({
         />
         <IconButton
           onClick={() => {
-            moveTask(id, "busy");
+            moveTask(id, "removed");
+            setTask(task.filter((currentItem) => currentItem.task_id != id));
+            setTask((currentItem) => [
+              ...currentItem,
+              {
+                task_id: id,
+                task: content,
+                container: "removed",
+              },
+            ]);
           }}
         >
           <DeleteOutlineIcon fontSize="small" />

@@ -26,7 +26,9 @@ export const TaskLogIn = ({ register, setUserDetails }: Props) => {
   const [error, setError] = useState<Error>();
   return (
     <Grid
-      xs={4}
+      xs={12}
+      sm={10}
+      md={4}
       item
       sx={{ backgroundColor: "background.paper", borderRadius: "5px" }}
       boxShadow={5}

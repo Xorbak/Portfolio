@@ -24,7 +24,8 @@ export const AddTaskModal = ({
   return (
     <Grid sx={styles.App}>
       <Grid
-        xs={6}
+        xs={11}
+        md={6}
         boxShadow={5}
         container
         justifyContent={"center"}
@@ -54,7 +55,7 @@ const styles = {
     backgroundColor: "transparent",
     zIndex: "100",
     width: "100%",
-    height: "100%",
+
     flexDirection: "column",
     alignItems: "center",
     justifyContent: { xs: "center" },

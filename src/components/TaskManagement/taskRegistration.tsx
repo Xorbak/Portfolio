@@ -32,7 +32,9 @@ export const TaskRegistration = ({ register }: Props) => {
   useEffect(() => {}, [error]);
   return (
     <Grid
-      xs={4}
+      xs={12}
+      sm={10}
+      md={6}
       item
       sx={{ backgroundColor: "background.paper", borderRadius: "5px" }}
       boxShadow={5}
@@ -53,7 +55,7 @@ export const TaskRegistration = ({ register }: Props) => {
           if (error == undefined) {
             const options = {
               method: "GET",
-              url: "http://localhost:5000/manage/newuser",
+              url: "https://xorprod.herokuapp.com/manage/newuser",
               params: {
                 username: values.username,
                 name: values.username,
@@ -83,19 +85,23 @@ export const TaskRegistration = ({ register }: Props) => {
                 <Grid>
                   <Field
                     sx={{
-                      width: "27.5%",
-                      marginRight: "2.5%",
+                      width: { xs: "60%", md: "27.5%" },
+                      marginRight: { xs: 0, md: "5%" },
                       marginY: "10px",
                     }}
                     name="name"
-                    lable="Name"
+                    label="Name"
                     placeholder="Name"
                     component={taskInput}
                   />
                   <Field
-                    sx={{ width: "27.5%", marginLeft: "2.5%", marginY: "10px" }}
+                    sx={{
+                      width: { xs: "60%", md: "27.5%" },
+
+                      marginY: "10px",
+                    }}
                     name="surname"
-                    lable="Surname"
+                    label="Surname"
                     placeholder="Surname"
                     component={taskInput}
                   />
@@ -103,7 +109,7 @@ export const TaskRegistration = ({ register }: Props) => {
                 <Grid>
                   <Field
                     name="username"
-                    lable="Username"
+                    label="Username"
                     placeholder="Username"
                     component={taskInput}
                   />
@@ -111,7 +117,7 @@ export const TaskRegistration = ({ register }: Props) => {
                 <Grid>
                   <Field
                     name="password"
-                    lable="Password"
+                    label="Password"
                     placeholder="Password"
                     component={taskInput}
                   />

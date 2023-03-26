@@ -28,11 +28,12 @@ export const TaskContainerTitle = ({
           textDecoration: "underline",
           textAlign: "start",
           display: "flex",
+          marginLeft: "10px",
         }}
       >
         {container}
       </Typography>
-      <Grid xs={2} container>
+      <Grid xs={2} container justifyContent={"end"}>
         <IconButton
           onClick={() => {
             toggleVisibility(true);

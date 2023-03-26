@@ -70,18 +70,28 @@ export const TaskUserDetails = ({
       alignContent="center"
       container
       flexDirection="row"
-      xs={10}
+      xs={12}
+      md={11}
     >
-      <Grid container flexDirection={"row"} justifyContent={"space-around"}>
+      <Grid
+        container
+        flexDirection={"row"}
+        justifyContent={{ xs: "center", md: "space-evenly" }}
+      >
         {taskContainers &&
           taskContainers.map(({ container }) => (
             <Grid
-              xs={2}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
               key={container}
               item
               sx={{
                 backgroundColor: "background.paper",
+                margin: "5px",
                 borderRadius: "5px",
+
                 minHeight: "10rem",
               }}
             >
