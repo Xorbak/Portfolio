@@ -3,6 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import React from "react";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 interface Props {
   setCurrentContainer: React.Dispatch<React.SetStateAction<string>>;
@@ -33,14 +34,22 @@ export const TaskContainerTitle = ({
       >
         {container}
       </Typography>
-      <Grid xs={2} container justifyContent={"end"}>
+      <Grid xs={3} container justifyContent={"end"}>
         <IconButton
           onClick={() => {
             toggleVisibility(1);
             setCurrentContainer(container);
           }}
         >
-          <AddCircleOutlineIcon color="primary"></AddCircleOutlineIcon>
+          <AddCircleOutlineIcon color="primary" />
+        </IconButton>
+        <IconButton
+          onClick={() => {
+            toggleVisibility(3);
+            setCurrentContainer(container);
+          }}
+        >
+          <HighlightOffIcon color="primary" />
         </IconButton>
       </Grid>
     </Grid>
