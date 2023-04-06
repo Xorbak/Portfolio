@@ -7,7 +7,7 @@ import React from "react";
 interface Props {
   setCurrentContainer: React.Dispatch<React.SetStateAction<string>>;
   container: string;
-  toggleVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleVisibility: React.Dispatch<React.SetStateAction<number>>;
 }
 export const TaskContainerTitle = ({
   container,
@@ -36,7 +36,7 @@ export const TaskContainerTitle = ({
       <Grid xs={2} container justifyContent={"end"}>
         <IconButton
           onClick={() => {
-            toggleVisibility(true);
+            toggleVisibility(1);
             setCurrentContainer(container);
           }}
         >

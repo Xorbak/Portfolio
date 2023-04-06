@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
+import { AddTaskContainer } from "../components/TaskManagement/addTaskContainer";
 import { AddTaskModal } from "../components/TaskManagement/addTaskModal";
 import { TaskLogIn } from "../components/TaskManagement/taskLogIn";
 import { TaskRegistration } from "../components/TaskManagement/taskRegistration";
@@ -32,10 +33,10 @@ export const TaskManagement = () => {
     isLoggedIn: true, //make this false once done with the styling
     isRegistered: true,
   });
-  const [taskContainers, setTaskContainers] = useState<TaskContainers[]>();
+  const [taskContainers, setTaskContainers] = useState<TaskContainers[]>([]);
   const [currentContainer, setCurrentContainer] = useState<string>("");
   const [tasks, setTasks] = useState<Tasks[]>([]);
-  const [addTaskModal, setAddTaskModal] = useState<boolean>(false);
+  const [addTaskModal, setAddTaskModal] = useState<number>(0);
   //remove this once done testing
   const [userDetails, setUserDetails] = useState<userDetails>({
     id: "1678701490173",
@@ -46,8 +47,21 @@ export const TaskManagement = () => {
 
   return (
     <Grid sx={styles.App}>
-      {addTaskModal ? (
+      {addTaskModal == 1 ? (
         <AddTaskModal
+          currentContainer={currentContainer}
+          userDetails={userDetails}
+          setTasks={setTasks}
+          tasks={tasks}
+          toggleVisibility={setAddTaskModal}
+          backgroundBlur={addTaskModal}
+        />
+      ) : null}
+
+      {addTaskModal == 2 ? (
+        <AddTaskContainer
+          setTaskContainers={setTaskContainers}
+          taskContainers={taskContainers}
           currentContainer={currentContainer}
           userDetails={userDetails}
           setTasks={setTasks}
@@ -81,7 +95,15 @@ export const TaskManagement = () => {
                 width: "100%",
                 backgroundColor: "background.paper",
               }}
-            ></Grid>
+            >
+              <Button
+                onClick={() => {
+                  setAddTaskModal(2);
+                }}
+              >
+                Add New Set
+              </Button>
+            </Grid>
           </Grid>
           <TaskUserDetails
             setCurrentContainer={setCurrentContainer}

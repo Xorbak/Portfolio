@@ -2,8 +2,13 @@ import { Button } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import { Tasks, userDetails } from "../../Screens/TaskManagement";
+import {
+  TaskContainers,
+  Tasks,
+  userDetails,
+} from "../../Screens/TaskManagement";
 import { TaskForm } from "./addTaskForm";
+import { FormAddContainer } from "./formAddNewTaskContainer";
 
 interface Props {
   currentContainer: string;
@@ -12,32 +17,35 @@ interface Props {
   setTasks: React.Dispatch<React.SetStateAction<Tasks[]>>;
   tasks: Tasks[] | undefined;
   userDetails: userDetails;
+  taskContainers: TaskContainers[];
+  setTaskContainers: React.Dispatch<React.SetStateAction<TaskContainers[]>>;
 }
-export const AddTaskModal = ({
+export const AddTaskContainer = ({
   userDetails,
   currentContainer,
+  taskContainers,
+  setTaskContainers,
   toggleVisibility,
   backgroundBlur,
   tasks,
   setTasks,
 }: Props) => {
   return (
-    <Grid xs={11} md={6} container sx={styles.App}>
+    <Grid sx={styles.App}>
       <Grid
-        xs={12}
+        xs={11}
+        md={6}
         boxShadow={5}
         container
         justifyContent={"center"}
         sx={{
-          backgroundColor: "background.paper",
           filter: !backgroundBlur ? "blur(0px)" : null,
         }}
       >
-        <TaskForm
-          userId={`${userDetails.id}`}
-          currentContainer={currentContainer}
-          setTasks={setTasks}
-          tasks={tasks}
+        <FormAddContainer
+          userDetails={userDetails}
+          taskContainers={taskContainers}
+          setTaskContainers={setTaskContainers}
           toggleVisibility={toggleVisibility}
         />
       </Grid>{" "}
@@ -51,8 +59,9 @@ const styles = {
     filter: "0px",
     display: "flex",
     position: "absolute",
-    backgroundColor: "red",
+    backgroundColor: "transparent",
     zIndex: "100",
+    width: "100%",
 
     flexDirection: "column",
     alignItems: "center",

@@ -6,20 +6,18 @@ import {
 } from "../../Screens/TaskManagement";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { TaskContainerTitle } from "./tasContainerTitle";
+import { TaskContainerTitle } from "./taskContainerTitle";
 import { Task } from "./task";
 
 interface Props {
   setCurrentContainer: React.Dispatch<React.SetStateAction<string>>;
   taskContainers: TaskContainers[] | undefined;
-  setTaskContainers: React.Dispatch<
-    React.SetStateAction<TaskContainers[] | undefined>
-  >;
+  setTaskContainers: React.Dispatch<React.SetStateAction<TaskContainers[]>>;
   setTasks: React.Dispatch<React.SetStateAction<Tasks[]>>;
   tasks: Tasks[];
-  backgroundBlur: boolean;
+  backgroundBlur: number;
   userDetails: userDetails | undefined;
-  toggleVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleVisibility: React.Dispatch<React.SetStateAction<number>>;
   setLoggedin: React.Dispatch<
     React.SetStateAction<{
       isLoggedIn: boolean;

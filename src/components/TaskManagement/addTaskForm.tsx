@@ -18,7 +18,7 @@ interface Props {
   currentContainer: string;
   setTasks: React.Dispatch<React.SetStateAction<Tasks[]>>;
   tasks: Tasks[] | undefined;
-  toggleVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleVisibility: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const addTaskToDb = (
@@ -83,7 +83,7 @@ export const TaskForm = ({
             values.task,
             createdDate
           );
-          toggleVisibility(false), resetForm;
+          toggleVisibility(0), resetForm;
         }}
       >
         {() => {
@@ -101,7 +101,7 @@ export const TaskForm = ({
                   label="Name"
                   placeholder="Name"
                   component={taskInput}
-                ></Field>
+                />
                 <Field
                   name="discription"
                   label="Discription"
@@ -116,14 +116,14 @@ export const TaskForm = ({
                   label="Due"
                   placeholder="Due"
                   component={taskInput}
-                ></Field>
+                />
                 <Button type="submit">Submit</Button>
               </Grid>
             </Form>
           );
         }}
       </Formik>
-      <Button onClick={() => toggleVisibility(false)}>Close Modal</Button>
+      <Button onClick={() => toggleVisibility(0)}>Close Modal</Button>
     </Grid>
   );
 };
