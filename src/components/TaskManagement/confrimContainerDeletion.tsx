@@ -3,19 +3,33 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { TaskContainers } from "../../Screens/TaskManagement";
+import axios from "axios";
 
 interface Props {
   currentContainer: string;
+  userId: string;
   taskContainers: TaskContainers[];
   setTaskContainers: React.Dispatch<React.SetStateAction<TaskContainers[]>>;
   toggleVisibility: React.Dispatch<React.SetStateAction<number>>;
 }
 export const ConfirmContainerDeletion = ({
+  userId,
   setTaskContainers,
   taskContainers,
   currentContainer,
   toggleVisibility,
 }: Props) => {
+  const removeContainer = (container: string, userId: string) => {
+    const options = {
+      method: "GET",
+      url: "https://xorprod.herokuapp.com/manage/container/deleteContainer",
+      params: { user_id: userId, container: container },
+    };
+
+    axios.request(options).then((response) => {
+      console.log(response.data);
+    });
+  };
   return (
     <Grid xs={11} md={6} container sx={styles.App}>
       {" "}
@@ -27,6 +41,7 @@ export const ConfirmContainerDeletion = ({
         <Grid container justifyContent={"Center"}>
           <Button
             onClick={() => {
+              removeContainer(currentContainer, userId);
               setTaskContainers(
                 taskContainers.filter(
                   (currentItem) => currentItem.container != currentContainer
