@@ -1,11 +1,14 @@
 import Grid from "@mui/material/Grid";
 import { Field, Form, Formik } from "formik";
 import { taskInput } from "./taskInput";
-import React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { Tasks, userDetails } from "../../Screens/TaskManagement";
 import axios from "axios";
 import { DateSelector } from "./datePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 interface TaskInputs {
   name: string;
@@ -28,7 +31,8 @@ const addTaskToDb = (
   currentContainer: string,
   task: string,
   createdDate: string,
-  discription: string | undefined
+  discription: string | undefined,
+  due: dateFns | null | undefined
 ) => {
   const options = {
     method: "GET",
@@ -40,6 +44,7 @@ const addTaskToDb = (
       container: currentContainer,
       task: task,
       created: createdDate,
+      due: due,
     },
   };
   axios.request(options).then((res) => {
@@ -54,6 +59,8 @@ export const TaskForm = ({
   userId,
 }: Props) => {
   const CurrentDate = new Date();
+  const [taskDueDate, setTaskDueDate] = useState<dateFns | null>();
+
   return (
     <Grid xs={12} justifyContent="center">
       <Formik<Tasks>
@@ -63,13 +70,12 @@ export const TaskForm = ({
           container: "",
           task: "",
           discription: "",
-          due: CurrentDate,
           created: "",
         }}
         onSubmit={(values, { resetForm }) => {
           const taskId = Date.now().toString();
           const createdDate = new Date().toString();
-          console.log(values.due);
+          console.log(taskDueDate);
           setTasks((currentItems) => [
             ...currentItems,
             {
@@ -77,8 +83,9 @@ export const TaskForm = ({
               user_id: userId,
               container: currentContainer,
               task: values.task,
-              created: "",
+              created: createdDate,
               discription: values.discription,
+              due: taskDueDate && taskDueDate.toString(),
             },
           ]);
           addTaskToDb(
@@ -87,7 +94,8 @@ export const TaskForm = ({
             currentContainer,
             values.task,
             createdDate,
-            values.discription
+            values.discription,
+            taskDueDate
           );
           toggleVisibility(0), resetForm;
         }}
@@ -117,12 +125,15 @@ export const TaskForm = ({
                   placeholder="Discription"
                   component={taskInput}
                 ></Field>
-                <Field
-                  name="due"
-                  label="Due"
-                  placeholder="Due"
-                  component={taskInput}
-                />
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    value={taskDueDate}
+                    onChange={(i) => {
+                      setTaskDueDate(i);
+                    }}
+                    sx={{ width: "60%", margin: "10px" }}
+                  />
+                </LocalizationProvider>
                 <Button type="submit">Submit</Button>
               </Grid>
             </Form>

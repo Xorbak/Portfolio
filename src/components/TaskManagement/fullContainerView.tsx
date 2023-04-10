@@ -49,6 +49,9 @@ export const FullContinerView = ({
                     content={`${task.task}`}
                     id={`${task.task_id}`}
                     taskContainers={taskContainers}
+                    due={`${task.due}`}
+                    createdOn={`${task.created}`}
+                    discription={`${task.discription}`}
                   />
                   <Grid
                     container
@@ -56,7 +59,10 @@ export const FullContinerView = ({
                     sx={{ backgroundColor: "primary.dark" }}
                   >
                     {" "}
-                    <Grid container xs={1.5}>
+                    <Grid
+                      container
+                      xs={1.5} //created on start
+                    >
                       {" "}
                       <Typography
                         sx={{ marginLeft: "10px", marginTop: "15px" }}
@@ -74,6 +80,28 @@ export const FullContinerView = ({
                       >
                         {task.created &&
                           new Date(task.created).toLocaleDateString()}
+                      </Typography>
+                    </Grid>
+                    <Grid
+                      container
+                      xs={1.5} //created on start
+                    >
+                      {" "}
+                      <Typography
+                        sx={{ marginLeft: "10px", marginTop: "15px" }}
+                      >
+                        Due:
+                      </Typography>
+                    </Grid>{" "}
+                    <Grid container xs={10} justifyContent={"start"}>
+                      <Typography
+                        sx={{
+                          marginLeft: "10px",
+                          marginTop: "15px",
+                          textAlign: "start",
+                        }}
+                      >
+                        {task.due && new Date(task.due).toLocaleDateString()}
                       </Typography>
                     </Grid>
                   </Grid>

@@ -7,11 +7,11 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 //@ts-ignore
 export const DateSelector = ({ field, form, ...props }) => {
   return (
-    <DatePicker
-      defaultValue={new Date()}
-      sx={{ width: "60%", margin: "10px" }}
-      {...field}
-      {...props}
-    />
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DatePicker
+        defaultValue={new Date()}
+        sx={{ width: "60%", margin: "10px" }}
+      />
+    </LocalizationProvider>
   );
 };

@@ -27,7 +27,7 @@ export interface Tasks {
   container: string;
   task: string;
   discription?: string;
-  due?: number | dateFns | Date;
+  due?: string | null;
   created?: string;
 }
 export const TaskManagement = () => {

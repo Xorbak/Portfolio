@@ -8,15 +8,21 @@ import { TaskContainers, Tasks } from "../../Screens/TaskManagement";
 
 interface Props {
   taskContainers: TaskContainers[];
+  discription: string;
   parentContainer: string;
   moveTask: (taskId: string, moveTo: string) => void;
   taskId: string;
   content: string;
   setTask: React.Dispatch<React.SetStateAction<Tasks[]>>;
   task: Tasks[];
+  due: string;
+  createdOn: string;
 }
 export const TaskContainerDropdown = ({
   taskContainers,
+  discription,
+  due,
+  createdOn,
   moveTask,
   taskId,
   parentContainer,
@@ -47,6 +53,9 @@ export const TaskContainerDropdown = ({
         task_id: taskId,
         task: taskContent,
         container: moveToContainer,
+        due: due,
+        created: createdOn,
+        discription: discription,
       },
     ]);
   };

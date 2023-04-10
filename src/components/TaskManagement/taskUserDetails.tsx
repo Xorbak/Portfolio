@@ -116,6 +116,9 @@ export const TaskUserDetails = ({
                         content={`${task.task}`}
                         id={`${task.task_id}`}
                         taskContainers={taskContainers}
+                        due={`${task.due}`}
+                        discription={`${task.discription}`}
+                        createdOn={`${task.created}`}
                       />
                     </Grid>
                   ) : null

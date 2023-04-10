@@ -8,6 +8,9 @@ import axios from "axios";
 import { TaskContainerDropdown } from "./taskContainerDropdown";
 import { TaskContainers, Tasks } from "../../Screens/TaskManagement";
 interface Props {
+  due: string;
+  discription: string;
+  createdOn: string;
   content: string;
   view: string;
   setTask: React.Dispatch<React.SetStateAction<Tasks[]>>;
@@ -22,6 +25,9 @@ interface MoveTaskInterface {
 }
 export const Task = ({
   content,
+  due,
+  createdOn,
+  discription,
   view,
   id,
   taskContainers,
@@ -82,6 +88,9 @@ export const Task = ({
           taskId={id}
           moveTask={moveTask}
           taskContainers={taskContainers}
+          due={due}
+          discription={discription}
+          createdOn={createdOn}
         />
         <IconButton
           onClick={() => {
