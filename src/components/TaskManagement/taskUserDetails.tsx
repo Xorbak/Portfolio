@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { TaskContainerTitle } from "./taskContainerTitle";
 import { Task } from "./task";
+import CircularProgress from "@mui/material/CircularProgress";
 
 interface Props {
   setCurrentContainer: React.Dispatch<React.SetStateAction<string>>;
@@ -37,6 +38,7 @@ export const TaskUserDetails = ({
   toggleVisibility,
   backgroundBlur,
 }: Props) => {
+  const [isloading, setIsloading] = useState<boolean>(true);
   // first find the container
   useEffect(() => {
     const options = {
@@ -58,6 +60,7 @@ export const TaskUserDetails = ({
     axios.request(options).then((result) => {
       console.log(result.data.documents);
       setTasks(result.data.documents);
+      setIsloading(false);
     });
   }, [taskContainers]);
 
@@ -76,6 +79,8 @@ export const TaskUserDetails = ({
         flexDirection={"row"}
         justifyContent={{ xs: "center", md: "space-evenly" }}
       >
+        {isloading && <CircularProgress />}
+
         {taskContainers && // render the correct task container
           taskContainers.map(({ container }) => (
             <Grid
@@ -104,6 +109,7 @@ export const TaskUserDetails = ({
                   task.container == container ? (
                     <Grid container justifyContent={"center"} marginY={"5px"}>
                       <Task
+                        view="summary"
                         parentContainer={container}
                         task={tasks}
                         setTask={setTasks}
@@ -120,6 +126,7 @@ export const TaskUserDetails = ({
       <Button
         onClick={() => {
           setTasks([]);
+          setIsloading(true);
           setTaskContainers([]);
           setLoggedin((i) => ({ ...i, isLoggedIn: false }));
         }}

@@ -42,6 +42,7 @@ export const FullContinerView = ({
                   sx={{ marginY: "10px" }}
                 >
                   <Task
+                    view="detailed"
                     parentContainer={currentContainer}
                     task={tasks}
                     setTask={setTasks}
@@ -49,7 +50,60 @@ export const FullContinerView = ({
                     id={`${task.task_id}`}
                     taskContainers={taskContainers}
                   />
-                  <Typography>{task.discription}</Typography>
+                  <Grid
+                    container
+                    xs={11}
+                    sx={{ backgroundColor: "primary.dark" }}
+                  >
+                    {" "}
+                    <Grid container xs={1.5}>
+                      {" "}
+                      <Typography
+                        sx={{ marginLeft: "10px", marginTop: "15px" }}
+                      >
+                        Created on:
+                      </Typography>
+                    </Grid>{" "}
+                    <Grid container xs={10} justifyContent={"start"}>
+                      <Typography
+                        sx={{
+                          marginLeft: "10px",
+                          marginTop: "15px",
+                          textAlign: "start",
+                        }}
+                      >
+                        {task.created &&
+                          new Date(task.created).toLocaleDateString()}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid
+                    container
+                    xs={11}
+                    sx={{ backgroundColor: "primary.dark" }}
+                    borderRadius={"0px 0px 5px 5px"}
+                  >
+                    {" "}
+                    <Grid container xs={1.5}>
+                      {" "}
+                      <Typography
+                        sx={{ marginLeft: "10px", marginTop: "15px" }}
+                      >
+                        Discription:
+                      </Typography>
+                    </Grid>{" "}
+                    <Grid container xs={10} justifyContent={"start"}>
+                      <Typography
+                        sx={{
+                          marginLeft: "10px",
+                          marginTop: "15px",
+                          textAlign: "start",
+                        }}
+                      >
+                        {task.discription}
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </Grid>
               )}
             </React.Fragment>

@@ -9,6 +9,7 @@ import { TaskContainerDropdown } from "./taskContainerDropdown";
 import { TaskContainers, Tasks } from "../../Screens/TaskManagement";
 interface Props {
   content: string;
+  view: string;
   setTask: React.Dispatch<React.SetStateAction<Tasks[]>>;
   taskContainers: TaskContainers[];
   task: Tasks[];
@@ -21,6 +22,7 @@ interface MoveTaskInterface {
 }
 export const Task = ({
   content,
+  view,
   id,
   taskContainers,
   setTask,
@@ -48,12 +50,19 @@ export const Task = ({
       sx={{
         border: "1px solid",
         borderColor: "primary.dark",
-        borderRadius: "5px",
+        borderRadius: view == "summary" ? "5px 5px 5px 5px" : "5px 5px 0px 0px",
         backgroundColor: "primary.dark",
       }}
     >
       <Grid xs={8} lg={7} item>
-        <Typography display={"flex"} sx={{ marginLeft: "10px" }}>
+        <Typography
+          variant={view == "summary" ? "body1" : "h4"}
+          display={"flex"}
+          sx={{
+            marginLeft: "10px",
+            textDecoration: view == "summary" ? "none" : "underline",
+          }}
+        >
           {content}
         </Typography>
       </Grid>

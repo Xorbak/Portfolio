@@ -48,7 +48,7 @@ const darkModeValues: ThemeOptions = {
   },
   typography: { htmlFontSize: 20 },
   shape: {
-    borderRadius: "5px",
+    borderRadius: 5,
   },
 };
 

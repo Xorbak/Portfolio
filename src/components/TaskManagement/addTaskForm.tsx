@@ -5,6 +5,7 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { Tasks, userDetails } from "../../Screens/TaskManagement";
 import axios from "axios";
+import { DateSelector } from "./datePicker";
 
 interface TaskInputs {
   name: string;
@@ -52,6 +53,7 @@ export const TaskForm = ({
   tasks,
   userId,
 }: Props) => {
+  const CurrentDate = new Date();
   return (
     <Grid xs={12} justifyContent="center">
       <Formik<Tasks>
@@ -61,13 +63,13 @@ export const TaskForm = ({
           container: "",
           task: "",
           discription: "",
-          due: "",
+          due: CurrentDate,
           created: "",
         }}
         onSubmit={(values, { resetForm }) => {
           const taskId = Date.now().toString();
           const createdDate = new Date().toString();
-
+          console.log(values.due);
           setTasks((currentItems) => [
             ...currentItems,
             {
@@ -75,7 +77,7 @@ export const TaskForm = ({
               user_id: userId,
               container: currentContainer,
               task: values.task,
-              created: createdDate,
+              created: "",
               discription: values.discription,
             },
           ]);
