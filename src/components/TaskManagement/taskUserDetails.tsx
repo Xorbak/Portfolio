@@ -76,7 +76,7 @@ export const TaskUserDetails = ({
         flexDirection={"row"}
         justifyContent={{ xs: "center", md: "space-evenly" }}
       >
-        {taskContainers &&
+        {taskContainers && // render the correct task container
           taskContainers.map(({ container }) => (
             <Grid
               xs={12}

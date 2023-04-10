@@ -8,6 +8,7 @@ import { TaskLogIn } from "../components/TaskManagement/taskLogIn";
 import { TaskRegistration } from "../components/TaskManagement/taskRegistration";
 import { TaskUserDetails } from "../components/TaskManagement/taskUserDetails";
 import { ConfirmContainerDeletion } from "../components/TaskManagement/confrimContainerDeletion";
+import { FullContinerView } from "../components/TaskManagement/fullContainerView";
 //{"_id":{"$oid":"640311a80c2abfe66e00b22b"}} <<<<<< thats how you call the objectID
 export interface userDetails {
   id: string;
@@ -77,6 +78,15 @@ export const TaskManagement = () => {
           toggleVisibility={setAddTaskModal}
           taskContainers={taskContainers}
           userId={userDetails.id}
+        />
+      ) : null}{" "}
+      {addTaskModal == 4 ? (
+        <FullContinerView
+          currentContainer={currentContainer}
+          tasks={tasks}
+          toggleVisibility={setAddTaskModal}
+          setTasks={setTasks}
+          taskContainers={taskContainers}
         />
       ) : null}
       {!loggedin.isLoggedIn ? (

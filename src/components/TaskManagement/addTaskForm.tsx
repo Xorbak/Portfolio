@@ -26,7 +26,8 @@ const addTaskToDb = (
   userId: string,
   currentContainer: string,
   task: string,
-  createdDate: string
+  createdDate: string,
+  discription: string | undefined
 ) => {
   const options = {
     method: "GET",
@@ -34,6 +35,7 @@ const addTaskToDb = (
     params: {
       task_id: taskId,
       user_id: userId,
+      discription: discription,
       container: currentContainer,
       task: task,
       created: createdDate,
@@ -74,6 +76,7 @@ export const TaskForm = ({
               container: currentContainer,
               task: values.task,
               created: createdDate,
+              discription: values.discription,
             },
           ]);
           addTaskToDb(
@@ -81,7 +84,8 @@ export const TaskForm = ({
             userId,
             currentContainer,
             values.task,
-            createdDate
+            createdDate,
+            values.discription
           );
           toggleVisibility(0), resetForm;
         }}
