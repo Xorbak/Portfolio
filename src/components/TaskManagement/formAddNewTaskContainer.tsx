@@ -15,10 +15,7 @@ interface ContainerDeatails {
   title: string;
   discription: string;
 }
-interface AddTaskContainer {
-  title: string;
-  id: string;
-}
+
 export const FormAddContainer = ({
   userDetails,
   taskContainers,

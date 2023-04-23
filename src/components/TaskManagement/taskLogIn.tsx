@@ -41,6 +41,7 @@ export const TaskLogIn = ({ register, setUserDetails }: Props) => {
       <Formik<LoginForm>
         initialValues={{ username: "", password: "" }}
         onSubmit={(values, { resetForm }) => {
+          // **refactor this**
           const options = {
             method: "GET",
             url: "https://xorprod.herokuapp.com/manage/login",

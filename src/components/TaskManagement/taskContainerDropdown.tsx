@@ -38,14 +38,12 @@ export const TaskContainerDropdown = ({
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  //removes it from its current container and moves to another one in the front end
   const changeTaskState = (
     taskId: string,
     taskContent: string,
     moveToContainer: string
   ) => {
-    console.log(task);
-    console.log(typeof taskId);
     setTask(task.filter((currentItem) => currentItem.task_id !== taskId));
     setTask((currentItem) => [
       ...currentItem,

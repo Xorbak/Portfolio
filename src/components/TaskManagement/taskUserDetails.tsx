@@ -39,7 +39,8 @@ export const TaskUserDetails = ({
   backgroundBlur,
 }: Props) => {
   const [isloading, setIsloading] = useState<boolean>(true);
-  // first find the container
+
+  // Pulls task containers
   useEffect(() => {
     const options = {
       method: "GET",
@@ -50,7 +51,8 @@ export const TaskUserDetails = ({
       setTaskContainers(result.data.documents);
     });
   }, [userDetails]);
-  //then find the task pulls only tasks for a given user ID the stores it in the task sate
+
+  //Populates task containers with tasks
   useEffect(() => {
     const options = {
       method: "GET",
@@ -81,7 +83,7 @@ export const TaskUserDetails = ({
       >
         {isloading && <CircularProgress />}
 
-        {taskContainers && // render the correct task container
+        {taskContainers && // render task containers
           taskContainers.map(({ container }) => (
             <Grid
               xs={12}
@@ -104,7 +106,7 @@ export const TaskUserDetails = ({
                 toggleVisibility={toggleVisibility}
               />
 
-              {tasks && //then render the correct task in the correct container
+              {tasks && //render tasks in the container
                 tasks.map((task) =>
                   task.container == container ? (
                     <Grid container justifyContent={"center"} marginY={"5px"}>

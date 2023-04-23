@@ -75,6 +75,7 @@ export const TaskRegistration = ({ register }: Props) => {
       >
         {({ values }) => {
           useEffect(() => {
+            // checks the server if username already exists
             const timer = setTimeout(() => checkUser(values.username), 500);
             return () => clearTimeout(timer);
           }, [values.username]);

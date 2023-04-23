@@ -59,7 +59,7 @@ export const FullContinerView = ({
                     sx={{ backgroundColor: "primary.dark" }}
                   >
                     {" "}
-                    <Grid
+                    <Grid // **create an array**
                       container
                       xs={1.5} //created on start
                     >

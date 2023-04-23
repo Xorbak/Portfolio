@@ -3,7 +3,6 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { IconButton } from "@mui/material";
-import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import axios from "axios";
 import { TaskContainerDropdown } from "./taskContainerDropdown";
 import { TaskContainers, Tasks } from "../../Screens/TaskManagement";
@@ -19,10 +18,7 @@ interface Props {
   id: string;
   parentContainer: string;
 }
-interface MoveTaskInterface {
-  taskId: string;
-  moveTo: string;
-}
+
 export const Task = ({
   content,
   due,
@@ -35,6 +31,7 @@ export const Task = ({
   task,
   parentContainer,
 }: Props) => {
+  //move task in the backend
   const moveTask = (taskId: string, moveTo: string) => {
     const options = {
       method: "GET",
@@ -47,6 +44,7 @@ export const Task = ({
       console.log("removed");
     });
   };
+
   return (
     <Grid
       xs={11}
@@ -97,6 +95,7 @@ export const Task = ({
             moveTask(id, "removed");
             setTask(task.filter((currentItem) => currentItem.task_id != id));
             setTask((currentItem) => [
+              //moving the task in the front end
               ...currentItem,
               {
                 task_id: id,

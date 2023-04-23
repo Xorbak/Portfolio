@@ -33,7 +33,13 @@ export const ConfirmContainerDeletion = ({
   return (
     <Grid xs={11} md={6} container sx={styles.App}>
       {" "}
-      <Grid xs={12} boxShadow={5} container justifyContent={"center"}>
+      <Grid
+        xs={12}
+        boxShadow={5}
+        container
+        justifyContent={"center"}
+        sx={{ backgroundColor: "background.paper" }}
+      >
         <Typography sx={{ marginBottom: "50px" }} variant="h4">
           Are you sure you want to Delete "{currentContainer}" and all tasks
           contained in it?

@@ -48,9 +48,12 @@ export const TaskManagement = () => {
   });
 
   return (
+    //Bunch of conditional rendering instead of new windows
+    // has highest z-index to render above everything absolutely
     <Grid sx={styles.App}>
       {addTaskModal == 1 ? (
         <AddTaskModal
+          //To add a task to given container
           currentContainer={currentContainer}
           userDetails={userDetails}
           setTasks={setTasks}
@@ -61,6 +64,7 @@ export const TaskManagement = () => {
       ) : null}
       {addTaskModal == 2 ? (
         <AddTaskContainer
+          //Adds a window that houses tasks
           setTaskContainers={setTaskContainers}
           taskContainers={taskContainers}
           currentContainer={currentContainer}
@@ -73,6 +77,7 @@ export const TaskManagement = () => {
       ) : null}{" "}
       {addTaskModal == 3 ? (
         <ConfirmContainerDeletion
+          //Delete given container confirmation window
           currentContainer={currentContainer}
           setTaskContainers={setTaskContainers}
           toggleVisibility={setAddTaskModal}
@@ -82,6 +87,7 @@ export const TaskManagement = () => {
       ) : null}{" "}
       {addTaskModal == 4 ? (
         <FullContinerView
+          //shows the details and all of the
           currentContainer={currentContainer}
           tasks={tasks}
           toggleVisibility={setAddTaskModal}
@@ -89,8 +95,8 @@ export const TaskManagement = () => {
           taskContainers={taskContainers}
         />
       ) : null}
-      {!loggedin.isLoggedIn ? (
-        loggedin.isRegistered ? (
+      {!loggedin.isLoggedIn ? ( //First check if they are logged in
+        loggedin.isRegistered ? ( //If they are not show the log in screen the register button sets wheither or not to see the register modal
           <TaskLogIn register={setLoggedin} setUserDetails={setUserDetails} />
         ) : (
           <TaskRegistration register={setLoggedin} />
@@ -102,7 +108,7 @@ export const TaskManagement = () => {
           sx={{ filter: addTaskModal ? "blur(10px)" : null }}
         >
           {" "}
-          <Grid
+          <Grid //left aside start - the grey column
             container
             item
             xs={1}
@@ -124,7 +130,7 @@ export const TaskManagement = () => {
               </Button>
             </Grid>
           </Grid>
-          <TaskUserDetails
+          <TaskUserDetails // screen with task containers
             setCurrentContainer={setCurrentContainer}
             taskContainers={taskContainers}
             setTaskContainers={setTaskContainers}
